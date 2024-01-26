@@ -1,6 +1,0 @@
-SimpleDemo.exe: 00002228: 23:35:01 [127.0.0.1]:Failed Sequence Recovery: SeqId: 15, Event: click
-SimpleDemo.exe: 00002228: 23:35:01 [127.0.0.1]:Sequence sent from cache:  SeqId: 15
-SimpleDemo.exe: 00002228: 23:35:01 [127.0.0.1]:Processed: Id: 15, Evt: click, [CL6PiLazFF10E17A56D]
-SimpleDemo.exe: 00002B70: 23:36:41 [127.0.0.1]:Failed Sequence Recovery: SeqId: 42, Event: itemclick
-SimpleDemo.exe: 00002B70: 23:36:41 [127.0.0.1]:Sequence sent from cache:  SeqId: 42
-SimpleDemo.exe: 00002B70: 23:36:41 [127.0.0.1]:Processed: Id: 42, Evt: itemclick, [CL6PiLazFF10E17A56D]

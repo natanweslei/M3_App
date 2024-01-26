@@ -1,0 +1,47 @@
+unit NewInvioce;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics,
+  Controls, Forms, uniGUITypes, uniGUIAbstractClasses, unipagecontrol,
+  uniGUIClasses, uniGUIFrame, uniGUIBaseClasses, uniPanel, Data.DB,
+  Data.Win.ADODB, uniMultiItem, uniComboBox, uniDBComboBox, uniDBLookupComboBox,
+  uniEdit, uniButton, uniBasicGrid, uniDBGrid, uniDBNavigator, Datasnap.DBClient;
+
+type
+  TFrmNewInvoice = class(TUniFrame)
+    UniPanel1: TUniPanel;
+    UniDBLookupComboBox1: TUniDBLookupComboBox;
+    DataSource1: TDataSource;
+    AdoQuery1: TADOQuery;
+    edTotal: TUniNumberEdit;
+    UniButton1: TUniButton;
+    UniDBGrid1: TUniDBGrid;
+    DataSource2: TDataSource;
+    UniDBNavigator1: TUniDBNavigator;
+    UniHiddenPanel1: TUniHiddenPanel;
+    UniNumberEdit2: TUniNumberEdit;
+    UniNumberEdit3: TUniNumberEdit;
+    ClientDataSet1: TClientDataSet;
+    ADOQuery2: TADOQuery;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  MainModule,
+  Main,
+  Invoices;
+
+
+initialization
+  RegisterClass(TFrmNewInvoice);
+
+end.

@@ -1,0 +1,7 @@
+M3APP.exe: 0000562C: 21:56:20 []:>--------------------------------------------------------------<
+M3APP.exe: 0000562C: 21:56:20 [TUniServerModule]:Server First Init.
+M3APP.exe: 0000562C: 21:56:20 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 0000562C: 21:56:20 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 0000562C: 21:56:20 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 00001984: 21:57:14 [127.0.0.1]:EClassNotFound : Class TFormFuncionario not found : Addr: $004AD3FE
+M3APP.exe: 00005264: 21:57:21 [127.0.0.1]:EClassNotFound : Class TFormFuncionario not found : Addr: $004AD3FE

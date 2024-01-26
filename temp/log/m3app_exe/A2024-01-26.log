@@ -1,0 +1,161 @@
+M3APP.exe: 00005530: 00:02:49 []:>--------------------------------------------------------------<
+M3APP.exe: 00005530: 00:02:49 [TUniServerModule]:Server First Init.
+M3APP.exe: 00005530: 00:02:49 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 00005530: 00:02:49 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 00005530: 00:02:49 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 00005530: 00:02:56 [Terminated]:Exit Code: 1
+M3APP.exe: 00004B08: 00:02:57 [IndyListen]:EIdSocketError : Socket Error # 10093
+ : Addr: $0069FCBC
+M3APP.exe: 00004B08: 00:02:58 [IndyListen]:EIdSocketError : Socket Error # 10093
+ : Addr: $0069FCBC
+M3APP.exe: 00004B08: 00:02:59 [IndyListen]:EIdSocketError : Socket Error # 10093
+ : Addr: $0069FCBC
+M3APP.exe: 00004B08: 00:02:59 [IndyListen]:EIdSocketError : Socket Error # 10093
+ : Addr: $0069FCBC
+M3APP.exe: 00005530: 00:03:00 [TUniServerModule]:Shutting Down Server.
+M3APP.exe: 00005530: 00:03:00 [TUniServerModule]:Stopping HTTP Server.
+M3APP.exe: 00004B08: 00:03:00 [IndyListen]:EIdSocketError : Socket Error # 10093
+ : Addr: $0069FCBC
+M3APP.exe: 00005530: 00:03:01 [ShutDownWebServer]:EIdWinsockStubError : Error on call to Winsock2 library function shutdown: O aplicativo não chamou WSAStartup ou WSAStartup falhou : Addr: $00691C13
+M3APP.exe: 00005530: 00:03:01 [TUniServerModule]:HTTP Server Stopped.
+M3APP.exe: 00005530: 00:03:01 [TUniGUISessionManager]:Terminating Session manager.
+M3APP.exe: 00005530: 00:03:01 [TUniGUISessionManager]:Stopping Cache Eraser...
+M3APP.exe: 00005530: 00:03:01 [TUniGUISessionManager]:Cache Eraser Stopped.
+M3APP.exe: 00005530: 00:03:01 [TUniGUISessionManager]:Destroying Worker Threads.
+M3APP.exe: 00005530: 00:03:01 [TUniGUISessionManager]:Session manager terminated.
+M3APP.exe: 00005530: 00:03:01 [TUniServerModule]:Server Shutdown Completed.
+M3APP.exe: 00005530: 00:03:01 []:<-------------------------------------------------------------->
+M3APP.exe: 000050E0: 00:03:44 []:>--------------------------------------------------------------<
+M3APP.exe: 000050E0: 00:03:44 [TUniServerModule]:Server First Init.
+M3APP.exe: 000050E0: 00:03:44 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 000050E0: 00:03:44 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 000050E0: 00:03:44 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 000050E0: 00:03:56 [Terminated]:Exit Code: 1
+M3APP.exe: 00001AB4: 00:03:57 [IndyListen]:EIdSocketError : Socket Error # 10093
+ : Addr: $0069FCBC
+M3APP.exe: 00001AB4: 00:03:58 [IndyListen]:EIdSocketError : Socket Error # 10093
+ : Addr: $0069FCBC
+M3APP.exe: 00001AB4: 00:03:58 [IndyListen]:EIdSocketError : Socket Error # 10093
+ : Addr: $0069FCBC
+M3APP.exe: 00001AB4: 00:03:59 [IndyListen]:EIdSocketError : Socket Error # 10093
+ : Addr: $0069FCBC
+M3APP.exe: 00001AB4: 00:04:00 [IndyListen]:EIdSocketError : Socket Error # 10093
+ : Addr: $0069FCBC
+M3APP.exe: 00001AB4: 00:04:00 [IndyListen]:EIdSocketError : Socket Error # 10093
+ : Addr: $0069FCBC
+M3APP.exe: 000050E0: 00:04:00 [TUniServerModule]:Shutting Down Server.
+M3APP.exe: 000050E0: 00:04:01 [TUniServerModule]:Stopping HTTP Server.
+M3APP.exe: 00001AB4: 00:04:01 [IndyListen]:EIdSocketError : Socket Error # 10093
+ : Addr: $0069FCBC
+M3APP.exe: 000050EC: 00:05:53 []:>--------------------------------------------------------------<
+M3APP.exe: 000050EC: 00:05:53 [TUniServerModule]:Server First Init.
+M3APP.exe: 000050EC: 00:05:53 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 000050EC: 00:05:53 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 000050EC: 00:05:53 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 0000368C: 00:06:27 [127.0.0.1]:EClassNotFound : Class TFraFormModelo not found : Addr: $004AD3FE
+M3APP.exe: 00002028: 00:15:00 []:>--------------------------------------------------------------<
+M3APP.exe: 00002028: 00:15:00 [TUniServerModule]:Server First Init.
+M3APP.exe: 00002028: 00:15:00 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 00002028: 00:15:00 [TUniServerModule]:Global Cache Folder Erased. <7> Files deleted.
+M3APP.exe: 00002028: 00:15:00 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 00002028: 00:15:00 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 00000F98: 00:15:08 [127.0.0.1]:EUniSessionException : Invalid session or session Timeout. (Session not found: itMpAYCrRr10E1C42C1 ) : Addr: $00753585
+M3APP.exe: 00003798: 00:15:22 [127.0.0.1]:EClassNotFound : Class TFraFormModelo not found : Addr: $004AD3FE
+M3APP.exe: 00002254: 00:19:44 []:>--------------------------------------------------------------<
+M3APP.exe: 00002254: 00:19:44 [TUniServerModule]:Server First Init.
+M3APP.exe: 00002254: 00:19:44 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 00002254: 00:19:44 [TUniServerModule]:Global Cache Folder Erased. <4> Files deleted.
+M3APP.exe: 00002254: 00:19:44 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 00002254: 00:19:44 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 00004450: 00:21:20 []:>--------------------------------------------------------------<
+M3APP.exe: 00004450: 00:21:20 [TUniServerModule]:Server First Init.
+M3APP.exe: 00004450: 00:21:20 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 00004450: 00:21:20 [TUniServerModule]:Global Cache Folder Erased. <3> Files deleted.
+M3APP.exe: 00004450: 00:21:20 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 00004450: 00:21:20 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 000049E0: 00:21:25 [127.0.0.1]:EUniSessionException : Invalid session or session Timeout. (Session not found: nSqYNN8rAv10E1C46B6 ) : Addr: $00753585
+M3APP.exe: 00004C68: 00:21:41 [127.0.0.1]:EComponentError : A component named TabSheetMenuFuncionario already exists : Addr: $004CB22E
+M3APP.exe: 00004C68: 00:21:43 [127.0.0.1]:EAccessViolation : Access violation at address 008F6C64 in module 'M3APP.exe'. Read of address 00000528 : Addr: $008F6C64
+M3APP.exe: 00002CAC: 00:34:06 []:>--------------------------------------------------------------<
+M3APP.exe: 00002CAC: 00:34:06 [TUniServerModule]:Server First Init.
+M3APP.exe: 00002CAC: 00:34:06 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 00002CAC: 00:34:06 [TUniServerModule]:Global Cache Folder Erased. <9> Files deleted.
+M3APP.exe: 00002CAC: 00:34:06 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 00002CAC: 00:34:06 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 0000370C: 00:34:17 [127.0.0.1]:EUniSessionException : Invalid session or session Timeout. (Session not found: luDhLlCJvk10E1C46ED ) : Addr: $00753585
+M3APP.exe: 00001F40: 00:34:28 [127.0.0.1]:EComponentError : A component named TabSheetMenuEmpresa already exists : Addr: $004CB22E
+M3APP.exe: 00001F40: 00:34:29 [127.0.0.1]:EAccessViolation : Access violation at address 008F6C64 in module 'M3APP.exe'. Read of address 00000528 : Addr: $008F6C64
+M3APP.exe: 00004984: 00:35:19 []:>--------------------------------------------------------------<
+M3APP.exe: 00004984: 00:35:19 [TUniServerModule]:Server First Init.
+M3APP.exe: 00004984: 00:35:19 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 00004984: 00:35:19 [TUniServerModule]:Global Cache Folder Erased. <9> Files deleted.
+M3APP.exe: 00004984: 00:35:19 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 00004984: 00:35:19 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 00005488: 00:35:25 [127.0.0.1]:EUniSessionException : Invalid session or session Timeout. (Session not found: q4ls6dFifE10E1C4A6B ) : Addr: $00753585
+M3APP.exe: 0000389C: 00:35:37 [127.0.0.1]:EComponentError : A component named TabSheetMenuEmpresa already exists : Addr: $004CB22E
+M3APP.exe: 0000389C: 00:35:38 [127.0.0.1]:EAccessViolation : Access violation at address 008F6C64 in module 'M3APP.exe'. Read of address 00000528 : Addr: $008F6C64
+M3APP.exe: 000054E0: 00:37:07 []:>--------------------------------------------------------------<
+M3APP.exe: 000054E0: 00:37:07 [TUniServerModule]:Server First Init.
+M3APP.exe: 000054E0: 00:37:07 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 000054E0: 00:37:07 [TUniServerModule]:Global Cache Folder Erased. <8> Files deleted.
+M3APP.exe: 000054E0: 00:37:07 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 000054E0: 00:37:07 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 000018F4: 00:37:20 [127.0.0.1]:EComponentError : A component named TabSheetMenuFuncionario already exists : Addr: $004CB22E
+M3APP.exe: 000018F4: 00:37:21 [127.0.0.1]:EAccessViolation : Access violation at address 008F6C64 in module 'M3APP.exe'. Read of address 00000528 : Addr: $008F6C64
+M3APP.exe: 00001C14: 00:38:22 []:>--------------------------------------------------------------<
+M3APP.exe: 00001C14: 00:38:22 [TUniServerModule]:Server First Init.
+M3APP.exe: 00001C14: 00:38:22 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 00001C14: 00:38:22 [TUniServerModule]:Global Cache Folder Erased. <12> Files deleted.
+M3APP.exe: 00001C14: 00:38:22 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 00001C14: 00:38:22 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 00000D34: 00:38:27 [127.0.0.1]:EUniSessionException : Invalid session or session Timeout. (Session not found: 22hxTcACZF10E1C4B46 ) : Addr: $00753585
+M3APP.exe: 00000A40: 00:38:27 [127.0.0.1]:EUniSessionException : Invalid session or session Timeout. (Session not found: 22hxTcACZF10E1C4B46 ) : Addr: $00753585
+M3APP.exe: 000024F0: 00:39:31 []:>--------------------------------------------------------------<
+M3APP.exe: 000024F0: 00:39:31 [TUniServerModule]:Server First Init.
+M3APP.exe: 000024F0: 00:39:31 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 000024F0: 00:39:31 [TUniServerModule]:Global Cache Folder Erased. <6> Files deleted.
+M3APP.exe: 000024F0: 00:39:31 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 000024F0: 00:39:32 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 00003D78: 00:39:34 [127.0.0.1]:EUniSessionException : Invalid session or session Timeout. (Session not found: 6CYSelxOte10E1C4B92 ) : Addr: $00753585
+M3APP.exe: 00003E90: 00:39:34 [127.0.0.1]:EUniSessionException : Invalid session or session Timeout. (Session not found: 6CYSelxOte10E1C4B92 ) : Addr: $00753585
+M3APP.exe: 000031C0: 00:40:31 []:>--------------------------------------------------------------<
+M3APP.exe: 000031C0: 00:40:31 [TUniServerModule]:Server First Init.
+M3APP.exe: 000031C0: 00:40:31 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 000031C0: 00:40:31 [TUniServerModule]:Global Cache Folder Erased. <6> Files deleted.
+M3APP.exe: 000031C0: 00:40:31 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 000031C0: 00:40:31 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 000047F4: 00:46:50 []:>--------------------------------------------------------------<
+M3APP.exe: 000047F4: 00:46:50 [TUniServerModule]:Server First Init.
+M3APP.exe: 000047F4: 00:46:50 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 000047F4: 00:46:50 [TUniServerModule]:Global Cache Folder Erased. <7> Files deleted.
+M3APP.exe: 000047F4: 00:46:50 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 000047F4: 00:46:50 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 0000452C: 00:46:54 [127.0.0.1]:EUniSessionException : Invalid session or session Timeout. (Session not found: A5tdYMmWCg10E1C4C1F ) : Addr: $00753585
+M3APP.exe: 00003310: 00:47:44 []:>--------------------------------------------------------------<
+M3APP.exe: 00003310: 00:47:44 [TUniServerModule]:Server First Init.
+M3APP.exe: 00003310: 00:47:44 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 00003310: 00:47:44 [TUniServerModule]:Global Cache Folder Erased. <6> Files deleted.
+M3APP.exe: 00003310: 00:47:44 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 00003310: 00:47:44 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 000039AC: 00:47:46 [127.0.0.1]:EUniSessionException : Invalid session or session Timeout. (Session not found: LXYiCzVuwY10E1C4DD9 ) : Addr: $00753585
+M3APP.exe: 0000128C: 00:47:47 [127.0.0.1]:EUniSessionException : Invalid session or session Timeout. (Session not found: LXYiCzVuwY10E1C4DD9 ) : Addr: $00753585
+M3APP.exe: 00003F44: 00:49:51 []:>--------------------------------------------------------------<
+M3APP.exe: 00003F44: 00:49:51 [TUniServerModule]:Server First Init.
+M3APP.exe: 00003F44: 00:49:51 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 00003F44: 00:49:51 [TUniServerModule]:Global Cache Folder Erased. <7> Files deleted.
+M3APP.exe: 00003F44: 00:49:52 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 00003F44: 00:49:52 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 0000331C: 00:49:59 [127.0.0.1]:EUniSessionException : Invalid session or session Timeout. (Session not found: bvm4xwwHyO10E1C4E1B ) : Addr: $00753585
+M3APP.exe: 000048D0: 00:51:11 []:>--------------------------------------------------------------<
+M3APP.exe: 000048D0: 00:51:11 [TUniServerModule]:Server First Init.
+M3APP.exe: 000048D0: 00:51:11 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 000048D0: 00:51:11 [TUniServerModule]:Global Cache Folder Erased. <4> Files deleted.
+M3APP.exe: 000048D0: 00:51:11 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 000048D0: 00:51:11 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 00004B78: 00:51:52 []:>--------------------------------------------------------------<
+M3APP.exe: 00004B78: 00:51:52 [TUniServerModule]:Server First Init.
+M3APP.exe: 00004B78: 00:51:52 [TUniServerModule]:Debug Mode = ON
+M3APP.exe: 00004B78: 00:51:52 [TUniServerModule]:Global Cache Folder Erased. <8> Files deleted.
+M3APP.exe: 00004B78: 00:51:52 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+M3APP.exe: 00004B78: 00:51:53 [TUniServerModule]:HTTP Server Started on Port: 8077
+M3APP.exe: 000037F8: 00:51:57 [127.0.0.1]:EUniSessionException : Invalid session or session Timeout. (Session not found: 32QrBAqODj10E1C4F06 ) : Addr: $00753585

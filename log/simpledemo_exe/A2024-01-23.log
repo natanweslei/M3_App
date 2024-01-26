@@ -1,0 +1,44 @@
+SimpleDemo.exe: 00000968: 21:03:39 []:>--------------------------------------------------------------<
+SimpleDemo.exe: 00000968: 21:03:39 [TUniServerModule]:Server First Init.
+SimpleDemo.exe: 00000968: 21:03:39 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+SimpleDemo.exe: 00000968: 21:03:39 [TUniServerModule]:HTTP Server Started on Port: 8077
+SimpleDemo.exe: 00003588: 21:03:59 [HandleFileRequest[127.0.0.1]]:File not found: C:\Desenvolvimento\Delphi\UNIGUI\M3_App\favicon.ico
+SimpleDemo.exe: 00000968: 21:05:10 [TUniServerModule]:Shutting Down Server.
+SimpleDemo.exe: 00000968: 21:05:10 [TUniServerModule]:Stopping HTTP Server.
+SimpleDemo.exe: 00000968: 21:05:11 [TUniServerModule]:HTTP Server Stopped.
+SimpleDemo.exe: 00000968: 21:05:11 [TUniGUISessionManager]:Terminating Session manager.
+SimpleDemo.exe: 00000968: 21:05:11 [TUniGUISessionManager]:Stopping Cache Eraser...
+SimpleDemo.exe: 00000968: 21:05:11 [TUniGUISessionManager]:Cache Eraser Stopped.
+SimpleDemo.exe: 00000968: 21:05:11 [TUniGUISessionManager]:Destroying Worker Threads.
+SimpleDemo.exe: 00000968: 21:05:11 [TUniGUISessionManager]:Session manager terminated.
+SimpleDemo.exe: 00000968: 21:05:11 [TUniServerModule]:Server Shutdown Completed.
+SimpleDemo.exe: 00000968: 21:05:11 []:<-------------------------------------------------------------->
+SimpleDemo.exe: 00000968: 21:05:11 [Terminated]:Exit Code: 0
+SimpleDemo.exe: 000046D0: 21:27:07 []:>--------------------------------------------------------------<
+SimpleDemo.exe: 000046D0: 21:27:07 [TUniServerModule]:Server First Init.
+SimpleDemo.exe: 000046D0: 21:27:07 [TUniServerModule]:Debug Mode = ON
+SimpleDemo.exe: 000046D0: 21:27:07 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+SimpleDemo.exe: 000046D0: 21:27:07 [TUniServerModule]:HTTP Server Started on Port: 8077
+SimpleDemo.exe: 0000282C: 22:17:56 []:>--------------------------------------------------------------<
+SimpleDemo.exe: 0000282C: 22:17:56 [TUniServerModule]:Server First Init.
+SimpleDemo.exe: 0000282C: 22:17:56 [TUniServerModule]:Debug Mode = ON
+SimpleDemo.exe: 0000282C: 22:17:56 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+SimpleDemo.exe: 0000282C: 22:17:56 [TUniServerModule]:HTTP Server Started on Port: 8077
+SimpleDemo.exe: 00002A34: 22:22:39 []:>--------------------------------------------------------------<
+SimpleDemo.exe: 00002A34: 22:22:39 [TUniServerModule]:Server First Init.
+SimpleDemo.exe: 00002A34: 22:22:39 [TUniServerModule]:Debug Mode = ON
+SimpleDemo.exe: 00002A34: 22:22:39 [TUniServerModule]:Global Cache Folder Erased. <2> Files deleted.
+SimpleDemo.exe: 00002A34: 22:22:39 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+SimpleDemo.exe: 00002A34: 22:22:39 [TUniServerModule]:HTTP Server Started on Port: 8077
+SimpleDemo.exe: 00000B0C: 22:22:41 [127.0.0.1]:EUniSessionException : Invalid session or session Timeout. (Session not found: MaBu6aiz9Y10E19183F ) : Addr: $00753585
+SimpleDemo.exe: 00004618: 22:23:06 [127.0.0.1]:EFDException : [FireDAC][Phys][PG]-314. Cannot load vendor library [.\bin\libpq.dll]. Não foi possível encontrar o módulo especificado.
+Hint: check it is in the PATH or application EXE directories, and has x86 bitness. : Addr: $00798362
+SimpleDemo.exe: 000005F0: 22:26:32 []:>--------------------------------------------------------------<
+SimpleDemo.exe: 000005F0: 22:26:32 [TUniServerModule]:Server First Init.
+SimpleDemo.exe: 000005F0: 22:26:32 [TUniServerModule]:Debug Mode = ON
+SimpleDemo.exe: 000005F0: 22:26:32 [TUniServerModule]:Global Cache Folder Erased. <2> Files deleted.
+SimpleDemo.exe: 000005F0: 22:26:32 [TUniServerModule]:Starting HTTP Server on Port: 8077...
+SimpleDemo.exe: 000005F0: 22:26:32 [TUniServerModule]:HTTP Server Started on Port: 8077
+SimpleDemo.exe: 000019BC: 22:26:35 [127.0.0.1]:EUniSessionException : Invalid session or session Timeout. (Session not found: EH7Ul81m3110E19197F ) : Addr: $00753585
+SimpleDemo.exe: 00003154: 22:26:53 [127.0.0.1]:EFDException : [FireDAC][Phys][PG]-314. Cannot load vendor library [.\bin\libpq.dll]. Não foi possível encontrar o módulo especificado.
+Hint: check it is in the PATH or application EXE directories, and has x86 bitness. : Addr: $00798362

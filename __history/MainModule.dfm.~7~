@@ -1,0 +1,17 @@
+object UniMainModule: TUniMainModule
+  OldCreateOrder = False
+  OnCreate = UniGUIMainModuleCreate
+  Theme = 'gray'
+  MonitoredKeys.Keys = <>
+  Height = 328
+  Width = 401
+  object Conexao: TFDConnection
+    Params.Strings = (
+      'Database=garagem'
+      'User_Name=postgres'
+      'Password=0207'
+      'DriverID=PG')
+    Left = 56
+    Top = 48
+  end
+end

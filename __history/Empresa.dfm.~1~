@@ -1,0 +1,18 @@
+object FormEmpresa: TFormEmpresa
+  Left = 0
+  Top = 0
+  Width = 819
+  Height = 623
+  Hint = 'Empresa'
+  TabOrder = 0
+  object UniPanel1: TUniPanel
+    Left = 0
+    Top = 0
+    Width = 819
+    Height = 33
+    Hint = ''
+    Align = alTop
+    TabOrder = 0
+    Caption = ''
+  end
+end

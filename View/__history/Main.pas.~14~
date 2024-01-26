@@ -1,0 +1,147 @@
+unit Main;
+
+interface
+
+uses
+  Windows,
+  Messages,
+  SysUtils,
+  Variants,
+  Classes,
+  Graphics,
+  Controls,
+  Forms,
+  uniGUITypes,
+  uniGUIAbstractClasses,
+  uniGUIClasses,
+  uniGUIRegClasses,
+  uniGUIForm,
+  uniPanel,
+  uniPageControl,
+  uniGUIBaseClasses,
+  uniTreeView,
+  Vcl.Imaging.pngimage,
+  uniImage,
+  uniGUIFrame,
+  Vcl.Menus,
+  uniMainMenu,
+  uniImageList,
+  uniTreeMenu;
+
+type
+  TMainForm = class(TUniForm)
+    PageControlMain: TUniPageControl;
+    UniTabSheet1: TUniTabSheet;
+    UniImage1: TUniImage;
+    UniMenuItems1: TUniMenuItems;
+    UniTreeMenu1: TUniTreeMenu;
+    MenuEmpresa: TUniMenuItem;
+    MenuFuncionario: TUniMenuItem;
+    MenuTipoGasto: TUniMenuItem;
+    MenuVeiculo: TUniMenuItem;
+    MenuCliente: TUniMenuItem;
+    MenuEntradaVeiculos: TUniMenuItem;
+    MenuSaidaVeiculos: TUniMenuItem;
+    MenuManutencaoVeiculos: TUniMenuItem;
+    procedure MenuTipoGastoClick(Sender: TObject);
+    procedure MenuVeiculoClick(Sender: TObject);
+    procedure MenuClienteClick(Sender: TObject);
+    procedure MenuEmpresaClick(Sender: TObject);
+    procedure MenuFuncionarioClick(Sender: TObject);
+  private
+  public
+    Procedure OpenFrame(AClassName: string; AItemMenu: string);
+  end;
+
+function MainForm: TMainForm;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  uniGUIVars,
+  MainModule,
+  uniGUIApplication;
+
+function MainForm: TMainForm;
+begin
+  Result := TMainForm(UniMainModule.GetFormInstance(TMainForm));
+end;
+
+procedure TMainForm.OpenFrame(AClassName: string; AItemMenu: string);
+var
+  i: Integer;
+  LActivePage_id: Integer;
+  LTabSheet: TUniTabSheet;
+  LFrameClass: TUniFrameClass;
+  LFrame: TUniFrame;
+begin
+  if AClassName = EmptyStr then
+    Exit;
+
+  LActivePage_id := -1;
+
+  for i := 0 to PageControlMain.PageCount -1 do
+  begin
+    if PageControlMain.Pages[i].Caption <> AItemMenu then
+      Continue;
+
+    PageControlMain.ActivePageIndex := i;
+    LActivePage_id := 0;
+    Break;
+  end;
+
+  if LActivePage_id = -1 then
+  begin
+    LTabSheet             := TUniTabSheet.Create(Self);
+    LTabSheet.Name        := 'TabSheet' + AItemMenu;
+    LTabSheet.Closable    := True;
+    LTabSheet.PageControl := PageControlMain;
+
+    LFrameClass       := TUniFrameClass(FindClass(AClassName));
+    LFrame            := LFrameClass.Create(Self);
+    LFrame.Align      := alClient;
+    LFrame.Parent     := LTabSheet;
+    LTabSheet.Caption := LFrame.Hint;
+
+    PageControlMain.ActivePage := LTabSheet;
+
+//    LFrameClass       := TUniFrameClass(FindClass(AClassName));
+//    LFrame            := LFrameClass.Create(LTabSheet);
+//    LTabSheet.Caption := LFrame.Hint;
+//    LFrame.Align      := alClient;
+//    LFrame.Parent     := LTabSheet;
+  end;
+end;
+
+procedure TMainForm.MenuEmpresaClick(Sender: TObject);
+begin
+  OpenFrame('TFormEmpresa', 'MenuEmpresa');
+end;
+
+procedure TMainForm.MenuFuncionarioClick(Sender: TObject);
+begin
+//  OpenFrame('TFormFuncionario', 'MenuFuncionario');
+  OpenFrame('FormModelo2', 'MenuFuncionario');
+end;
+
+procedure TMainForm.MenuTipoGastoClick(Sender: TObject);
+begin
+  OpenFrame('TFormTipoGasto', 'MenuTipoGasto');
+end;
+
+procedure TMainForm.MenuVeiculoClick(Sender: TObject);
+begin
+  OpenFrame('TFormVeiculo', 'MenuVeiculo');
+end;
+
+procedure TMainForm.MenuClienteClick(Sender: TObject);
+begin
+  OpenFrame('TFormCliente', 'MenuCliente');
+end;
+
+initialization
+  RegisterAppFormClass(TMainForm);
+
+end.

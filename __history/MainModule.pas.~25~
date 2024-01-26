@@ -1,0 +1,62 @@
+unit MainModule;
+
+interface
+
+uses
+  uniGUIMainModule,
+  SysUtils,
+  Classes,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.Phys.PG,
+  FireDAC.Phys.PGDef,
+  FireDAC.VCLUI.Wait,
+  FireDAC.Comp.Client,
+  uConexaoPostgreSQL,
+  Data.DB;
+
+type
+  TUniMainModule = class(TUniGUIMainModule)
+    procedure UniGUIMainModuleCreate(Sender: TObject);
+  private
+  public
+    UserId : integer;
+    FDPhysPgDriverLink1: TFDPhysPgDriverLink;
+    ConexaoPostgreSQL: TConexaoPostgreSQL;
+  end;
+
+function UniMainModule: TUniMainModule;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  UniGUIVars, ServerModule, uniGUIApplication;
+
+function UniMainModule: TUniMainModule;
+begin
+  Result := TUniMainModule(UniApplication.UniMainModule)
+end;
+
+procedure TUniMainModule.UniGUIMainModuleCreate(Sender: TObject);
+begin
+  if not Assigned(FDPhysPgDriverLink1) then
+    FDPhysPgDriverLink1 := TFDPhysPgDriverLink.Create(nil);
+end;
+
+initialization
+  RegisterMainModuleClass(TUniMainModule);
+  ConexaoPostgreSQL := TConexaoPostgreSQL.Create;
+
+finalization
+  ConexaoPostgreSQL.Free;
+
+end.

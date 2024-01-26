@@ -1,0 +1,6 @@
+inherited FormEmpresa: TFormEmpresa
+  Hint = 'Empresa'
+  Caption = 'Cadastro de Empresa'
+  PixelsPerInch = 96
+  TextHeight = 13
+end

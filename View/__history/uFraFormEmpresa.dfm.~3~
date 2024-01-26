@@ -1,0 +1,16 @@
+inherited FraFormEmpresa: TFraFormEmpresa
+  inherited PageControlModelo: TUniPageControl
+    inherited tsConsulta: TUniTabSheet
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 256
+      ExplicitHeight = 128
+    end
+    inherited tsManutencao: TUniTabSheet
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 256
+      ExplicitHeight = 128
+    end
+  end
+end

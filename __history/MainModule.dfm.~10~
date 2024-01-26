@@ -1,0 +1,15 @@
+object UniMainModule: TUniMainModule
+  OldCreateOrder = False
+  Theme = 'gray'
+  MonitoredKeys.Keys = <>
+  Height = 328
+  Width = 401
+  object Conexao: TFDConnection
+    Left = 72
+    Top = 96
+  end
+  object FDPhysPgDriverLink1: TFDPhysPgDriverLink
+    Left = 184
+    Top = 96
+  end
+end

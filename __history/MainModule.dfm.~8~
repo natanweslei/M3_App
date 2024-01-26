@@ -1,8 +1,0 @@
-object UniMainModule: TUniMainModule
-  OldCreateOrder = False
-  OnCreate = UniGUIMainModuleCreate
-  Theme = 'gray'
-  MonitoredKeys.Keys = <>
-  Height = 328
-  Width = 401
-end

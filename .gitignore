@@ -4,3 +4,8 @@ cache/
 log/
 temp/
 .dcu
+.dproj
+.dproj.local
+.identcache
+.res
+.stat

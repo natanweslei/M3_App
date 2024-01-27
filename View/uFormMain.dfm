@@ -9,21 +9,24 @@ object FormMain: TFormMain
   PixelsPerInch = 96
   TextHeight = 13
   object PageControlMain: TUniPageControl
-    Left = 217
+    Left = 249
     Top = 0
-    Width = 766
+    Width = 734
     Height = 599
     Hint = ''
     ActivePage = TabSheetMain
     Align = alClient
     TabOrder = 0
+    ExplicitLeft = 217
+    ExplicitWidth = 766
     object TabSheetMain: TUniTabSheet
       Hint = ''
       Caption = 'Home'
+      ExplicitWidth = 758
       object UniImage1: TUniImage
         Left = 0
         Top = 0
-        Width = 758
+        Width = 726
         Height = 571
         Hint = ''
         Center = True
@@ -447,13 +450,14 @@ object FormMain: TFormMain
           BFCBDDE16CB64C0000000049454E44AE426082}
         Align = alClient
         Transparent = True
+        ExplicitWidth = 758
       end
     end
   end
   object UniTreeMenu1: TUniTreeMenu
     Left = 0
     Top = 0
-    Width = 217
+    Width = 249
     Height = 599
     Hint = ''
     Items.FontData = {0100000000}
@@ -483,7 +487,7 @@ object FormMain: TFormMain
       OnClick = MenuClienteClick
     end
     object MenuEntradaVeiculos: TUniMenuItem
-      Caption = 'Entrada de Ve'#237'culoss'
+      Caption = 'Entrada de Ve'#237'culos'
     end
     object MenuSaidaVeiculos: TUniMenuItem
       Caption = 'Sa'#237'da de Ve'#237'culos'

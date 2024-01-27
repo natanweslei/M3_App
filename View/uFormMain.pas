@@ -118,8 +118,7 @@ end;
 
 procedure TFormMain.MenuFuncionarioClick(Sender: TObject);
 begin
-//  OpenFrame('TFormFuncionario', 'MenuFuncionario');
-  OpenFrame('TFraFormModelo', 'Funcionario');
+  OpenFrame('TFraFormFuncionario', 'Funcionario');
 end;
 
 procedure TFormMain.MenuTipoGastoClick(Sender: TObject);

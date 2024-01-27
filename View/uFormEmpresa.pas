@@ -32,4 +32,8 @@ implementation
 
 {$R *.dfm}
 
+
+initialization
+  RegisterClass(TFormEmpresa);
+
 end.

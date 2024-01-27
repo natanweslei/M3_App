@@ -18,10 +18,11 @@ uses
   uniBasicGrid,
   uniDBGrid,
   uniPageControl,
-  uniGUIBaseClasses;
+  uniGUIBaseClasses, uniLabel;
 
 type
   TFraFormEmpresa = class(TFraFormModelo)
+    UniLabel1: TUniLabel;
   private
     { Private declarations }
   public

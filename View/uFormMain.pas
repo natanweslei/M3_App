@@ -61,6 +61,7 @@ implementation
 
 uses
   uFormModelo,
+  uFormEmpresa,
   uFraFormModelo,
   uniGUIVars,
   MainModule,
@@ -76,6 +77,8 @@ var
   i: Integer;
   LActivePage_id: Integer;
   LTabSheet: TUniTabSheet;
+  LFormClass: TUniFormClass;
+  LForm: TUniForm;
   LFrameClass: TUniFrameClass;
   LFrame: TUniFrame;
 begin
@@ -96,16 +99,25 @@ begin
 
   if LActivePage_id = -1 then
   begin
-    LTabSheet             := TUniTabSheet.Create(Self);
-    LTabSheet.Name        := AClassName;
-    LTabSheet.Closable    := True;
-    LTabSheet.PageControl := PageControlMain;
+    LTabSheet                  := TUniTabSheet.Create(Self);
+    LTabSheet.Name             := AClassName;
+    LTabSheet.Closable         := True;
+    LTabSheet.PageControl      := PageControlMain;
+    LTabSheet.Caption          := ACaption;
+    LTabSheet.Align            := alClient;
+    LTabSheet.AlignWithMargins := True;
 
-    LFrameClass       := TUniFrameClass(FindClass(AClassName));
+    LFrameClass       := TUniFrameClass(FindClass('TFra' + AClassName));
     LFrame            := LFrameClass.Create(LTabSheet);
     LFrame.Align      := alClient;
     LFrame.Parent     := LTabSheet;
-    LTabSheet.Caption := ACaption;
+
+    LFormClass             := TUniFormClass(FindClass('T' + AClassName));
+    LForm                  := LFormClass.Create(UniApplication);
+    LForm.Align            := alClient;
+    LForm.Parent           := LFrame;
+    LForm.BorderStyle      := bsSingle;
+    LForm.AlignWithMargins := True;
 
     PageControlMain.ActivePage := LTabSheet;
   end;
@@ -113,7 +125,7 @@ end;
 
 procedure TFormMain.MenuEmpresaClick(Sender: TObject);
 begin
-  OpenFrame('TFraFormEmpresa', 'Empresa');
+  OpenFrame('FormEmpresa', 'Empresa');
 end;
 
 procedure TFormMain.MenuFuncionarioClick(Sender: TObject);

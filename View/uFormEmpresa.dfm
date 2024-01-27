@@ -1,18 +1,28 @@
 inherited FormEmpresa: TFormEmpresa
   Hint = 'Empresa'
+  ClientHeight = 385
+  ClientWidth = 610
   Caption = 'Cadastro de Empresa'
-  ExplicitWidth = 320
-  ExplicitHeight = 240
+  BorderStyle = bsSingle
+  ExplicitWidth = 616
+  ExplicitHeight = 414
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControlModelo: TUniPageControl
+    Width = 610
+    Height = 344
     inherited tsConsulta: TUniTabSheet
-      ExplicitLeft = 0
-      ExplicitTop = 0
+      inherited gridConsulta: TUniDBGrid
+        Width = 602
+        Height = 211
+      end
+      inherited panelFiltros: TUniPanel
+        Width = 602
+      end
     end
-    inherited tsManutencao: TUniTabSheet
-      ExplicitLeft = 0
-      ExplicitTop = 0
-    end
+  end
+  inherited panelBotoes: TUniPanel
+    Top = 344
+    Width = 610
   end
 end

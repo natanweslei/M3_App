@@ -1,0 +1,2 @@
+inherited FraFormCliente: TFraFormCliente
+end

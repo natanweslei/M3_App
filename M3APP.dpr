@@ -13,7 +13,11 @@ uses
   uFormModelo in 'View\uFormModelo.pas' {FormModelo: TUniForm},
   uFormEmpresa in 'View\uFormEmpresa.pas' {FormEmpresa: TUniForm},
   uFraFormModelo in 'View\uFraFormModelo.pas' {FraFormModelo: TUniFrame},
-  uFraFormEmpresa in 'View\uFraFormEmpresa.pas' {FraFormEmpresa: TUniFrame};
+  uFraFormEmpresa in 'View\uFraFormEmpresa.pas' {FraFormEmpresa: TUniFrame},
+  uFraFormTipoGasto in 'View\uFraFormTipoGasto.pas' {FraFormTipoGasto: TUniFrame},
+  uFraFormVeiculo in 'View\uFraFormVeiculo.pas',
+  uFraFormCliente in 'View\uFraFormCliente.pas' {FraFormCliente: TUniFrame},
+  uFraFormFuncionario in 'View\uFraFormFuncionario.pas' {FraFormFuncionario: TUniFrame};
 
 {$R *.res}
 

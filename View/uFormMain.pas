@@ -124,17 +124,17 @@ end;
 
 procedure TFormMain.MenuTipoGastoClick(Sender: TObject);
 begin
-  OpenFrame('TFormTipoGasto', 'Tipo de Gasto');
+  OpenFrame('TFraFormTipoGasto', 'Tipo de Gasto');
 end;
 
 procedure TFormMain.MenuVeiculoClick(Sender: TObject);
 begin
-  OpenFrame('TFormVeiculo', 'Veiculo');
+  OpenFrame('TFraFormVeiculo', 'Veiculo');
 end;
 
 procedure TFormMain.MenuClienteClick(Sender: TObject);
 begin
-  OpenFrame('TFormCliente', 'Cliente');
+  OpenFrame('TFraFormCliente', 'Cliente');
 end;
 
 initialization

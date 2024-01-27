@@ -1,0 +1,2 @@
+inherited FraFormTipoGasto: TFraFormTipoGasto
+end

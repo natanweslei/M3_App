@@ -1,0 +1,2 @@
+inherited FraFormVeiculo: TFraFormVeiculo
+end

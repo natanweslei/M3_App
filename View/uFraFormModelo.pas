@@ -24,12 +24,6 @@ uses
 
 type
   TFraFormModelo = class(TUniFrame)
-    panelBotoes: TUniPanel;
-    PageControlModelo: TUniPageControl;
-    tsConsulta: TUniTabSheet;
-    tsManutencao: TUniTabSheet;
-    gridConsulta: TUniDBGrid;
-    panelFiltros: TUniPanel;
   private
 //    FPrograma: TUniForm;
   public

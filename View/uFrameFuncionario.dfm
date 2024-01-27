@@ -1,0 +1,2 @@
+inherited FrameFuncionario: TFrameFuncionario
+end

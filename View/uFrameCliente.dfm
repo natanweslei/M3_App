@@ -1,0 +1,2 @@
+inherited FrameCliente: TFrameCliente
+end

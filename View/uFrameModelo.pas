@@ -1,4 +1,4 @@
-unit uFraFormModelo;
+unit uFrameModelo;
 
 interface
 
@@ -23,7 +23,14 @@ uses
   uniDBGrid;
 
 type
-  TFraFormModelo = class(TUniFrame)
+  TFrameModelo = class(TUniFrame)
+    PageControlModelo: TUniPageControl;
+    tsConsulta: TUniTabSheet;
+    gridConsulta: TUniDBGrid;
+    panelFiltros: TUniPanel;
+    tsManutencao: TUniTabSheet;
+    panelBotoes: TUniPanel;
+    procedure UniFrameDestroy(Sender: TObject);
   private
 //    FPrograma: TUniForm;
   public
@@ -38,5 +45,11 @@ implementation
 //begin
 //	Result := FPrograma;
 //end;
+
+procedure TFrameModelo.UniFrameDestroy(Sender: TObject);
+begin
+//  if qry.active then
+//    qry.Close;
+end;
 
 end.

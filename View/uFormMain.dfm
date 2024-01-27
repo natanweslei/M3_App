@@ -17,12 +17,9 @@ object FormMain: TFormMain
     ActivePage = TabSheetMain
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 217
-    ExplicitWidth = 766
     object TabSheetMain: TUniTabSheet
       Hint = ''
       Caption = 'Home'
-      ExplicitWidth = 758
       object UniImage1: TUniImage
         Left = 0
         Top = 0
@@ -450,7 +447,6 @@ object FormMain: TFormMain
           BFCBDDE16CB64C0000000049454E44AE426082}
         Align = alClient
         Transparent = True
-        ExplicitWidth = 758
       end
     end
   end

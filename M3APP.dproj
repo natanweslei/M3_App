@@ -137,27 +137,29 @@
             <FormType>dfm</FormType>
             <DesignClass>TUniForm</DesignClass>
         </DCCReference>
-        <DCCReference Include="View\uFraFormModelo.pas">
-            <Form>FraFormModelo</Form>
+        <DCCReference Include="View\uFrameModelo.pas">
+            <Form>FrameModelo</Form>
             <FormType>dfm</FormType>
             <DesignClass>TUniFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="View\uFraFormEmpresa.pas">
-            <Form>FraFormEmpresa</Form>
+        <DCCReference Include="View\uFrameEmpresa.pas">
+            <Form>FrameEmpresa</Form>
             <FormType>dfm</FormType>
             <DesignClass>TUniFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="View\uFraFormTipoGasto.pas">
+        <DCCReference Include="View\uFrameTipoGasto.pas">
             <Form>FraFormTipoGasto</Form>
             <DesignClass>TUniFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="View\uFraFormVeiculo.pas"/>
-        <DCCReference Include="View\uFraFormCliente.pas">
-            <Form>FraFormCliente</Form>
+        <DCCReference Include="View\uFrameVeiculo.pas">
+            <Form>FrameVeiculo</Form>
+        </DCCReference>
+        <DCCReference Include="View\uFrameCliente.pas">
+            <Form>FrameCliente</Form>
             <DesignClass>TUniFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="View\uFraFormFuncionario.pas">
-            <Form>FraFormFuncionario</Form>
+        <DCCReference Include="View\uFrameFuncionario.pas">
+            <Form>FrameFuncionario</Form>
             <DesignClass>TUniFrame</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Debug">

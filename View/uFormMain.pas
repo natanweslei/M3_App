@@ -62,7 +62,7 @@ implementation
 uses
   uFormModelo,
   uFormEmpresa,
-  uFraFormModelo,
+  uFrameModelo,
   uniGUIVars,
   MainModule,
   uniGUIApplication;
@@ -75,17 +75,17 @@ end;
 procedure TFormMain.OpenFrame(AClassName: string; ACaption: string);
 var
   i: Integer;
-  LActivePage_id: Integer;
+  LActivePageId: Integer;
   LTabSheet: TUniTabSheet;
-  LFormClass: TUniFormClass;
-  LForm: TUniForm;
+//  LFormClass: TUniFormClass;
+//  LForm: TUniForm;
   LFrameClass: TUniFrameClass;
   LFrame: TUniFrame;
 begin
   if AClassName = EmptyStr then
     Exit;
 
-  LActivePage_id := -1;
+  LActivePageId := -1;
 
   for i := 0 to PageControlMain.PageCount -1 do
   begin
@@ -93,11 +93,11 @@ begin
       Continue;
 
     PageControlMain.ActivePageIndex := i;
-    LActivePage_id := 0;
+    LActivePageId := 0;
     Break;
   end;
 
-  if LActivePage_id = -1 then
+  if LActivePageId = -1 then
   begin
     LTabSheet                  := TUniTabSheet.Create(Self);
     LTabSheet.Name             := AClassName;
@@ -107,17 +107,17 @@ begin
     LTabSheet.Align            := alClient;
     LTabSheet.AlignWithMargins := True;
 
-    LFrameClass       := TUniFrameClass(FindClass('TFra' + AClassName));
+    LFrameClass       := TUniFrameClass(FindClass(AClassName));
     LFrame            := LFrameClass.Create(LTabSheet);
     LFrame.Align      := alClient;
     LFrame.Parent     := LTabSheet;
 
-    LFormClass             := TUniFormClass(FindClass('T' + AClassName));
-    LForm                  := LFormClass.Create(UniApplication);
-    LForm.Align            := alClient;
-    LForm.Parent           := LFrame;
-    LForm.BorderStyle      := bsSingle;
-    LForm.AlignWithMargins := True;
+//    LFormClass             := TUniFormClass(FindClass('T' + AClassName));
+//    LForm                  := LFormClass.Create(UniApplication);
+//    LForm.Align            := alClient;
+//    LForm.Parent           := LFrame;
+//    LForm.BorderStyle      := bsSingle;
+//    LForm.AlignWithMargins := True;
 
     PageControlMain.ActivePage := LTabSheet;
   end;
@@ -125,27 +125,27 @@ end;
 
 procedure TFormMain.MenuEmpresaClick(Sender: TObject);
 begin
-  OpenFrame('FormEmpresa', 'Empresa');
+  OpenFrame('TFrameEmpresa', 'Empresa');
 end;
 
 procedure TFormMain.MenuFuncionarioClick(Sender: TObject);
 begin
-  OpenFrame('TFraFormFuncionario', 'Funcionario');
+  OpenFrame('TFrameFuncionario', 'Funcionario');
 end;
 
 procedure TFormMain.MenuTipoGastoClick(Sender: TObject);
 begin
-  OpenFrame('TFraFormTipoGasto', 'Tipo de Gasto');
+  OpenFrame('TFrameTipoGasto', 'Tipo de Gasto');
 end;
 
 procedure TFormMain.MenuVeiculoClick(Sender: TObject);
 begin
-  OpenFrame('TFraFormVeiculo', 'Veiculo');
+  OpenFrame('TFrameVeiculo', 'Veiculo');
 end;
 
 procedure TFormMain.MenuClienteClick(Sender: TObject);
 begin
-  OpenFrame('TFraFormCliente', 'Cliente');
+  OpenFrame('TFrameCliente', 'Cliente');
 end;
 
 initialization

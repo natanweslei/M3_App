@@ -1,4 +1,4 @@
-unit uFraFormEmpresa;
+unit uFrameTipoGasto;
 
 interface
 
@@ -12,17 +12,16 @@ uses
   Vcl.Controls,
   Vcl.Forms,
   Vcl.Dialogs,
-  uFraFormModelo,
   uniPanel,
   uniGUIClasses,
   uniBasicGrid,
   uniDBGrid,
   uniPageControl,
-  uniGUIBaseClasses, uniLabel;
+  uniGUIBaseClasses,
+  uFrameModelo;
 
 type
-  TFraFormEmpresa = class(TFraFormModelo)
-    UniLabel1: TUniLabel;
+  TFrameTipoGasto = class(TFrameModelo)
   private
     { Private declarations }
   public
@@ -34,6 +33,6 @@ implementation
 {$R *.dfm}
 
 initialization
-  RegisterClass(TFraFormEmpresa);
+  RegisterClass(TFrameTipoGasto);
 
 end.

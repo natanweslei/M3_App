@@ -1,0 +1,2 @@
+inherited FrameVeiculo: TFrameVeiculo
+end

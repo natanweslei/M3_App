@@ -1,2 +1,0 @@
-inherited FraFormFuncionario: TFraFormFuncionario
-end

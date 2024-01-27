@@ -12,12 +12,12 @@ uses
   ServerModule in 'View\ServerModule.pas' {UniServerModule: TUniGUIServerModule},
   uFormModelo in 'View\uFormModelo.pas' {FormModelo: TUniForm},
   uFormEmpresa in 'View\uFormEmpresa.pas' {FormEmpresa: TUniForm},
-  uFraFormModelo in 'View\uFraFormModelo.pas' {FraFormModelo: TUniFrame},
-  uFraFormEmpresa in 'View\uFraFormEmpresa.pas' {FraFormEmpresa: TUniFrame},
-  uFraFormTipoGasto in 'View\uFraFormTipoGasto.pas' {FraFormTipoGasto: TUniFrame},
-  uFraFormVeiculo in 'View\uFraFormVeiculo.pas',
-  uFraFormCliente in 'View\uFraFormCliente.pas' {FraFormCliente: TUniFrame},
-  uFraFormFuncionario in 'View\uFraFormFuncionario.pas' {FraFormFuncionario: TUniFrame};
+  uFrameModelo in 'View\uFrameModelo.pas' {FrameModelo: TUniFrame},
+  uFrameEmpresa in 'View\uFrameEmpresa.pas' {FrameEmpresa: TUniFrame},
+  uFrameTipoGasto in 'View\uFrameTipoGasto.pas' {FraFormTipoGasto: TUniFrame},
+  uFrameVeiculo in 'View\uFrameVeiculo.pas' {FrameVeiculo},
+  uFrameCliente in 'View\uFrameCliente.pas' {FrameCliente: TUniFrame},
+  uFrameFuncionario in 'View\uFrameFuncionario.pas' {FrameFuncionario: TUniFrame};
 
 {$R *.res}
 

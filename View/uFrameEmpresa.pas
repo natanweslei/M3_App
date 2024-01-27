@@ -1,4 +1,4 @@
-unit uFraFormVeiculo;
+unit uFrameEmpresa;
 
 interface
 
@@ -12,16 +12,17 @@ uses
   Vcl.Controls,
   Vcl.Forms,
   Vcl.Dialogs,
-  uFraFormModelo,
   uniPanel,
   uniGUIClasses,
   uniBasicGrid,
   uniDBGrid,
   uniPageControl,
-  uniGUIBaseClasses;
+  uniGUIBaseClasses,
+  uniLabel,
+  uFrameModelo;
 
 type
-  TFraFormVeiculo = class(TFraFormModelo)
+  TFrameEmpresa = class(TFrameModelo)
   private
     { Private declarations }
   public
@@ -33,6 +34,6 @@ implementation
 {$R *.dfm}
 
 initialization
-  RegisterClass(TFraFormVeiculo);
+  RegisterClass(TFrameEmpresa);
 
 end.

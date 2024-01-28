@@ -13,6 +13,7 @@ uses
 
 type
   TUniServerModule = class(TUniGUIServerModule)
+    procedure UniGUIServerModuleBeforeInit(Sender: TObject);
   private
     { Private declarations }
   protected
@@ -38,6 +39,14 @@ end;
 procedure TUniServerModule.FirstInit;
 begin
   InitServerModule(Self);
+end;
+
+procedure TUniServerModule.UniGUIServerModuleBeforeInit(Sender: TObject);
+begin
+  MimeTable.AddMimeType('eot', 'application/font', False);
+  MimeTable.AddMimeType('svg', 'application/font', False);
+  MimeTable.AddMimeType('ttf', 'application/font', False);
+  MimeTable.AddMimeType('woff', 'application/font', False);
 end;
 
 initialization

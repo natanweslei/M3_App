@@ -2,7 +2,7 @@ object UniServerModule: TUniServerModule
   OldCreateOrder = False
   AutoCoInitialize = True
   TempFolder = 'temp\'
-  Title = 'UniGUI Simple Demo'
+  Title = 'Garagem 1.0'
   SuppressErrors = []
   Bindings = <>
   MainFormDisplayMode = mfPage
@@ -26,6 +26,7 @@ object UniServerModule: TUniServerModule
   SSL.SSLOptions.VerifyDepth = 0
   ConnectionFailureRecovery.ErrorMessage = 'Connection Error'
   ConnectionFailureRecovery.RetryMessage = 'Retrying...'
+  OnBeforeInit = UniGUIServerModuleBeforeInit
   Height = 150
   Width = 215
 end

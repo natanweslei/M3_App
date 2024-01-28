@@ -18,7 +18,7 @@ uses
   uniDBGrid,
   uniPageControl,
   uniGUIBaseClasses,
-  uFrameModelo;
+  uFrameModelo, uniLabel, uniButton, uniBitBtn;
 
 type
   TFrameFuncionario = class(TFrameModelo)

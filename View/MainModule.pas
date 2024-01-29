@@ -27,7 +27,8 @@ type
     FDPhysPgDriverLink1: TFDPhysPgDriverLink;
   private
   public
-    UserId : integer;
+    UserId: Integer;
+    function GerarSequence(ASequence: string): Integer;
   end;
 
 function UniMainModule: TUniMainModule;
@@ -42,6 +43,20 @@ uses
 function UniMainModule: TUniMainModule;
 begin
   Result := TUniMainModule(UniApplication.UniMainModule)
+end;
+
+function TUniMainModule.GerarSequence(ASequence: string): Integer;
+var
+  LQuerySequence: TFDQuery;
+begin
+  LQuerySequence := TFDQuery.Create(nil);
+  LQuerySequence.Connection := Conexao;
+  LQuerySequence.Close;
+  LQuerySequence.SQL.Clear;
+  LQuerySequence.Open('select nextval(' + QuotedStr(ASequence) + ') as sequence');
+
+  Result := LQuerySequence.FieldByName('sequence').AsInteger;
+  LQuerySequence.Free;
 end;
 
 initialization

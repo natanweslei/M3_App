@@ -3,43 +3,15 @@ unit uFrameEmpresa;
 interface
 
 uses
-  Winapi.Windows,
-  Winapi.Messages,
-  System.SysUtils,
-  System.Variants,
-  System.Classes,
-  Vcl.Graphics,
-  Vcl.Controls,
-  Vcl.Forms,
-  Vcl.Dialogs,
-  uniPanel,
-  uniGUIClasses,
-  uniBasicGrid,
-  uniDBGrid,
-  uniPageControl,
-  uniGUIBaseClasses,
-  uniLabel,
-  uFrameModelo,
-  uniButton, Data.DB,
-  FireDAC.Stan.Intf,
-  FireDAC.Stan.Option,
-  FireDAC.Stan.Param,
-  FireDAC.Stan.Error,
-  FireDAC.DatS,
-  FireDAC.Phys.Intf,
-  FireDAC.DApt.Intf,
-  FireDAC.Stan.Async,
-  FireDAC.DApt,
-  FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client,
-  uniDBEdit,
-  uniEdit;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uniPanel, uniGUIClasses, uniBasicGrid, uniDBGrid, uniPageControl,
+  uniGUIBaseClasses, uniLabel, uFrameModelo, uniButton, Data.DB, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async,
+  FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client, uniDBEdit, uniEdit, uniGroupBox;
 
 type
   TFrameEmpresa = class(TFrameModelo)
     panelGeral: TUniPanel;
-    panelTelefones: TUniPanel;
-    panelEndereco: TUniPanel;
     editNomeEmpresa: TUniDBEdit;
     editRazaoSocial: TUniDBEdit;
     editCnpj: TUniDBEdit;
@@ -49,34 +21,70 @@ type
     editBairro: TUniDBEdit;
     editQuadra: TUniDBEdit;
     editLote: TUniDBEdit;
+    groupDadosGerais: TUniGroupBox;
+    groupTelefones: TUniGroupBox;
+    groupEnderecos: TUniGroupBox;
     procedure UniFrameCreate(Sender: TObject);
-  private
-    { Private declarations }
-  public
-    { Public declarations }
+    procedure gridConsultaDblClick(Sender: TObject);
+    procedure queryManutencaoBeforePost(DataSet: TDataSet);
+  protected
+    procedure MostraManute; override;
   end;
 
 implementation
 
 {$R *.dfm}
 
+uses
+  MainModule,
+  _Empresa;
+
+procedure TFrameEmpresa.gridConsultaDblClick(Sender: TObject);
+begin
+  inherited;
+  PageControlModelo.ActivePage := tsManutencao;
+end;
+
+procedure TFrameEmpresa.MostraManute;
+begin
+  inherited;
+  queryManutencao.Close;
+  queryManutencao.SQL.Clear;
+  queryManutencao.SQL.Add(_Empresa.SqlBase);
+  queryManutencao.SQL.Add('where empresa_id = :pempresa_id');
+
+  if queryConsulta.Active then
+    queryManutencao.ParamByName('pempresa_id').AsInteger := queryConsulta.FieldByName('empresa_id').AsInteger
+  else
+    queryManutencao.ParamByName('pempresa_id').AsInteger := 0;
+
+  queryManutencao.Open;
+end;
+
+procedure TFrameEmpresa.queryManutencaoBeforePost(DataSet: TDataSet);
+begin
+  inherited;
+  queryManutencao.FieldByName('empresa_id').AsInteger := UniMainModule.GerarSequence('seq_empresa_id');
+end;
+
 procedure TFrameEmpresa.UniFrameCreate(Sender: TObject);
 begin
   inherited;
+  editNomeEmpresa.MaxLength := 200;
+  editRazaoSocial.MaxLength := 200;
+  editCnpj.MaxLength := 14;
+  editTelefoneComercial.MaxLength := 20;
+  editTelefoneCelular.MaxLength := 20;
+  editLogradouro.MaxLength := 100;
+  editBairro.MaxLength := 100;
+  editQuadra.MaxLength := 20;
+  editLote.MaxLength := 20;
+
+  MostraManute;
+
   queryConsulta.Close;
-  queryConsulta.SQL.Add('select');
-  queryConsulta.SQL.Add('  empresa_id,');
-  queryConsulta.SQL.Add('	 nome_fantasia,');
-  queryConsulta.SQL.Add('	 nome_social,');
-  queryConsulta.SQL.Add('	 cnpj,');
-  queryConsulta.SQL.Add('	 telefone_comercial,');
-  queryConsulta.SQL.Add('	 telefone_celular,');
-  queryConsulta.SQL.Add('	 logradouro,');
-  queryConsulta.SQL.Add('	 quadra,');
-  queryConsulta.SQL.Add('	 lote,');
-  queryConsulta.SQL.Add('	 bairro');
-  queryConsulta.SQL.Add('from');
-  queryConsulta.SQL.Add('	 EMPRESA');
+  queryConsulta.SQL.Clear;
+  queryConsulta.SQL.Add(_Empresa.SqlBase);
   queryConsulta.Open;
 end;
 

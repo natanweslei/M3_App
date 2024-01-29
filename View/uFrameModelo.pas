@@ -3,31 +3,13 @@ unit uFrameModelo;
 interface
 
 uses
-  Windows,
-  Messages,
-  SysUtils,
-  Variants,
-  Classes,
-  Graphics,
-  Controls,
-  uniGUIForm,
-  Forms,
-  uniGUITypes,
-  uniGUIAbstractClasses,
-  uniGUIClasses,
-  uniGUIFrame,
-  uniGUIBaseClasses,
-  uniPanel,
-  uniPageControl,
-  uniBasicGrid,
-  uniDBGrid, uniLabel, uniButton, uniBitBtn, Data.DB, FireDAC.Stan.Intf,
-  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
-  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, uniGUIForm, Forms,
+  uniGUITypes, uniGUIAbstractClasses, uniGUIClasses, uniGUIFrame, uniGUIBaseClasses, uniPanel,
+  uniPageControl, uniBasicGrid, uniDBGrid,  uniLabel, uniButton, uniBitBtn, Data.DB, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
 type
-  TAcaoCrud = (acaoIncluir, acaoAlterar, acaoExcluir, acaoListaVazia, acaoListaComRegistros);
-
   TFrameModelo = class(TUniFrame)
     PageControlModelo: TUniPageControl;
     tsConsulta: TUniTabSheet;
@@ -35,8 +17,7 @@ type
     panelFiltros: TUniPanel;
     tsManutencao: TUniTabSheet;
     containerBotoes: TUniContainerPanel;
-    buttonIncluir: TUniButton;
-    buttonAlterar: TUniButton;
+    buttonNovo: TUniButton;
     buttonExcluir: TUniButton;
     buttonCancelar: TUniButton;
     buttonGravar: TUniButton;
@@ -46,17 +27,16 @@ type
     queryManutencao: TFDQuery;
     procedure UniFrameDestroy(Sender: TObject);
     procedure UniFrameCreate(Sender: TObject);
-    procedure buttonIncluirClick(Sender: TObject);
-    procedure buttonAlterarClick(Sender: TObject);
+    procedure buttonNovoClick(Sender: TObject);
     procedure buttonCancelarClick(Sender: TObject);
     procedure buttonExcluirClick(Sender: TObject);
     procedure buttonGravarClick(Sender: TObject);
-    procedure gridConsultaDblClick(Sender: TObject);
+    procedure queryConsultaAfterScroll(DataSet: TDataSet);
+    procedure dsManutencaoStateChange(Sender: TObject);
+  private
+    procedure CallBackMessageYesNo(Sender: TComponent; ARes: Integer);
   protected
-    procedure Modo(AAcao: TAcaoCrud); virtual;
     procedure MostraManute; virtual;
-  public
-//		function FormPrograma(): TUniForm;
   end;
 
 implementation
@@ -66,122 +46,75 @@ implementation
 uses
   MainModule;
 
-procedure TFrameModelo.buttonIncluirClick(Sender: TObject);
+procedure TFrameModelo.buttonNovoClick(Sender: TObject);
 begin
-  Modo(acaoIncluir);
-
   if not queryManutencao.Active then
     queryManutencao.Open;
 
   queryManutencao.Insert;
 end;
 
-procedure TFrameModelo.gridConsultaDblClick(Sender: TObject);
+procedure TFrameModelo.dsManutencaoStateChange(Sender: TObject);
 begin
-  MostraManute;
-end;
-
-procedure TFrameModelo.buttonAlterarClick(Sender: TObject);
-begin
-  Modo(acaoAlterar);
-
-  try
-    queryManutencao.Close;
-
-    queryManutencao.Open;
-  except
-    Abort ;
-  end ;
-end;
-
-procedure TFrameModelo.buttonExcluirClick(Sender: TObject);
-begin
-//  MessageDlg('Confirma a Exclusão ?', mtConfirmation, mbYesNo, DCallBack2);
-
-  Modo(acaoExcluir);
-
-  Try
-    queryManutencao.Close;
-
-    queryManutencao.Open;
-  except
-    ShowMessage('Você precisa selecionar um registro para fazer manutenção do mesmo.');
-    Abort;
+  if dsManutencao.State in [dsBrowse, dsInactive] then
+  begin
+    buttonNovo.Enabled := True;
+    buttonExcluir.Enabled := True;
+    buttonCancelar.Enabled := False;
+    buttonGravar.Enabled := False;
+  end
+  else if dsManutencao.State in dsEditModes then
+  begin
+    buttonNovo.Enabled := False;
+    buttonExcluir.Enabled := False;
+    buttonCancelar.Enabled := True;
+    buttonGravar.Enabled := True;
   end;
+end;
+
+procedure TFrameModelo.buttonGravarClick(Sender: TObject);
+begin
+  queryManutencao.Post;
 
   if queryConsulta.Active then
     queryConsulta.Refresh;
 
-  PageControlModelo.ActivePage := tsConsulta;
+  if tsConsulta.Visible then
+    PageControlModelo.ActivePage := tsConsulta;
+end;
+
+procedure TFrameModelo.buttonExcluirClick(Sender: TObject);
+begin
+  MessageDlg('Deseja realmente excluir o registro?', mtConfirmation, mbYesNo, CallBackMessageYesNo);
+end;
+
+procedure TFrameModelo.CallBackMessageYesNo(Sender: TComponent; ARes: Integer);
+begin
+  if ARes = mrNo then
+    Exit;
+
+  queryManutencao.Delete;
+  if queryConsulta.Active then
+  begin
+    queryConsulta.Refresh;
+    queryConsulta.First;
+  end;
 end;
 
 procedure TFrameModelo.buttonCancelarClick(Sender: TObject);
 begin
   if queryManutencao.State in dsEditModes then
     queryManutencao.Cancel;
-
-  if queryManutencao.IsEmpty then
-    Modo(acaoListaVazia)
-  else
-    Modo(acaoListacomRegistros);
-
-  queryManutencao.Close;
-
-  PageControlModelo.ActivePage := tsConsulta;
-end;
-
-procedure TFrameModelo.buttonGravarClick(Sender: TObject);
-begin
-  queryManutencao.Post;
-  
-//  if not queryManutencao.ApplyUpdates() = 0 then
-//  Begin
-//    ShowMessage(vError);
-//    Abort ;
-//  end;
-
-  if queryConsulta.Active then
-    queryConsulta.Refresh;
-
-  PageControlModelo.ActivePage := tsConsulta;
-
-  if queryConsulta.IsEmpty then
-    Modo(acaoListaVazia)
-  else
-    Modo(acaoListacomRegistros);
-end;
-
-procedure TFrameModelo.Modo(AAcao: TAcaoCrud);
-begin
-  if AAcao in [acaoIncluir, acaoAlterar, acaoExcluir] then
-  begin
-    buttonIncluir.Enabled := False;
-    buttonAlterar.Enabled := False;
-    buttonExcluir.Enabled := False;
-    buttonCancelar.Enabled := True;
-    buttonGravar.Enabled := True;
-  end
-  else if AAcao in [acaoListaVazia] then
-  begin
-    buttonIncluir.Enabled := True;
-    buttonAlterar.Enabled := False;
-    buttonExcluir.Enabled := False;
-    buttonCancelar.Enabled := False;
-    buttonGravar.Enabled := False;
-  end
-  else if AAcao in [acaoListacomRegistros] then
-  begin
-    buttonIncluir.Enabled := True;
-    buttonAlterar.Enabled := True;
-    buttonExcluir.Enabled := True;
-    buttonCancelar.Enabled := False;
-    buttonGravar.Enabled := False;
-  end;
 end;
 
 procedure TFrameModelo.MostraManute;
 begin
-  PageControlModelo.ActivePage := tsManutencao;
+
+end;
+
+procedure TFrameModelo.queryConsultaAfterScroll(DataSet: TDataSet);
+begin
+  MostraManute;
 end;
 
 procedure TFrameModelo.UniFrameCreate(Sender: TObject);
@@ -194,15 +127,23 @@ begin
 
 //  BtFiltrar.Caption   := '<i class="fa fa fa-search-plus    fa-2x" aria-hidden="true"></i>Filtrar' ;//'<span class="glyphicon glyphicon-zoom-in btn btn-default btn-lg"> Filtrar</span>';
                          //'<i class="fa fa fa-search-plus       fa-2x" aria-hidden="true"></i>Filtrar';
-//  SetBut(tpListaVazia) ;
-  PageControlModelo.ActivePage := tsConsulta ;
-//  EdPesquisar.SetFocus
+
+  if tsConsulta.Visible then
+  begin
+    PageControlModelo.ActivePage := tsConsulta;
+
+    if gridConsulta.CanFocus then
+      gridConsulta.SetFocus;
+  end;
 end;
 
 procedure TFrameModelo.UniFrameDestroy(Sender: TObject);
 begin
-//  if qry.active then
-//    qry.Close;
+  if queryConsulta.Active then
+    queryConsulta.Close;
+
+  if queryManutencao.Active then
+    queryManutencao.Close;
 end;
 
 end.

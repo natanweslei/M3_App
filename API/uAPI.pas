@@ -28,7 +28,10 @@ type
 implementation
 
 uses
-  Rest.Types, System.SysUtils, Classes, System.JSON;
+  Rest.Types,
+  System.SysUtils,
+  Classes,
+  System.JSON;
 
 constructor TAPI.Create;
 begin

@@ -3,12 +3,13 @@ inherited FrameEmpresa: TFrameEmpresa
   ExplicitWidth = 1058
   inherited PageControlModelo: TUniPageControl
     Width = 1058
-    ActivePage = tsManutencao
+    ActivePage = tsConsulta
     ExplicitWidth = 1058
     inherited tsConsulta: TUniTabSheet
       ExplicitWidth = 1050
       inherited gridConsulta: TUniDBGrid
         Width = 1050
+        OnDblClick = gridConsultaDblClick
         Columns = <
           item
             FieldName = 'empresa_id'
@@ -64,154 +65,192 @@ inherited FrameEmpresa: TFrameEmpresa
       end
       inherited panelFiltros: TUniPanel
         Width = 1050
+        Visible = False
         ExplicitWidth = 1050
       end
     end
     inherited tsManutencao: TUniTabSheet
       ExplicitWidth = 1050
+      inherited containerBotoes: TUniContainerPanel
+        Width = 1050
+        TabOrder = 1
+        ExplicitWidth = 1050
+      end
       object panelGeral: TUniPanel
         Left = 0
         Top = 0
         Width = 1050
-        Height = 128
-        Hint = ''
-        Align = alTop
-        TabOrder = 0
-        Title = 'Dados Gerais'
-        Caption = ''
-        object editNomeEmpresa: TUniDBEdit
-          Left = 12
-          Top = 26
-          Width = 725
-          Height = 22
-          Hint = ''
-          DataField = 'nome_fantasia'
-          DataSource = dsManutencao
-          TabOrder = 1
-          FieldLabel = 'Nome Fantasia'
-        end
-        object editRazaoSocial: TUniDBEdit
-          Left = 12
-          Top = 56
-          Width = 725
-          Height = 22
-          Hint = ''
-          DataField = 'nome_social'
-          DataSource = dsManutencao
-          TabOrder = 2
-          FieldLabel = 'Raz'#227'o Social'
-        end
-        object editCnpj: TUniDBEdit
-          Left = 12
-          Top = 87
-          Width = 725
-          Height = 22
-          Hint = ''
-          DataField = 'cnpj'
-          DataSource = dsManutencao
-          TabOrder = 3
-          FieldLabel = 'CNPJ'
-        end
-      end
-      object panelTelefones: TUniPanel
-        Left = 0
-        Top = 128
-        Width = 1050
-        Height = 88
+        Height = 482
         Hint = ''
         Align = alClient
-        TabOrder = 1
-        Title = 'Telefones'
+        TabOrder = 0
+        TitleVisible = True
+        Title = 'Dados Gerais'
         Caption = ''
-        object editTelefoneComercial: TUniDBEdit
+        object groupDadosGerais: TUniGroupBox
           Left = 12
-          Top = 23
-          Width = 410
-          Height = 22
+          Top = 7
+          Width = 841
+          Height = 140
           Hint = ''
-          DataField = 'telefone_comercial'
-          DataSource = dsManutencao
+          Caption = 'Dados Gerais'
           TabOrder = 1
-          FieldLabel = 'Telefone Comercial'
+          object editRazaoSocial: TUniDBEdit
+            Left = 20
+            Top = 67
+            Width = 797
+            Height = 22
+            Hint = ''
+            DataField = 'nome_social'
+            DataSource = dsManutencao
+            TabOrder = 2
+            FieldLabel = 'Raz'#227'o Social'
+            FieldLabelWidth = 120
+            FieldLabelAlign = laRight
+          end
+          object editCnpj: TUniDBEdit
+            Left = 20
+            Top = 102
+            Width = 797
+            Height = 22
+            Hint = ''
+            DataField = 'cnpj'
+            DataSource = dsManutencao
+            TabOrder = 3
+            InputMask.Mask = '99.999.999/9999-99'
+            FieldLabel = 'CNPJ'
+            FieldLabelWidth = 120
+            FieldLabelAlign = laRight
+          end
+          object editNomeEmpresa: TUniDBEdit
+            Left = 20
+            Top = 34
+            Width = 797
+            Height = 22
+            Hint = ''
+            DataField = 'nome_fantasia'
+            DataSource = dsManutencao
+            TabOrder = 1
+            FieldLabel = 'Nome Fantasia'
+            FieldLabelWidth = 120
+            FieldLabelAlign = laRight
+          end
         end
-        object editTelefoneCelular: TUniDBEdit
+        object groupTelefones: TUniGroupBox
           Left = 12
-          Top = 53
-          Width = 410
-          Height = 22
+          Top = 158
+          Width = 841
+          Height = 92
           Hint = ''
-          DataField = 'telefone_celular'
-          DataSource = dsManutencao
+          Caption = 'Telefones'
           TabOrder = 2
-          FieldLabel = 'Telefone Celular'
+          object editTelefoneCelular: TUniDBEdit
+            Left = 20
+            Top = 53
+            Width = 410
+            Height = 22
+            Hint = ''
+            DataField = 'telefone_celular'
+            DataSource = dsManutencao
+            TabOrder = 2
+            InputMask.Mask = '(99)-99999-9999'
+            InputMask.RemoveWhiteSpace = True
+            FieldLabel = 'Telefone Celular'
+            FieldLabelWidth = 120
+            FieldLabelAlign = laRight
+          end
+          object editTelefoneComercial: TUniDBEdit
+            Left = 20
+            Top = 21
+            Width = 410
+            Height = 22
+            Hint = ''
+            DataField = 'telefone_comercial'
+            DataSource = dsManutencao
+            TabOrder = 1
+            InputMask.Mask = '(99)-9999-9999'
+            InputMask.RemoveWhiteSpace = True
+            FieldLabel = 'Telefone Comercial'
+            FieldLabelWidth = 120
+            FieldLabelAlign = laRight
+          end
         end
-      end
-      object panelEndereco: TUniPanel
-        Left = 0
-        Top = 216
-        Width = 1050
-        Height = 266
-        Hint = ''
-        Align = alBottom
-        TabOrder = 2
-        Title = 'Endere'#231'o'
-        Caption = ''
-        object editLogradouro: TUniDBEdit
+        object groupEnderecos: TUniGroupBox
           Left = 12
-          Top = 24
-          Width = 410
-          Height = 22
+          Top = 262
+          Width = 841
+          Height = 122
           Hint = ''
-          DataField = 'logradouro'
-          DataSource = dsManutencao
-          TabOrder = 1
-          FieldLabel = 'Logradouro'
-        end
-        object editBairro: TUniDBEdit
-          Left = 12
-          Top = 55
-          Width = 410
-          Height = 22
-          Hint = ''
-          DataField = 'bairro'
-          DataSource = dsManutencao
-          TabOrder = 2
-          FieldLabel = 'Bairro'
-        end
-        object editQuadra: TUniDBEdit
-          Left = 12
-          Top = 86
-          Width = 200
-          Height = 22
-          Hint = ''
-          DataField = 'quadra'
-          DataSource = dsManutencao
+          Caption = 'Endere'#231'os'
           TabOrder = 3
-          FieldLabel = 'Quadra'
-        end
-        object editLote: TUniDBEdit
-          Left = 222
-          Top = 86
-          Width = 200
-          Height = 22
-          Hint = ''
-          DataField = 'lote'
-          DataSource = dsManutencao
-          TabOrder = 4
-          FieldLabel = 'Lote'
+          object editLogradouro: TUniDBEdit
+            Left = 20
+            Top = 26
+            Width = 410
+            Height = 22
+            Hint = ''
+            DataField = 'logradouro'
+            DataSource = dsManutencao
+            TabOrder = 1
+            FieldLabel = 'Logradouro'
+            FieldLabelWidth = 120
+            FieldLabelAlign = laRight
+          end
+          object editBairro: TUniDBEdit
+            Left = 20
+            Top = 56
+            Width = 410
+            Height = 22
+            Hint = ''
+            DataField = 'bairro'
+            DataSource = dsManutencao
+            TabOrder = 2
+            FieldLabel = 'Bairro'
+            FieldLabelWidth = 120
+            FieldLabelAlign = laRight
+          end
+          object editQuadra: TUniDBEdit
+            Left = 40
+            Top = 86
+            Width = 200
+            Height = 22
+            Hint = ''
+            DataField = 'quadra'
+            DataSource = dsManutencao
+            TabOrder = 3
+            FieldLabel = 'Quadra'
+            FieldLabelAlign = laRight
+          end
+          object editLote: TUniDBEdit
+            Left = 230
+            Top = 86
+            Width = 200
+            Height = 22
+            Hint = ''
+            DataField = 'lote'
+            DataSource = dsManutencao
+            TabOrder = 4
+            FieldLabel = 'Lote'
+            FieldLabelAlign = laRight
+          end
         end
       end
     end
   end
-  inherited containerBotoes: TUniContainerPanel
-    Width = 1058
-    ExplicitWidth = 1058
-    inherited buttonGravar: TUniButton
-      Left = 922
-      ExplicitLeft = 922
-    end
+  inherited dsConsulta: TDataSource
+    Left = 852
+    Top = 224
   end
   inherited dsManutencao: TDataSource
-    DataSet = nil
+    Left = 956
+    Top = 216
+  end
+  inherited queryConsulta: TFDQuery
+    Left = 836
+    Top = 288
+  end
+  inherited queryManutencao: TFDQuery
+    BeforePost = queryManutencaoBeforePost
+    Left = 956
   end
 end

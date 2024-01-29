@@ -17,7 +17,8 @@ uses
   uFrameTipoGasto in 'View\uFrameTipoGasto.pas' {FraFormTipoGasto: TUniFrame},
   uFrameVeiculo in 'View\uFrameVeiculo.pas' {FrameVeiculo},
   uFrameCliente in 'View\uFrameCliente.pas' {FrameCliente: TUniFrame},
-  uFrameFuncionario in 'View\uFrameFuncionario.pas' {FrameFuncionario: TUniFrame};
+  _Empresa in 'Model\_Empresa.pas',
+  uAPI in 'API\uAPI.pas';
 
 {$R *.res}
 

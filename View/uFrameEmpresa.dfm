@@ -3,10 +3,12 @@ inherited FrameEmpresa: TFrameEmpresa
   ExplicitWidth = 1058
   inherited PageControlModelo: TUniPageControl
     Width = 1058
-    ActivePage = tsConsulta
     ExplicitWidth = 1058
     inherited tsConsulta: TUniTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 1050
+      ExplicitHeight = 549
       inherited gridConsulta: TUniDBGrid
         Width = 1050
         OnDblClick = gridConsultaDblClick
@@ -181,7 +183,7 @@ inherited FrameEmpresa: TFrameEmpresa
           Width = 841
           Height = 122
           Hint = ''
-          Caption = 'Endere'#231'os'
+          Caption = 'Endere'#231'o'
           TabOrder = 3
           object editLogradouro: TUniDBEdit
             Left = 20

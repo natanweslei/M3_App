@@ -3,30 +3,10 @@ unit uFormMain;
 interface
 
 uses
-  Windows,
-  Messages,
-  SysUtils,
-  Variants,
-  Classes,
-  Graphics,
-  Controls,
-  Forms,
-  uniGUITypes,
-  uniGUIAbstractClasses,
-  uniGUIClasses,
-  uniGUIRegClasses,
-  uniGUIForm,
-  uniPanel,
-  uniPageControl,
-  uniGUIBaseClasses,
-  uniTreeView,
-  Vcl.Imaging.pngimage,
-  uniImage,
-  uniGUIFrame,
-  Vcl.Menus,
-  uniMainMenu,
-  uniImageList,
-  uniTreeMenu;
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, uniGUITypes,
+  uniGUIAbstractClasses, uniGUIClasses, uniGUIRegClasses, uniGUIForm, uniPanel, uniPageControl,
+  uniGUIBaseClasses, uniTreeView, Vcl.Imaging.pngimage, uniImage, uniGUIFrame, Vcl.Menus,
+  uniMainMenu, uniImageList, uniTreeMenu;
 
 type
   TFormMain = class(TUniForm)
@@ -36,18 +16,16 @@ type
     UniMenuItems1: TUniMenuItems;
     UniTreeMenu1: TUniTreeMenu;
     MenuEmpresa: TUniMenuItem;
-    MenuFuncionario: TUniMenuItem;
+    MenuPessoa: TUniMenuItem;
     MenuTipoGasto: TUniMenuItem;
     MenuVeiculo: TUniMenuItem;
-    MenuCliente: TUniMenuItem;
     MenuEntradaVeiculos: TUniMenuItem;
     MenuSaidaVeiculos: TUniMenuItem;
     MenuManutencaoVeiculos: TUniMenuItem;
     procedure MenuTipoGastoClick(Sender: TObject);
     procedure MenuVeiculoClick(Sender: TObject);
-    procedure MenuClienteClick(Sender: TObject);
     procedure MenuEmpresaClick(Sender: TObject);
-    procedure MenuFuncionarioClick(Sender: TObject);
+    procedure MenuPessoaClick(Sender: TObject);
   private
   public
     Procedure OpenFrame(AClassName: string; ACaption: string);
@@ -128,9 +106,9 @@ begin
   OpenFrame('TFrameEmpresa', 'Empresa');
 end;
 
-procedure TFormMain.MenuFuncionarioClick(Sender: TObject);
+procedure TFormMain.MenuPessoaClick(Sender: TObject);
 begin
-  OpenFrame('TFrameFuncionario', 'Funcionario');
+  OpenFrame('TFramePessoa', 'Pessoa');
 end;
 
 procedure TFormMain.MenuTipoGastoClick(Sender: TObject);
@@ -141,11 +119,6 @@ end;
 procedure TFormMain.MenuVeiculoClick(Sender: TObject);
 begin
   OpenFrame('TFrameVeiculo', 'Veiculo');
-end;
-
-procedure TFormMain.MenuClienteClick(Sender: TObject);
-begin
-  OpenFrame('TFrameCliente', 'Cliente');
 end;
 
 initialization

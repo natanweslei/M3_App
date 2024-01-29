@@ -466,9 +466,9 @@ object FormMain: TFormMain
       Caption = 'Empresa'
       OnClick = MenuEmpresaClick
     end
-    object MenuFuncionario: TUniMenuItem
-      Caption = 'Funcion'#225'rio'
-      OnClick = MenuFuncionarioClick
+    object MenuPessoa: TUniMenuItem
+      Caption = 'Pessoa'
+      OnClick = MenuPessoaClick
     end
     object MenuTipoGasto: TUniMenuItem
       Caption = 'Tipo de Gasto'
@@ -477,10 +477,6 @@ object FormMain: TFormMain
     object MenuVeiculo: TUniMenuItem
       Caption = 'Ve'#237'culo'
       OnClick = MenuVeiculoClick
-    end
-    object MenuCliente: TUniMenuItem
-      Caption = 'Cliente'
-      OnClick = MenuClienteClick
     end
     object MenuEntradaVeiculos: TUniMenuItem
       Caption = 'Entrada de Ve'#237'culos'

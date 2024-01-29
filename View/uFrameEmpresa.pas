@@ -36,8 +36,23 @@ implementation
 {$R *.dfm}
 
 uses
-  MainModule,
-  _Empresa;
+  MainModule;
+
+const
+  SqlBase =
+    'select ' +
+    '  empresa_id, ' +
+    '	 nome_fantasia, ' +
+    '	 nome_social, ' +
+    '	 cnpj, ' +
+    '	 telefone_comercial, ' +
+    '	 telefone_celular, ' +
+    '	 logradouro, ' +
+    '	 quadra, ' +
+    '	 lote, ' +
+    '	 bairro ' +
+    'from ' +
+    '	 EMPRESA ';
 
 procedure TFrameEmpresa.gridConsultaDblClick(Sender: TObject);
 begin
@@ -50,7 +65,7 @@ begin
   inherited;
   queryManutencao.Close;
   queryManutencao.SQL.Clear;
-  queryManutencao.SQL.Add(_Empresa.SqlBase);
+  queryManutencao.SQL.Add(SqlBase);
   queryManutencao.SQL.Add('where empresa_id = :pempresa_id');
 
   if queryConsulta.Active then
@@ -80,11 +95,14 @@ begin
   editQuadra.MaxLength := 20;
   editLote.MaxLength := 20;
 
-  MostraManute;
+  queryManutencao.Close;
+  queryManutencao.SQL.Clear;
+  queryManutencao.SQL.Add(SqlBase);
+  queryManutencao.Open;
 
   queryConsulta.Close;
   queryConsulta.SQL.Clear;
-  queryConsulta.SQL.Add(_Empresa.SqlBase);
+  queryConsulta.SQL.Add(SqlBase);
   queryConsulta.Open;
 end;
 

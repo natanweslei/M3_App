@@ -3,38 +3,11 @@ unit uFormLogin;
 interface
 
 uses
-  Windows,
-  Messages,
-  SysUtils,
-  Variants,
-  Classes,
-  Graphics,
-  Controls,
-  Forms,
-  uniGUITypes,
-  uniGUIAbstractClasses,
-  uniGUIClasses,
-  uniGUIRegClasses,
-  uniGUIForm,
-  uniGUIBaseClasses,
-  uniImage,
-  Vcl.Imaging.pngimage,
-  uniEdit,
-  uniButton,
-  ConexaoPostgreSQL,
-  FireDAC.Stan.Intf,
-  FireDAC.Stan.Option,
-  FireDAC.Stan.Param,
-  FireDAC.Stan.Error,
-  FireDAC.DatS,
-  FireDAC.Phys.Intf,
-  FireDAC.DApt.Intf,
-  FireDAC.Stan.Async,
-  FireDAC.DApt,
-  Data.DB,
-  FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client,
-  Vcl.Imaging.jpeg;
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, uniGUITypes,
+  uniGUIAbstractClasses, uniGUIClasses, uniGUIRegClasses, uniGUIForm, uniGUIBaseClasses,
+  uniImage, Vcl.Imaging.pngimage, uniEdit, uniButton, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Imaging.jpeg;
 
 type
   TFormLogin = class(TUniLoginForm)
@@ -44,10 +17,6 @@ type
     btnLogin: TUniButton;
     procedure btnLoginClick(Sender: TObject);
     procedure edtSenhaKeyPress(Sender: TObject; var Key: Char);
-  private
-    { Private declarations }
-  public
-    { Public declarations }
   end;
 
 function FormLogin: TFormLogin;
@@ -91,12 +60,14 @@ begin
   qryLogin := TFDQuery.Create(nil);
   qryLogin.Connection := UniMainModule.Conexao;
   qryLogin.SQL.Clear;
-  qryLogin.SQL.Add('select FUNCIONARIO_ID');
-  qryLogin.SQL.Add('from FUNCIONARIO');
-  qryLogin.SQL.Add('where USUARIO = :USUARIO and SENHA = :SENHA');
+  qryLogin.SQL.Add('select pessoa_id');
+  qryLogin.SQL.Add('from pessoa');
+  qryLogin.SQL.Add('where operador');
+  qryLogin.SQL.Add('and usuario = :pusuario');
+  qryLogin.SQL.Add('and senha = :psenha');
 
-  qryLogin.ParamByName('USUARIO').Value := edtUsuario.Text;
-  qryLogin.ParamByName('SENHA').Value := edtSenha.Text;
+  qryLogin.ParamByName('pusuario').Value := edtUsuario.Text;
+  qryLogin.ParamByName('psenha').Value := edtSenha.Text;
 
   qryLogin.Open;
 
@@ -106,7 +77,7 @@ begin
     Exit;
   end;
 
-  UniMainModule.UserId := qryLogin.FieldByName('FUNCIONARIO_ID').AsInteger;
+  UniMainModule.UserId := qryLogin.FieldByName('pessoa_id').AsInteger;
 
   qryLogin.Free;
 

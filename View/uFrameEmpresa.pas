@@ -38,22 +38,6 @@ implementation
 uses
   MainModule;
 
-const
-  SqlBase =
-    'select ' +
-    '  empresa_id, ' +
-    '	 nome_fantasia, ' +
-    '	 nome_social, ' +
-    '	 cnpj, ' +
-    '	 telefone_comercial, ' +
-    '	 telefone_celular, ' +
-    '	 logradouro, ' +
-    '	 quadra, ' +
-    '	 lote, ' +
-    '	 bairro ' +
-    'from ' +
-    '	 EMPRESA ';
-
 procedure TFrameEmpresa.gridConsultaDblClick(Sender: TObject);
 begin
   inherited;
@@ -65,7 +49,7 @@ begin
   inherited;
   queryManutencao.Close;
   queryManutencao.SQL.Clear;
-  queryManutencao.SQL.Add(SqlBase);
+  queryManutencao.SQL.Add('select * from empresa');
   queryManutencao.SQL.Add('where empresa_id = :pempresa_id');
 
   if queryConsulta.Active then
@@ -97,12 +81,12 @@ begin
 
   queryManutencao.Close;
   queryManutencao.SQL.Clear;
-  queryManutencao.SQL.Add(SqlBase);
+  queryManutencao.SQL.Add('select * from empresa');
   queryManutencao.Open;
 
   queryConsulta.Close;
   queryConsulta.SQL.Clear;
-  queryConsulta.SQL.Add(SqlBase);
+  queryConsulta.SQL.Add('select * from empresa');
   queryConsulta.Open;
 end;
 

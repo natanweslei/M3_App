@@ -18,14 +18,11 @@ type
     MenuEmpresa: TUniMenuItem;
     MenuPessoa: TUniMenuItem;
     MenuTipoGasto: TUniMenuItem;
-    MenuVeiculo: TUniMenuItem;
-    MenuEntradaVeiculos: TUniMenuItem;
-    MenuSaidaVeiculos: TUniMenuItem;
     MenuManutencaoVeiculos: TUniMenuItem;
     procedure MenuTipoGastoClick(Sender: TObject);
-    procedure MenuVeiculoClick(Sender: TObject);
     procedure MenuEmpresaClick(Sender: TObject);
     procedure MenuPessoaClick(Sender: TObject);
+    procedure MenuManutencaoVeiculosClick(Sender: TObject);
   private
   public
     Procedure OpenFrame(AClassName: string; ACaption: string);
@@ -116,9 +113,9 @@ begin
   OpenFrame('TFrameTipoGasto', 'Tipo de Gasto');
 end;
 
-procedure TFormMain.MenuVeiculoClick(Sender: TObject);
+procedure TFormMain.MenuManutencaoVeiculosClick(Sender: TObject);
 begin
-  OpenFrame('TFrameVeiculo', 'Veiculo');
+  OpenFrame('TFrameManutencaoVeiculo', 'Veículo');
 end;
 
 initialization

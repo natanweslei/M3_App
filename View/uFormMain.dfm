@@ -474,18 +474,9 @@ object FormMain: TFormMain
       Caption = 'Tipo de Gasto'
       OnClick = MenuTipoGastoClick
     end
-    object MenuVeiculo: TUniMenuItem
-      Caption = 'Ve'#237'culo'
-      OnClick = MenuVeiculoClick
-    end
-    object MenuEntradaVeiculos: TUniMenuItem
-      Caption = 'Entrada de Ve'#237'culos'
-    end
-    object MenuSaidaVeiculos: TUniMenuItem
-      Caption = 'Sa'#237'da de Ve'#237'culos'
-    end
     object MenuManutencaoVeiculos: TUniMenuItem
       Caption = 'Manuten'#231#227'o de Ve'#237'culos'
+      OnClick = MenuManutencaoVeiculosClick
     end
   end
 end

@@ -35,8 +35,6 @@ implementation
 {$R *.dfm}
 
 uses
-  uFormModelo,
-  uFormEmpresa,
   uFrameModelo,
   uniGUIVars,
   MainModule,

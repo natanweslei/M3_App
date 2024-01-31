@@ -33,8 +33,6 @@ type
     procedure buttonGravarClick(Sender: TObject);
     procedure queryConsultaAfterScroll(DataSet: TDataSet);
     procedure dsManutencaoStateChange(Sender: TObject);
-  private
-    procedure CallBackMessageYesNo(Sender: TComponent; ARes: Integer);
   protected
     procedure MostraManute; virtual;
   end;
@@ -85,20 +83,23 @@ end;
 
 procedure TFrameModelo.buttonExcluirClick(Sender: TObject);
 begin
-  MessageDlg('Deseja realmente excluir o registro?', mtConfirmation, mbYesNo, CallBackMessageYesNo);
-end;
+  MessageDlg(
+    'Deseja realmente excluir o registro?',
+    mtConfirmation,
+    mbYesNo,
+    procedure(Sender: TComponent; ARes: Integer)
+    begin
+      if ARes <> mrYes then
+        Exit;
 
-procedure TFrameModelo.CallBackMessageYesNo(Sender: TComponent; ARes: Integer);
-begin
-  if ARes = mrNo then
-    Exit;
-
-  queryManutencao.Delete;
-  if queryConsulta.Active then
-  begin
-    queryConsulta.Refresh;
-    queryConsulta.First;
-  end;
+      queryManutencao.Delete;
+      if queryConsulta.Active then
+      begin
+        queryConsulta.Refresh;
+        queryConsulta.First;
+      end;
+    end
+  );
 end;
 
 procedure TFrameModelo.buttonCancelarClick(Sender: TObject);

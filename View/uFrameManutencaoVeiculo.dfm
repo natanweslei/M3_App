@@ -7,17 +7,18 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
   TabOrder = 0
   object panelBotoes: TUniPanel
     Left = 0
-    Top = 624
+    Top = 627
     Width = 980
-    Height = 48
+    Height = 45
     Hint = ''
     Align = alBottom
     TabOrder = 0
     Caption = ''
+    ExplicitTop = 624
     object buttonSaidaVeiculo: TUniButton
       AlignWithMargins = True
       Left = 228
-      Top = 12
+      Top = 11
       Width = 100
       Height = 25
       Hint = ''
@@ -28,7 +29,7 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
     object buttonGastosVeiculo: TUniButton
       AlignWithMargins = True
       Left = 334
-      Top = 12
+      Top = 11
       Width = 100
       Height = 25
       Hint = ''
@@ -39,7 +40,7 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
     object buttonEntradaVeiculo: TUniButton
       AlignWithMargins = True
       Left = 122
-      Top = 12
+      Top = 11
       Width = 100
       Height = 25
       Hint = ''
@@ -50,7 +51,7 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
     object buttonCadastroVeiculo: TUniButton
       AlignWithMargins = True
       Left = 16
-      Top = 12
+      Top = 11
       Width = 100
       Height = 25
       Hint = ''
@@ -73,7 +74,7 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
     Left = 0
     Top = 129
     Width = 980
-    Height = 495
+    Height = 498
     Hint = ''
     DataSource = dsConsulta
     LoadMask.Message = 'Loading data...'

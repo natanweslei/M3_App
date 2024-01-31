@@ -37,11 +37,17 @@ implementation
 {$R *.dfm}
 
 uses
-  MainModule;
+  MainModule, uFormModalModelo;
 
 procedure TFrameManutencaoVeiculo.buttonCadastroVeiculoClick(Sender: TObject);
 begin
-//veiculo
+  FormModalModelo.ShowModal(
+    procedure(ASender: TComponent; AResult: Integer)
+    begin
+      if AResult = mrOk then
+        queryConsulta.Refresh;
+    end
+  );
 end;
 
 procedure TFrameManutencaoVeiculo.buttonEntradaVeiculoClick(Sender: TObject);

@@ -6,6 +6,7 @@ object FormModalModelo: TFormModalModelo
   Caption = 'Modelo'
   BorderStyle = bsNone
   OldCreateOrder = False
+  OnClose = UniFormClose
   MonitoredKeys.Keys = <>
   PixelsPerInch = 96
   TextHeight = 13
@@ -30,6 +31,8 @@ object FormModalModelo: TFormModalModelo
       Hint = ''
       Caption = 'Cancelar'
       TabOrder = 1
+      Images = imageListFormModalModelo
+      ImageIndex = 3
       OnClick = buttonCancelarClick
     end
     object buttonNovo: TUniButton
@@ -42,6 +45,9 @@ object FormModalModelo: TFormModalModelo
       Caption = 'Novo'
       Anchors = [akLeft, akTop, akBottom]
       TabOrder = 2
+      Images = imageListFormModalModelo
+      ImageIndex = 0
+      OnClick = buttonNovoClick
     end
     object buttonGravar: TUniButton
       AlignWithMargins = True
@@ -62,9 +68,12 @@ object FormModalModelo: TFormModalModelo
       Width = 130
       Height = 30
       Hint = ''
-      Caption = 'Exluir'
+      Caption = 'Excluir'
       Anchors = [akLeft, akTop, akBottom]
       TabOrder = 4
+      Images = imageListFormModalModelo
+      ImageIndex = 2
+      OnClick = buttonExcluirClick
     end
   end
   object scrollModelo: TUniScrollBox
@@ -80,12 +89,21 @@ object FormModalModelo: TFormModalModelo
   end
   object dsManutencao: TDataSource
     DataSet = queryManutencao
-    Left = 728
+    OnStateChange = dsManutencaoStateChange
+    Left = 696
     Top = 248
   end
   object queryManutencao: TFDQuery
     Connection = UniMainModule.Conexao
-    Left = 728
+    Left = 696
     Top = 168
+  end
+  object imageListFormModalModelo: TUniNativeImageList
+    Left = 699
+    Top = 323
+    Images = {
+      0400000000000000060800000066696C653B66613B0000000006070000006164
+      643B66613B00000000060900000074726173683B66613B000000000607000000
+      62616E3B66613B}
   end
 end

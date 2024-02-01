@@ -1,4 +1,4 @@
-unit uFormModalEntrada;
+unit uFormModalSimulador;
 
 interface
 
@@ -11,14 +11,14 @@ uses
   uniScrollBox, uniButton, uniGUIBaseClasses, uniPanel, uniImageList;
 
 type
-  TFormModalEntrada = class(TFormModalModelo)
+  TFormModalSimulador = class(TFormModalModelo)
   private
     { Private declarations }
   public
     { Public declarations }
   end;
 
-function FormModalEntrada: TFormModalEntrada;
+function FormModalSimulador: TFormModalSimulador;
 
 implementation
 
@@ -27,9 +27,9 @@ implementation
 uses
   MainModule, uniGUIApplication;
 
-function FormModalEntrada: TFormModalEntrada;
+function FormModalSimulador: TFormModalSimulador;
 begin
-  Result := TFormModalEntrada(UniMainModule.GetFormInstance(TFormModalEntrada));
+  Result := TFormModalSimulador(UniMainModule.GetFormInstance(TFormModalSimulador));
 end;
 
 end.

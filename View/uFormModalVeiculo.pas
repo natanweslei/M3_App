@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, uniGUIClasses,
-  uniScrollBox, uniButton, uniGUIBaseClasses, uniPanel;
+  uniScrollBox, uniButton, uniGUIBaseClasses, uniPanel, uniImageList;
 
 type
   TFormModalVeiculo = class(TFormModalModelo)

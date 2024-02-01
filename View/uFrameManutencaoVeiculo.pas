@@ -8,7 +8,7 @@ uses
   uniDBGrid, uniPageControl, uniGUIBaseClasses, uFrameModelo, uniLabel, uniButton, uniBitBtn,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client;
+  FireDAC.Comp.Client, uniImageList;
 
 type
   TFrameManutencaoVeiculo = class(TUniFrame)
@@ -17,12 +17,13 @@ type
     UniDBGrid1: TUniDBGrid;
     buttonCadastroVeiculo: TUniButton;
     buttonEntradaVeiculo: TUniButton;
-    buttonSaidaVeiculo: TUniButton;
+    buttonVendaVeiculo: TUniButton;
     buttonGastosVeiculo: TUniButton;
     queryConsulta: TFDQuery;
     dsConsulta: TDataSource;
+    ImageListManutencaoVeiculo: TUniNativeImageList;
     procedure buttonEntradaVeiculoClick(Sender: TObject);
-    procedure buttonSaidaVeiculoClick(Sender: TObject);
+    procedure buttonVendaVeiculoClick(Sender: TObject);
     procedure buttonGastosVeiculoClick(Sender: TObject);
     procedure UniFrameCreate(Sender: TObject);
     procedure buttonCadastroVeiculoClick(Sender: TObject);
@@ -42,44 +43,44 @@ uses
 procedure TFrameManutencaoVeiculo.buttonCadastroVeiculoClick(Sender: TObject);
 begin
   FormModalVeiculo.ShowModal(
-//    procedure(ASender: TComponent; AResult: Integer)
-//    begin
-//      if AResult = mrOk then
-//        queryConsulta.Refresh;
-//    end
+    procedure(ASender: TComponent; AResult: Integer)
+    begin
+      if AResult = mrOk then
+        queryConsulta.Refresh;
+    end
   );
 end;
 
 procedure TFrameManutencaoVeiculo.buttonEntradaVeiculoClick(Sender: TObject);
 begin
   FormModalEntrada.ShowModal(
-//    procedure(ASender: TComponent; AResult: Integer)
-//    begin
-//      if AResult = mrOk then
-//        queryConsulta.Refresh;
-//    end
+    procedure(ASender: TComponent; AResult: Integer)
+    begin
+      if AResult = mrOk then
+        queryConsulta.Refresh;
+    end
   );
 end;
 
-procedure TFrameManutencaoVeiculo.buttonSaidaVeiculoClick(Sender: TObject);
+procedure TFrameManutencaoVeiculo.buttonVendaVeiculoClick(Sender: TObject);
 begin
   FormModalVenda.ShowModal(
-//    procedure(ASender: TComponent; AResult: Integer)
-//    begin
-//      if AResult = mrOk then
-//        queryConsulta.Refresh;
-//    end
+    procedure(ASender: TComponent; AResult: Integer)
+    begin
+      if AResult = mrOk then
+        queryConsulta.Refresh;
+    end
   );
 end;
 
 procedure TFrameManutencaoVeiculo.buttonGastosVeiculoClick(Sender: TObject);
 begin
   FormModalGastos.ShowModal(
-//    procedure(ASender: TComponent; AResult: Integer)
-//    begin
-//      if AResult = mrOk then
-//        queryConsulta.Refresh;
-//    end
+    procedure(ASender: TComponent; AResult: Integer)
+    begin
+      if AResult = mrOk then
+        queryConsulta.Refresh;
+    end
   );
 end;
 

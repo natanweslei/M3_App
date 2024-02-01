@@ -8,7 +8,7 @@ uses
   uniPageControl, uniGUIBaseClasses, uniButton, uniScrollBox, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
-  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, uniImageList;
 
 type
   TFormModalModelo = class(TUniForm)
@@ -20,8 +20,13 @@ type
     buttonNovo: TUniButton;
     buttonGravar: TUniButton;
     buttonExcluir: TUniButton;
+    imageListFormModalModelo: TUniNativeImageList;
     procedure buttonCancelarClick(Sender: TObject);
     procedure buttonGravarClick(Sender: TObject);
+    procedure dsManutencaoStateChange(Sender: TObject);
+    procedure buttonNovoClick(Sender: TObject);
+    procedure buttonExcluirClick(Sender: TObject);
+    procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -42,14 +47,66 @@ begin
   Result := TFormModalModelo(UniMainModule.GetFormInstance(TFormModalModelo));
 end;
 
-procedure TFormModalModelo.buttonCancelarClick(Sender: TObject);
+procedure TFormModalModelo.buttonNovoClick(Sender: TObject);
 begin
-  ModalResult := mrCancel;
+  if not queryManutencao.Active then
+    queryManutencao.Open;
+
+  queryManutencao.Insert;
 end;
 
 procedure TFormModalModelo.buttonGravarClick(Sender: TObject);
 begin
+  queryManutencao.Post;
   ModalResult := mrOk;
+end;
+
+procedure TFormModalModelo.buttonExcluirClick(Sender: TObject);
+begin
+  MessageDlg(
+    'Deseja realmente excluir o registro?',
+    mtConfirmation,
+    mbYesNo,
+    procedure(Sender: TComponent; ARes: Integer)
+    begin
+      if ARes <> mrYes then
+        Exit;
+
+      queryManutencao.Delete;
+    end
+  );
+end;
+
+procedure TFormModalModelo.buttonCancelarClick(Sender: TObject);
+begin
+  if queryManutencao.State in dsEditModes then
+    queryManutencao.Cancel;
+
+  ModalResult := mrCancel;
+end;
+
+procedure TFormModalModelo.dsManutencaoStateChange(Sender: TObject);
+begin
+  if dsManutencao.State in [dsBrowse, dsInactive] then
+  begin
+    buttonNovo.Enabled := True;
+    buttonExcluir.Enabled := True;
+    buttonCancelar.Enabled := False;
+    buttonGravar.Enabled := False;
+  end
+  else if dsManutencao.State in dsEditModes then
+  begin
+    buttonNovo.Enabled := False;
+    buttonExcluir.Enabled := False;
+    buttonCancelar.Enabled := True;
+    buttonGravar.Enabled := True;
+  end;
+end;
+
+procedure TFormModalModelo.UniFormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  if queryManutencao.Active then
+    queryManutencao.Close;
 end;
 
 end.

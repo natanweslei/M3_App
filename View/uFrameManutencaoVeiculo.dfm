@@ -14,16 +14,17 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
     Align = alBottom
     TabOrder = 0
     Caption = ''
-    object buttonSaidaVeiculo: TUniButton
+    object buttonVendaVeiculo: TUniButton
       AlignWithMargins = True
       Left = 228
       Top = 3
       Width = 100
       Height = 35
       Hint = ''
-      Caption = 'Sa'#237'da'
+      Caption = 'Venda'
       TabOrder = 1
-      OnClick = buttonSaidaVeiculoClick
+      Images = ImageListManutencaoVeiculo
+      OnClick = buttonVendaVeiculoClick
     end
     object buttonGastosVeiculo: TUniButton
       AlignWithMargins = True
@@ -34,6 +35,7 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
       Hint = ''
       Caption = 'Gastos'
       TabOrder = 2
+      Images = ImageListManutencaoVeiculo
       OnClick = buttonGastosVeiculoClick
     end
     object buttonEntradaVeiculo: TUniButton
@@ -45,6 +47,7 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
       Hint = ''
       Caption = 'Entrada'
       TabOrder = 3
+      Images = ImageListManutencaoVeiculo
       OnClick = buttonEntradaVeiculoClick
     end
     object buttonCadastroVeiculo: TUniButton
@@ -56,6 +59,8 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
       Hint = ''
       Caption = 'Ve'#237'culo'
       TabOrder = 4
+      Images = ImageListManutencaoVeiculo
+      ImageIndex = 0
       OnClick = buttonCadastroVeiculoClick
     end
   end
@@ -89,5 +94,14 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
     DataSet = queryConsulta
     Left = 872
     Top = 424
+  end
+  object ImageListManutencaoVeiculo: TUniNativeImageList
+    Left = 888
+    Top = 488
+    Images = {
+      050000000000000006080000006361723B66615F3B00000000060F0000004E65
+      7749636F6E436C733B66615F3B00000000060F0000004E657749636F6E436C73
+      3B66615F3B00000000060F0000004E657749636F6E436C733B66615F3B000000
+      00060F0000004E657749636F6E436C733B66615F3B}
   end
 end

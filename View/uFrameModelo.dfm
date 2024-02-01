@@ -67,6 +67,8 @@ object FrameModelo: TFrameModelo
           Caption = 'Gravar'
           Anchors = [akLeft, akTop, akBottom]
           TabOrder = 2
+          Images = imageListFrameModelo
+          ImageIndex = 1
           OnClick = buttonGravarClick
         end
         object buttonNovo: TUniButton
@@ -79,6 +81,8 @@ object FrameModelo: TFrameModelo
           Caption = 'Novo'
           Anchors = [akLeft, akTop, akBottom]
           TabOrder = 1
+          Images = imageListFrameModelo
+          ImageIndex = 0
           OnClick = buttonNovoClick
         end
         object buttonExcluir: TUniButton
@@ -88,9 +92,11 @@ object FrameModelo: TFrameModelo
           Width = 130
           Height = 50
           Hint = ''
-          Caption = 'Exluir'
+          Caption = 'Excluir'
           Anchors = [akLeft, akTop, akBottom]
           TabOrder = 3
+          Images = imageListFrameModelo
+          ImageIndex = 2
           OnClick = buttonExcluirClick
         end
         object buttonCancelar: TUniButton
@@ -104,6 +110,8 @@ object FrameModelo: TFrameModelo
           Cancel = True
           Anchors = [akLeft, akTop, akBottom]
           TabOrder = 4
+          Images = imageListFrameModelo
+          ImageIndex = 3
           OnClick = buttonCancelarClick
         end
       end
@@ -131,5 +139,13 @@ object FrameModelo: TFrameModelo
     Connection = UniMainModule.Conexao
     Left = 548
     Top = 280
+  end
+  object imageListFrameModelo: TUniNativeImageList
+    Left = 731
+    Top = 323
+    Images = {
+      0400000000000000060800000066696C653B66613B00000000060F000000666C
+      6F7070795F6469736B3B66613B00000000060900000074726173683B66613B00
+      000000060700000062616E3B66613B}
   end
 end

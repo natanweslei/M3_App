@@ -7,7 +7,8 @@ uses
   uniGUITypes, uniGUIAbstractClasses, uniGUIClasses, uniGUIFrame, uniGUIBaseClasses, uniPanel,
   uniPageControl, uniBasicGrid, uniDBGrid,  uniLabel, uniButton, uniBitBtn, Data.DB, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
-  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  uniImageList;
 
 type
   TFrameModelo = class(TUniFrame)
@@ -25,6 +26,7 @@ type
     dsManutencao: TDataSource;
     queryConsulta: TFDQuery;
     queryManutencao: TFDQuery;
+    imageListFrameModelo: TUniNativeImageList;
     procedure UniFrameDestroy(Sender: TObject);
     procedure UniFrameCreate(Sender: TObject);
     procedure buttonNovoClick(Sender: TObject);

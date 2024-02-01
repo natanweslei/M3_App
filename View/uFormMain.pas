@@ -20,12 +20,14 @@ type
     MenuTipoGasto: TUniMenuItem;
     MenuManutencaoVeiculos: TUniMenuItem;
     menuSair: TUniMenuItem;
-    UniNativeImageList1: TUniNativeImageList;
+    ImageListMain: TUniNativeImageList;
+    menuSimulador: TUniMenuItem;
     procedure MenuTipoGastoClick(Sender: TObject);
     procedure MenuEmpresaClick(Sender: TObject);
     procedure MenuPessoaClick(Sender: TObject);
     procedure MenuManutencaoVeiculosClick(Sender: TObject);
     procedure menuSairClick(Sender: TObject);
+    procedure menuSimuladorClick(Sender: TObject);
   private
   public
     Procedure OpenFrame(AClassName: string; ACaption: string);
@@ -39,6 +41,7 @@ implementation
 
 uses
   uFrameModelo,
+  uFormModalSimulador,
   uniGUIVars,
   MainModule,
   uniGUIApplication;
@@ -117,6 +120,11 @@ end;
 procedure TFormMain.MenuManutencaoVeiculosClick(Sender: TObject);
 begin
   OpenFrame('TFrameManutencaoVeiculo', 'Veículo');
+end;
+
+procedure TFormMain.menuSimuladorClick(Sender: TObject);
+begin
+  FormModalSimulador.ShowModal;
 end;
 
 procedure TFormMain.menuSairClick(Sender: TObject);

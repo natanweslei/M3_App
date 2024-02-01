@@ -460,6 +460,7 @@ object FormMain: TFormMain
     SourceMenu = UniMenuItems1
   end
   object UniMenuItems1: TUniMenuItems
+    Images = UniNativeImageList1
     Left = 36
     Top = 520
     object MenuEmpresa: TUniMenuItem
@@ -478,5 +479,15 @@ object FormMain: TFormMain
       Caption = 'Manuten'#231#227'o de Ve'#237'culos'
       OnClick = MenuManutencaoVeiculosClick
     end
+    object menuSair: TUniMenuItem
+      Caption = 'Sair'
+      ImageIndex = 0
+      OnClick = menuSairClick
+    end
+  end
+  object UniNativeImageList1: TUniNativeImageList
+    Left = 152
+    Top = 520
+    Images = {0100000000000000060C00000077686174736170703B66613B}
   end
 end

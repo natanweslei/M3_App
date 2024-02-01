@@ -14,13 +14,12 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
     Align = alBottom
     TabOrder = 0
     Caption = ''
-    ExplicitTop = 624
     object buttonSaidaVeiculo: TUniButton
       AlignWithMargins = True
       Left = 228
-      Top = 11
+      Top = 3
       Width = 100
-      Height = 25
+      Height = 35
       Hint = ''
       Caption = 'Sa'#237'da'
       TabOrder = 1
@@ -29,9 +28,9 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
     object buttonGastosVeiculo: TUniButton
       AlignWithMargins = True
       Left = 334
-      Top = 11
+      Top = 3
       Width = 100
-      Height = 25
+      Height = 35
       Hint = ''
       Caption = 'Gastos'
       TabOrder = 2
@@ -40,9 +39,9 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
     object buttonEntradaVeiculo: TUniButton
       AlignWithMargins = True
       Left = 122
-      Top = 11
+      Top = 3
       Width = 100
-      Height = 25
+      Height = 35
       Hint = ''
       Caption = 'Entrada'
       TabOrder = 3
@@ -51,9 +50,9 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
     object buttonCadastroVeiculo: TUniButton
       AlignWithMargins = True
       Left = 16
-      Top = 11
+      Top = 3
       Width = 100
-      Height = 25
+      Height = 35
       Hint = ''
       Caption = 'Ve'#237'culo'
       TabOrder = 4

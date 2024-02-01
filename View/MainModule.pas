@@ -27,7 +27,8 @@ type
     FDPhysPgDriverLink1: TFDPhysPgDriverLink;
   private
   public
-    UserId: Integer;
+    GlobalOperadorId: Integer;
+    GlobalNomeOperador: string;
     function GerarSequence(ASequence: string): Integer;
   end;
 

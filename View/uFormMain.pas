@@ -19,10 +19,13 @@ type
     MenuPessoa: TUniMenuItem;
     MenuTipoGasto: TUniMenuItem;
     MenuManutencaoVeiculos: TUniMenuItem;
+    menuSair: TUniMenuItem;
+    UniNativeImageList1: TUniNativeImageList;
     procedure MenuTipoGastoClick(Sender: TObject);
     procedure MenuEmpresaClick(Sender: TObject);
     procedure MenuPessoaClick(Sender: TObject);
     procedure MenuManutencaoVeiculosClick(Sender: TObject);
+    procedure menuSairClick(Sender: TObject);
   private
   public
     Procedure OpenFrame(AClassName: string; ACaption: string);
@@ -114,6 +117,11 @@ end;
 procedure TFormMain.MenuManutencaoVeiculosClick(Sender: TObject);
 begin
   OpenFrame('TFrameManutencaoVeiculo', 'Veículo');
+end;
+
+procedure TFormMain.menuSairClick(Sender: TObject);
+begin
+  Self.UniApplication.Terminate;
 end;
 
 initialization

@@ -18,26 +18,74 @@ object FormModalModelo: TFormModalModelo
     Align = alBottom
     TabOrder = 0
     Caption = ''
-    ExplicitTop = 496
-    object buttonConfirmar: TUniButton
-      Left = 306
-      Top = 10
-      Width = 75
-      Height = 25
-      Hint = ''
-      Caption = 'Confirmar'
-      TabOrder = 1
-      OnClick = buttonConfirmarClick
-    end
+    DesignSize = (
+      798
+      45)
     object buttonCancelar: TUniButton
-      Left = 387
-      Top = 10
-      Width = 75
-      Height = 25
+      AlignWithMargins = True
+      Left = 419
+      Top = 6
+      Width = 130
+      Height = 30
       Hint = ''
       Caption = 'Cancelar'
-      TabOrder = 2
+      TabOrder = 1
       OnClick = buttonCancelarClick
     end
+    object buttonNovo: TUniButton
+      AlignWithMargins = True
+      Left = 11
+      Top = 6
+      Width = 130
+      Height = 30
+      Hint = ''
+      Caption = 'Novo'
+      Anchors = [akLeft, akTop, akBottom]
+      TabOrder = 2
+    end
+    object buttonGravar: TUniButton
+      AlignWithMargins = True
+      Left = 147
+      Top = 6
+      Width = 130
+      Height = 30
+      Hint = ''
+      Caption = 'Gravar'
+      Anchors = [akLeft, akTop, akBottom]
+      TabOrder = 3
+      OnClick = buttonGravarClick
+    end
+    object buttonExcluir: TUniButton
+      AlignWithMargins = True
+      Left = 283
+      Top = 6
+      Width = 130
+      Height = 30
+      Hint = ''
+      Caption = 'Exluir'
+      Anchors = [akLeft, akTop, akBottom]
+      TabOrder = 4
+    end
+  end
+  object scrollModelo: TUniScrollBox
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 792
+    Height = 506
+    Hint = ''
+    Align = alClient
+    TabOrder = 1
+    ExplicitHeight = 454
+  end
+  object dsManutencao: TDataSource
+    DataSet = queryManutencao
+    Left = 728
+    Top = 248
+  end
+  object queryManutencao: TFDQuery
+    Connection = UniMainModule.Conexao
+    Left = 728
+    Top = 168
   end
 end

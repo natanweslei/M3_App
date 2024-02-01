@@ -60,7 +60,7 @@ begin
   qryLogin := TFDQuery.Create(nil);
   qryLogin.Connection := UniMainModule.Conexao;
   qryLogin.SQL.Clear;
-  qryLogin.SQL.Add('select pessoa_id');
+  qryLogin.SQL.Add('select pessoa_id, nome');
   qryLogin.SQL.Add('from pessoa');
   qryLogin.SQL.Add('where operador');
   qryLogin.SQL.Add('and usuario = :pusuario');
@@ -77,8 +77,8 @@ begin
     Exit;
   end;
 
-  UniMainModule.UserId := qryLogin.FieldByName('pessoa_id').AsInteger;
-
+  UniMainModule.GlobalOperadorId := qryLogin.FieldByName('pessoa_id').AsInteger;
+  UniMainModule.GlobalNomeOperador := qryLogin.FieldByName('nome').AsString;
   qryLogin.Free;
 
   ModalResult := mrOk;

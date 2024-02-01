@@ -21,11 +21,11 @@ type
     buttonGastosVeiculo: TUniButton;
     queryConsulta: TFDQuery;
     dsConsulta: TDataSource;
-    procedure buttonCadastroVeiculoClick(Sender: TObject);
     procedure buttonEntradaVeiculoClick(Sender: TObject);
     procedure buttonSaidaVeiculoClick(Sender: TObject);
     procedure buttonGastosVeiculoClick(Sender: TObject);
     procedure UniFrameCreate(Sender: TObject);
+    procedure buttonCadastroVeiculoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,32 +37,50 @@ implementation
 {$R *.dfm}
 
 uses
-  MainModule, uFormModalModelo;
+  MainModule, uFormModalModelo, uFormModalVeiculo, uFormModalEntrada, uFormModalVenda, uFormModalGastos;
 
 procedure TFrameManutencaoVeiculo.buttonCadastroVeiculoClick(Sender: TObject);
 begin
-  FormModalModelo.ShowModal(
-    procedure(ASender: TComponent; AResult: Integer)
-    begin
-      if AResult = mrOk then
-        queryConsulta.Refresh;
-    end
+  FormModalVeiculo.ShowModal(
+//    procedure(ASender: TComponent; AResult: Integer)
+//    begin
+//      if AResult = mrOk then
+//        queryConsulta.Refresh;
+//    end
   );
 end;
 
 procedure TFrameManutencaoVeiculo.buttonEntradaVeiculoClick(Sender: TObject);
 begin
-//entrada
+  FormModalEntrada.ShowModal(
+//    procedure(ASender: TComponent; AResult: Integer)
+//    begin
+//      if AResult = mrOk then
+//        queryConsulta.Refresh;
+//    end
+  );
 end;
 
 procedure TFrameManutencaoVeiculo.buttonSaidaVeiculoClick(Sender: TObject);
 begin
-//saida
+  FormModalVenda.ShowModal(
+//    procedure(ASender: TComponent; AResult: Integer)
+//    begin
+//      if AResult = mrOk then
+//        queryConsulta.Refresh;
+//    end
+  );
 end;
 
 procedure TFrameManutencaoVeiculo.buttonGastosVeiculoClick(Sender: TObject);
 begin
-//gastos
+  FormModalGastos.ShowModal(
+//    procedure(ASender: TComponent; AResult: Integer)
+//    begin
+//      if AResult = mrOk then
+//        queryConsulta.Refresh;
+//    end
+  );
 end;
 
 procedure TFrameManutencaoVeiculo.UniFrameCreate(Sender: TObject);

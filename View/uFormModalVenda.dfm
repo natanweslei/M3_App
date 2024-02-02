@@ -7,7 +7,4 @@ inherited FormModalVenda: TFormModalVenda
       OnClick = nil
     end
   end
-  inherited scrollModelo: TUniScrollBox
-    ExplicitHeight = 506
-  end
 end

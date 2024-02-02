@@ -7,7 +7,13 @@ inherited FramePessoa: TFramePessoa
     Width = 1023
     Height = 602
     ActivePage = tsConsulta
+    ExplicitWidth = 1023
+    ExplicitHeight = 602
     inherited tsConsulta: TUniTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 1015
+      ExplicitHeight = 574
       inherited gridConsulta: TUniDBGrid
         Top = 73
         Width = 1015
@@ -88,6 +94,7 @@ inherited FramePessoa: TFramePessoa
       inherited panelFiltros: TUniPanel
         Width = 1015
         Height = 73
+        ExplicitWidth = 1015
         ExplicitHeight = 73
         object editCampoFiltro: TUniEdit
           Left = 9
@@ -102,9 +109,13 @@ inherited FramePessoa: TFramePessoa
       end
     end
     inherited tsManutencao: TUniTabSheet
+      ExplicitWidth = 1015
+      ExplicitHeight = 574
       inherited containerBotoes: TUniContainerPanel
         Top = 507
         Width = 1015
+        ExplicitTop = 507
+        ExplicitWidth = 1015
       end
       object panelGeral: TUniPanel
         Left = 0
@@ -115,10 +126,6 @@ inherited FramePessoa: TFramePessoa
         Align = alClient
         TabOrder = 1
         Caption = ''
-        ExplicitLeft = 400
-        ExplicitTop = 152
-        ExplicitWidth = 256
-        ExplicitHeight = 128
         object groupDadosGerais: TUniGroupBox
           Left = 12
           Top = 7

@@ -14,17 +14,27 @@ type
   TFrameManutencaoVeiculo = class(TUniFrame)
     panelBotoes: TUniPanel;
     panel: TUniPanel;
-    UniDBGrid1: TUniDBGrid;
+    gridVeiculo: TUniDBGrid;
     buttonCadastroVeiculo: TUniButton;
     buttonEntradaVeiculo: TUniButton;
     buttonVendaVeiculo: TUniButton;
-    buttonGastosVeiculo: TUniButton;
+    buttonDespesasVeiculo: TUniButton;
     queryConsulta: TFDQuery;
     dsConsulta: TDataSource;
     ImageListManutencaoVeiculo: TUniNativeImageList;
+    PageControlVeiculo: TUniPageControl;
+    tsVeiculo: TUniTabSheet;
+    tsDespesas: TUniTabSheet;
+    UniDBGrid1: TUniDBGrid;
+    tsEntrada: TUniTabSheet;
+    tsVenda: TUniTabSheet;
+    tsFinanceiro: TUniTabSheet;
+    PageControlFinanceiro: TUniPageControl;
+    tsContasPagar: TUniTabSheet;
+    UniTabSheet2: TUniTabSheet;
     procedure buttonEntradaVeiculoClick(Sender: TObject);
     procedure buttonVendaVeiculoClick(Sender: TObject);
-    procedure buttonGastosVeiculoClick(Sender: TObject);
+    procedure buttonDespesasVeiculoClick(Sender: TObject);
     procedure UniFrameCreate(Sender: TObject);
     procedure buttonCadastroVeiculoClick(Sender: TObject);
   private
@@ -38,21 +48,24 @@ implementation
 {$R *.dfm}
 
 uses
-  MainModule, uFormModalModelo, uFormModalVeiculo, uFormModalEntrada, uFormModalVenda, uFormModalGastos;
+  MainModule, uFormModalModelo, uFormModalVeiculo, uFormModalEntrada, uFormModalVenda, uFormModalDespesas;
 
 procedure TFrameManutencaoVeiculo.buttonCadastroVeiculoClick(Sender: TObject);
 begin
+  if queryConsulta.Active then
+    FormModalVeiculo.VeiculoId := queryConsulta.FieldByName('veiculo_id').AsInteger;
+
   FormModalVeiculo.ShowModal(
     procedure(ASender: TComponent; AResult: Integer)
     begin
-      if AResult = mrOk then
-        queryConsulta.Refresh;
+      queryConsulta.Refresh;
     end
   );
 end;
 
 procedure TFrameManutencaoVeiculo.buttonEntradaVeiculoClick(Sender: TObject);
 begin
+//  FormModalEntrada.VeiculoId := que
   FormModalEntrada.ShowModal(
     procedure(ASender: TComponent; AResult: Integer)
     begin
@@ -73,9 +86,9 @@ begin
   );
 end;
 
-procedure TFrameManutencaoVeiculo.buttonGastosVeiculoClick(Sender: TObject);
+procedure TFrameManutencaoVeiculo.buttonDespesasVeiculoClick(Sender: TObject);
 begin
-  FormModalGastos.ShowModal(
+  FormModalDespesas.ShowModal(
     procedure(ASender: TComponent; AResult: Integer)
     begin
       if AResult = mrOk then

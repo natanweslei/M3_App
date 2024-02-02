@@ -75,17 +75,16 @@ object FormModalModelo: TFormModalModelo
       ImageIndex = 2
       OnClick = buttonExcluirClick
     end
-  end
-  object scrollModelo: TUniScrollBox
-    AlignWithMargins = True
-    Left = 3
-    Top = 3
-    Width = 792
-    Height = 506
-    Hint = ''
-    Align = alClient
-    TabOrder = 1
-    ExplicitHeight = 454
+    object buttonFechar: TUniButton
+      Left = 696
+      Top = 6
+      Width = 75
+      Height = 30
+      Hint = ''
+      Caption = 'Fechar'
+      TabOrder = 5
+      OnClick = buttonFecharClick
+    end
   end
   object dsManutencao: TDataSource
     DataSet = queryManutencao

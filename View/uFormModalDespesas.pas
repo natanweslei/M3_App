@@ -1,4 +1,4 @@
-unit uFormModalGastos;
+unit uFormModalDespesas;
 
 interface
 
@@ -11,14 +11,15 @@ uses
   uniScrollBox, uniButton, uniGUIBaseClasses, uniPanel, uniImageList;
 
 type
-  TFormModalGastos = class(TFormModalModelo)
+  TFormModalDespesas = class(TFormModalModelo)
+    UniScrollBox1: TUniScrollBox;
   private
     { Private declarations }
   public
     { Public declarations }
   end;
 
-function FormModalGastos: TFormModalGastos;
+function FormModalDespesas: TFormModalDespesas;
 
 implementation
 
@@ -27,9 +28,9 @@ implementation
 uses
   MainModule, uniGUIApplication;
 
-function FormModalGastos: TFormModalGastos;
+function FormModalDespesas: TFormModalDespesas;
 begin
-  Result := TFormModalGastos(UniMainModule.GetFormInstance(TFormModalGastos));
+  Result := TFormModalDespesas(UniMainModule.GetFormInstance(TFormModalDespesas));
 end;
 
 end.

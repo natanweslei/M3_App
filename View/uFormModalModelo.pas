@@ -14,19 +14,20 @@ type
   TFormModalModelo = class(TUniForm)
     buttonCancelar: TUniButton;
     panelBotoes: TUniPanel;
-    scrollModelo: TUniScrollBox;
     dsManutencao: TDataSource;
     queryManutencao: TFDQuery;
     buttonNovo: TUniButton;
     buttonGravar: TUniButton;
     buttonExcluir: TUniButton;
     imageListFormModalModelo: TUniNativeImageList;
+    buttonFechar: TUniButton;
     procedure buttonCancelarClick(Sender: TObject);
     procedure buttonGravarClick(Sender: TObject);
     procedure dsManutencaoStateChange(Sender: TObject);
     procedure buttonNovoClick(Sender: TObject);
     procedure buttonExcluirClick(Sender: TObject);
     procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
+    procedure buttonFecharClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -58,7 +59,6 @@ end;
 procedure TFormModalModelo.buttonGravarClick(Sender: TObject);
 begin
   queryManutencao.Post;
-  ModalResult := mrOk;
 end;
 
 procedure TFormModalModelo.buttonExcluirClick(Sender: TObject);
@@ -77,12 +77,15 @@ begin
   );
 end;
 
+procedure TFormModalModelo.buttonFecharClick(Sender: TObject);
+begin
+  ModalResult := mrOk;
+end;
+
 procedure TFormModalModelo.buttonCancelarClick(Sender: TObject);
 begin
   if queryManutencao.State in dsEditModes then
     queryManutencao.Cancel;
-
-  ModalResult := mrCancel;
 end;
 
 procedure TFormModalModelo.dsManutencaoStateChange(Sender: TObject);

@@ -9,7 +9,8 @@ uses
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, uniGUIClasses,
   uniScrollBox, uniButton, uniGUIBaseClasses, uniPanel, uniImageList, uniEdit,
-  uniDBEdit, uniMultiItem, uniComboBox, uniDBComboBox, uniMemo, uniDBMemo;
+  uniDBEdit, uniMultiItem, uniComboBox, uniDBComboBox, uniMemo, uniDBMemo,
+  uniGroupBox;
 
 type
   TFormModalVeiculo = class(TFormModalModelo)
@@ -26,6 +27,9 @@ type
     comboCombustivel: TUniDBComboBox;
     memoObservacaoVeiculo: TUniDBMemo;
     memoObservacao: TUniDBMemo;
+    comboSituacao: TUniDBComboBox;
+    groupDados: TUniGroupBox;
+    groupVeiculo: TUniGroupBox;
     procedure queryManutencaoBeforePost(DataSet: TDataSet);
     procedure UniFormCreate(Sender: TObject);
     procedure UniFormShow(Sender: TObject);

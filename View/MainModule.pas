@@ -3,29 +3,20 @@ unit MainModule;
 interface
 
 uses
-  uniGUIMainModule,
-  SysUtils,
-  Classes,
-  Data.DB,
-  FireDAC.Stan.Intf,
-  FireDAC.Stan.Option,
-  FireDAC.Stan.Error,
-  FireDAC.UI.Intf,
-  FireDAC.Phys.Intf,
-  FireDAC.Stan.Def,
-  FireDAC.Stan.Pool,
-  FireDAC.Stan.Async,
-  FireDAC.Phys,
-  FireDAC.Phys.PG,
-  FireDAC.Phys.PGDef,
-  FireDAC.VCLUI.Wait,
-  FireDAC.Comp.Client;
+  uniGUIMainModule, SysUtils, Classes, Data.DB, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool,
+  FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.PG, FireDAC.Phys.PGDef, FireDAC.VCLUI.Wait,
+  FireDAC.Comp.Client, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.Comp.DataSet;
 
 type
   TUniMainModule = class(TUniGUIMainModule)
     Conexao: TFDConnection;
     FDPhysPgDriverLink1: TFDPhysPgDriverLink;
-  private
+    dsCadastroVeiculo: TDataSource;
+    dsCadastroFornecedor: TDataSource;
+    queryCadastroFornecedor: TFDQuery;
+    queryCadastroVeiculo: TFDQuery;
   public
     GlobalOperadorId: Integer;
     GlobalNomeOperador: string;

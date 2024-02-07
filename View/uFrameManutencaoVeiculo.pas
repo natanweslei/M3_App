@@ -18,9 +18,9 @@ type
     buttonCadastroVeiculo: TUniButton;
     buttonEntradaVeiculo: TUniButton;
     buttonVendaVeiculo: TUniButton;
-    buttonDespesasVeiculo: TUniButton;
-    queryConsulta: TFDQuery;
-    dsConsulta: TDataSource;
+    buttonGastosVeiculo: TUniButton;
+    queryVeiculo: TFDQuery;
+    dsVeiculo: TDataSource;
     ImageListManutencaoVeiculo: TUniNativeImageList;
     PageControlVeiculo: TUniPageControl;
     tsVeiculo: TUniTabSheet;
@@ -32,11 +32,16 @@ type
     PageControlFinanceiro: TUniPageControl;
     tsContasPagar: TUniTabSheet;
     UniTabSheet2: TUniTabSheet;
+    dsEntrada: TDataSource;
+    queryEntrada: TFDQuery;
+    gridEntrada: TUniDBGrid;
+    gridContasPagar: TUniDBGrid;
     procedure buttonEntradaVeiculoClick(Sender: TObject);
     procedure buttonVendaVeiculoClick(Sender: TObject);
-    procedure buttonDespesasVeiculoClick(Sender: TObject);
+    procedure buttonGastosVeiculoClick(Sender: TObject);
     procedure UniFrameCreate(Sender: TObject);
     procedure buttonCadastroVeiculoClick(Sender: TObject);
+    procedure queryVeiculoAfterScroll(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -48,29 +53,29 @@ implementation
 {$R *.dfm}
 
 uses
-  MainModule, uFormModalModelo, uFormModalVeiculo, uFormModalEntrada, uFormModalVenda, uFormModalDespesas;
+  MainModule, uFormModalModelo, uFormModalVeiculo, uFormModalEntrada, uFormModalVenda, uFormModalGastos;
 
 procedure TFrameManutencaoVeiculo.buttonCadastroVeiculoClick(Sender: TObject);
 begin
-  if queryConsulta.Active then
-    FormModalVeiculo.VeiculoId := queryConsulta.FieldByName('veiculo_id').AsInteger;
+  if queryVeiculo.Active then
+    FormModalVeiculo.VeiculoId := queryVeiculo.FieldByName('veiculo_id').AsInteger;
 
   FormModalVeiculo.ShowModal(
     procedure(ASender: TComponent; AResult: Integer)
     begin
-      queryConsulta.Refresh;
+      queryVeiculo.Refresh;
     end
   );
 end;
 
 procedure TFrameManutencaoVeiculo.buttonEntradaVeiculoClick(Sender: TObject);
 begin
-//  FormModalEntrada.VeiculoId := que
+//  FormModalEntrada.EntradaId := que
   FormModalEntrada.ShowModal(
     procedure(ASender: TComponent; AResult: Integer)
     begin
       if AResult = mrOk then
-        queryConsulta.Refresh;
+        queryVeiculo.Refresh;
     end
   );
 end;
@@ -81,28 +86,56 @@ begin
     procedure(ASender: TComponent; AResult: Integer)
     begin
       if AResult = mrOk then
-        queryConsulta.Refresh;
+        queryVeiculo.Refresh;
     end
   );
 end;
 
-procedure TFrameManutencaoVeiculo.buttonDespesasVeiculoClick(Sender: TObject);
+procedure TFrameManutencaoVeiculo.queryVeiculoAfterScroll(DataSet: TDataSet);
 begin
-  FormModalDespesas.ShowModal(
+  queryEntrada.Close;
+  queryEntrada.SQL.Clear;
+  queryEntrada.SQL.Add('select');
+  queryEntrada.SQL.Add('    entrada.entrada_id,');
+  queryEntrada.SQL.Add('    entrada.data_entrada,');
+  queryEntrada.SQL.Add('    entrada.valor_veiculo,');
+  queryEntrada.SQL.Add('    entrada.veiculo_id,');
+  queryEntrada.SQL.Add('    veiculo.placa || '' - '' || veiculo.modelo as veiculo,');
+  queryEntrada.SQL.Add('    entrada.pessoa_id || '' - '' || pessoa.nome as fornecedor');
+  queryEntrada.SQL.Add('from entrada');
+
+  queryEntrada.SQL.Add('inner join veiculo');
+  queryEntrada.SQL.Add('on entrada.veiculo_id = veiculo.veiculo_id');
+
+  queryEntrada.SQL.Add('inner join pessoa');
+  queryEntrada.SQL.Add('on entrada.pessoa_id = pessoa.pessoa_id');
+
+  if queryVeiculo.RecordCount > 0 then
+  begin
+    queryEntrada.SQL.Add('where entrada.veiculo_id = :pveiculo_id');
+    queryEntrada.ParamByName('pveiculo_id').AsInteger := queryVeiculo.FieldByName('veiculo_id').AsInteger;
+  end;
+
+  queryEntrada.Open;
+end;
+
+procedure TFrameManutencaoVeiculo.buttonGastosVeiculoClick(Sender: TObject);
+begin
+  FormModalTipoGasto.ShowModal(
     procedure(ASender: TComponent; AResult: Integer)
     begin
       if AResult = mrOk then
-        queryConsulta.Refresh;
+        queryVeiculo.Refresh;
     end
   );
 end;
 
 procedure TFrameManutencaoVeiculo.UniFrameCreate(Sender: TObject);
 begin
-  queryConsulta.Close;
-  queryConsulta.SQL.Clear;
-  queryConsulta.SQL.Add('select * from veiculo');
-  queryConsulta.Open;
+  queryVeiculo.Close;
+  queryVeiculo.SQL.Clear;
+  queryVeiculo.SQL.Add('select * from veiculo');
+  queryVeiculo.Open;
 end;
 
 initialization

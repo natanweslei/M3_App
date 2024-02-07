@@ -6,7 +6,6 @@ inherited FramePessoa: TFramePessoa
   inherited PageControlModelo: TUniPageControl
     Width = 1023
     Height = 602
-    ActivePage = tsConsulta
     ExplicitWidth = 1023
     ExplicitHeight = 602
     inherited tsConsulta: TUniTabSheet
@@ -142,6 +141,7 @@ inherited FramePessoa: TFramePessoa
             Hint = ''
             DataField = 'cpf'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 2
             InputMask.Mask = '999.999.999-99'
             FieldLabel = 'CPF'
@@ -156,6 +156,7 @@ inherited FramePessoa: TFramePessoa
             Hint = ''
             DataField = 'nome'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 1
             FieldLabel = 'Nome '
             FieldLabelWidth = 120
@@ -184,6 +185,7 @@ inherited FramePessoa: TFramePessoa
             Hint = ''
             DataField = 'registro_geral'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 3
             FieldLabel = 'Registro Geral'
             FieldLabelAlign = laRight
@@ -205,6 +207,7 @@ inherited FramePessoa: TFramePessoa
             Hint = ''
             DataField = 'telefone_celular'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 2
             InputMask.Mask = '(99)-99999-9999'
             InputMask.RemoveWhiteSpace = True
@@ -220,6 +223,7 @@ inherited FramePessoa: TFramePessoa
             Hint = ''
             DataField = 'telefone_comercial'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 1
             InputMask.Mask = '(99)-9999-9999'
             InputMask.RemoveWhiteSpace = True
@@ -244,6 +248,7 @@ inherited FramePessoa: TFramePessoa
             Hint = ''
             DataField = 'logradouro'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 1
             FieldLabel = 'Logradouro'
             FieldLabelWidth = 120
@@ -257,6 +262,7 @@ inherited FramePessoa: TFramePessoa
             Hint = ''
             DataField = 'bairro'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 2
             FieldLabel = 'Bairro'
             FieldLabelWidth = 120
@@ -270,6 +276,7 @@ inherited FramePessoa: TFramePessoa
             Hint = ''
             DataField = 'quadra'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 3
             FieldLabel = 'Quadra'
             FieldLabelAlign = laRight
@@ -282,6 +289,7 @@ inherited FramePessoa: TFramePessoa
             Hint = ''
             DataField = 'lote'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 4
             FieldLabel = 'Lote'
             FieldLabelAlign = laRight
@@ -303,6 +311,7 @@ inherited FramePessoa: TFramePessoa
             Hint = ''
             DataField = 'usuario'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 1
             FieldLabel = 'Usu'#225'rio'
             FieldLabelWidth = 120

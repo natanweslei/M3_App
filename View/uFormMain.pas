@@ -114,7 +114,7 @@ end;
 
 procedure TFormMain.MenuTipoGastoClick(Sender: TObject);
 begin
-  OpenFrame('TFrameTipoGasto', 'Tipo de Gasto');
+  OpenFrame('TFrameTipoGasto', 'Tipo de Despesa');
 end;
 
 procedure TFormMain.MenuManutencaoVeiculosClick(Sender: TObject);

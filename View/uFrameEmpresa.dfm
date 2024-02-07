@@ -105,6 +105,7 @@ inherited FrameEmpresa: TFrameEmpresa
             Hint = ''
             DataField = 'nome_social'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 2
             FieldLabel = 'Raz'#227'o Social'
             FieldLabelWidth = 120
@@ -118,6 +119,7 @@ inherited FrameEmpresa: TFrameEmpresa
             Hint = ''
             DataField = 'cnpj'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 3
             InputMask.Mask = '99.999.999/9999-99'
             FieldLabel = 'CNPJ'
@@ -132,6 +134,7 @@ inherited FrameEmpresa: TFrameEmpresa
             Hint = ''
             DataField = 'nome_fantasia'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 1
             FieldLabel = 'Nome Fantasia'
             FieldLabelWidth = 120
@@ -154,6 +157,7 @@ inherited FrameEmpresa: TFrameEmpresa
             Hint = ''
             DataField = 'telefone_celular'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 2
             InputMask.Mask = '(99)-99999-9999'
             InputMask.RemoveWhiteSpace = True
@@ -169,6 +173,7 @@ inherited FrameEmpresa: TFrameEmpresa
             Hint = ''
             DataField = 'telefone_comercial'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 1
             InputMask.Mask = '(99)-9999-9999'
             InputMask.RemoveWhiteSpace = True
@@ -193,6 +198,7 @@ inherited FrameEmpresa: TFrameEmpresa
             Hint = ''
             DataField = 'logradouro'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 1
             FieldLabel = 'Logradouro'
             FieldLabelWidth = 120
@@ -206,6 +212,7 @@ inherited FrameEmpresa: TFrameEmpresa
             Hint = ''
             DataField = 'bairro'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 2
             FieldLabel = 'Bairro'
             FieldLabelWidth = 120
@@ -219,6 +226,7 @@ inherited FrameEmpresa: TFrameEmpresa
             Hint = ''
             DataField = 'quadra'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 3
             FieldLabel = 'Quadra'
             FieldLabelAlign = laRight
@@ -231,6 +239,7 @@ inherited FrameEmpresa: TFrameEmpresa
             Hint = ''
             DataField = 'lote'
             DataSource = dsManutencao
+            CharCase = ecUpperCase
             TabOrder = 4
             FieldLabel = 'Lote'
             FieldLabelAlign = laRight

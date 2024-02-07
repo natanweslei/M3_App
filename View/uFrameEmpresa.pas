@@ -7,7 +7,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uniPanel, uniGUIClasses, uniBasicGrid, uniDBGrid, uniPageControl,
   uniGUIBaseClasses, uniLabel, uFrameModelo, uniButton, Data.DB, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async,
-  FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client, uniDBEdit, uniEdit, uniGroupBox;
+  FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client, uniDBEdit, uniEdit, uniGroupBox,
+  uniImageList;
 
 type
   TFrameEmpresa = class(TFrameModelo)

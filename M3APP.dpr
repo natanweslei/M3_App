@@ -18,8 +18,10 @@ uses
   uFormModalVeiculo in 'View\uFormModalVeiculo.pas' {FormModalVeiculo: TUniForm},
   uFormModalEntrada in 'View\uFormModalEntrada.pas' {FormModalEntrada: TUniForm},
   uFormModalVenda in 'View\uFormModalVenda.pas' {FormModalVenda: TUniForm},
-  uFormModalDespesas in 'View\uFormModalDespesas.pas' {FormModalDespesas: TUniForm},
-  uFormModalSimulador in 'View\uFormModalSimulador.pas' {FormModalSimulador: TUniForm};
+  uFormModalGastos in 'View\uFormModalGastos.pas' {FormModalTipoGasto: TUniForm},
+  uFormModalSimulador in 'View\uFormModalSimulador.pas' {FormModalSimulador: TUniForm},
+  CalculadoraFinanciamento in 'Model\CalculadoraFinanciamento.pas',
+  Biblioteca in 'Model\Biblioteca.pas';
 
 {$R *.res}
 

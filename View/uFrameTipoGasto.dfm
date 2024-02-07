@@ -1,6 +1,10 @@
 inherited FrameTipoGasto: TFrameTipoGasto
   inherited PageControlModelo: TUniPageControl
     inherited tsConsulta: TUniTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 837
+      ExplicitHeight = 549
       inherited panelFiltros: TUniPanel
         Visible = False
       end
@@ -15,9 +19,6 @@ inherited FrameTipoGasto: TFrameTipoGasto
         Align = alTop
         TabOrder = 1
         Caption = ''
-        ExplicitLeft = 136
-        ExplicitTop = 72
-        ExplicitWidth = 256
         object editDescricao: TUniDBEdit
           Left = 16
           Top = 24
@@ -26,6 +27,7 @@ inherited FrameTipoGasto: TFrameTipoGasto
           Hint = ''
           DataField = 'descricao'
           DataSource = dsManutencao
+          CharCase = ecUpperCase
           TabOrder = 1
           FieldLabel = 'Descri'#231#227'o'
           FieldLabelAlign = laRight

@@ -20,11 +20,11 @@ inherited FormModalEntrada: TFormModalEntrada
     ExplicitTop = 104
     ExplicitWidth = 256
     ExplicitHeight = 256
-    ScrollHeight = 433
+    ScrollHeight = 313
     ScrollWidth = 777
     object groupDados: TUniGroupBox
       Left = 16
-      Top = 168
+      Top = 131
       Width = 761
       Height = 65
       Hint = ''
@@ -32,7 +32,7 @@ inherited FormModalEntrada: TFormModalEntrada
       TabOrder = 0
       object editValorVeiculo: TUniDBFormattedNumberEdit
         Left = 15
-        Top = 21
+        Top = 23
         Width = 244
         Height = 22
         Hint = ''
@@ -48,7 +48,7 @@ inherited FormModalEntrada: TFormModalEntrada
       end
       object editTaxa: TUniDBFormattedNumberEdit
         Left = 267
-        Top = 21
+        Top = 23
         Width = 152
         Height = 22
         Hint = ''
@@ -56,16 +56,16 @@ inherited FormModalEntrada: TFormModalEntrada
         DataSource = dsManutencao
         TabOrder = 2
         MaxValue = 100.000000000000000000
-        MinValue = 1.000000000000000000
         FieldLabel = 'Taxa'
         FieldLabelAlign = laRight
+        DecimalPrecision = 5
         DecimalSeparator = ','
         ThousandSeparator = '.'
       end
       object editQuantidadeParcelas: TUniDBFormattedNumberEdit
         Left = 427
-        Top = 22
-        Width = 321
+        Top = 23
+        Width = 175
         Height = 22
         Hint = ''
         DataField = 'quantidade_parcelas_veiculo'
@@ -73,8 +73,9 @@ inherited FormModalEntrada: TFormModalEntrada
         TabOrder = 3
         MaxValue = 360.000000000000000000
         MinValue = 1.000000000000000000
-        FieldLabel = 'Quantidade Parcelas'
+        FieldLabel = 'Parcelas'
         FieldLabelAlign = laRight
+        DecimalPrecision = 0
         DecimalSeparator = ','
         ThousandSeparator = '.'
       end
@@ -83,7 +84,7 @@ inherited FormModalEntrada: TFormModalEntrada
       Left = 16
       Top = 9
       Width = 761
-      Height = 137
+      Height = 112
       Hint = ''
       Caption = ''
       TabOrder = 1
@@ -107,7 +108,7 @@ inherited FormModalEntrada: TFormModalEntrada
         Width = 465
         Hint = ''
         ListField = 'pessoa_id;nome'
-        ListSource = UniMainModule.dsCadastroFornecedor
+        ListSource = UniMainModule.dsCadastroPessoa
         KeyField = 'pessoa_id'
         ListFieldIndex = 0
         DataField = 'pessoa_id'
@@ -137,7 +138,7 @@ inherited FormModalEntrada: TFormModalEntrada
     end
     object memoObservacaoEntrada: TUniDBMemo
       Left = 16
-      Top = 344
+      Top = 224
       Width = 761
       Height = 89
       Hint = ''
@@ -150,5 +151,6 @@ inherited FormModalEntrada: TFormModalEntrada
   end
   inherited queryManutencao: TFDQuery
     BeforePost = queryManutencaoBeforePost
+    OnNewRecord = queryManutencaoNewRecord
   end
 end

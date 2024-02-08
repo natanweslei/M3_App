@@ -65,7 +65,7 @@ procedure TFormModalVeiculo.buttonGravarClick(Sender: TObject);
 begin
   if Trim(editPlaca.Text) = EmptyStr then
   begin
-    MessageDlg('É necessário informar a placa!', mtWarning, [mbNo]);
+    MessageDlg('É necessário informar a placa!', mtWarning, [mbOK]);
 
     if editPlaca.CanFocus then
       editPlaca.SetFocus;
@@ -102,13 +102,8 @@ begin
 
   queryManutencao.Close;
   queryManutencao.SQL.Add('select * from veiculo');
-
-  if FVeiculoId > 0 then
-  begin
-    queryManutencao.SQL.Add('where veiculo_id = :pveiculo_id');
-    queryManutencao.ParamByName('pveiculo_id').AsInteger := FVeiculoId;
-  end;
-
+  queryManutencao.SQL.Add('where veiculo_id = :pveiculo_id');
+  queryManutencao.ParamByName('pveiculo_id').AsInteger := FVeiculoId;
   queryManutencao.Open;
 end;
 

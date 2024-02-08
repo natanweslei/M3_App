@@ -18,7 +18,7 @@ uses
   uFormModalVeiculo in 'View\uFormModalVeiculo.pas' {FormModalVeiculo: TUniForm},
   uFormModalEntrada in 'View\uFormModalEntrada.pas' {FormModalEntrada: TUniForm},
   uFormModalVenda in 'View\uFormModalVenda.pas' {FormModalVenda: TUniForm},
-  uFormModalGastos in 'View\uFormModalGastos.pas' {FormModalTipoGasto: TUniForm},
+  uFormModalGasto in 'View\uFormModalGasto.pas' {FormModalTipoGasto: TUniForm},
   uFormModalSimulador in 'View\uFormModalSimulador.pas' {FormModalSimulador: TUniForm},
   CalculadoraFinanciamento in 'Model\CalculadoraFinanciamento.pas',
   Biblioteca in 'Model\Biblioteca.pas';

@@ -26,6 +26,7 @@ type
     editTaxa: TUniDBFormattedNumberEdit;
     procedure UniFormShow(Sender: TObject);
     procedure queryManutencaoBeforePost(DataSet: TDataSet);
+    procedure queryManutencaoNewRecord(DataSet: TDataSet);
   private
     FEntradaId: Integer;
   public
@@ -52,23 +53,24 @@ begin
   queryManutencao.FieldByName('entrada_id').AsInteger := UniMainModule.GerarSequence('seq_entrada_id');
 end;
 
+procedure TFormModalEntrada.queryManutencaoNewRecord(DataSet: TDataSet);
+begin
+  inherited;
+  queryManutencao.FieldByName('data_entrada').AsDateTime := Now;
+end;
+
 procedure TFormModalEntrada.UniFormShow(Sender: TObject);
 begin
   inherited;
 
   queryManutencao.Close;
   queryManutencao.SQL.Add('select * from entrada');
-
-  if FEntradaId > 0 then
-  begin
-    queryManutencao.SQL.Add('where entrada_id = :pentrada_id');
-    queryManutencao.ParamByName('pentrada_id').AsInteger := FEntradaId;
-  end;
-
+  queryManutencao.SQL.Add('where entrada_id = :pentrada_id');
+  queryManutencao.ParamByName('pentrada_id').AsInteger := FEntradaId;
   queryManutencao.Open;
 
-  UniMainModule.queryCadastroFornecedor.SQL.Text := 'select * from pessoa';
-  UniMainModule.queryCadastroFornecedor.Open;
+  UniMainModule.queryCadastroPessoa.SQL.Text := 'select * from pessoa';
+  UniMainModule.queryCadastroPessoa.Open;
 
   UniMainModule.queryCadastroVeiculo.SQL.Text := 'select * from veiculo';
   UniMainModule.queryCadastroVeiculo.Open;

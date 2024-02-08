@@ -25,13 +25,13 @@ object UniMainModule: TUniMainModule
     Left = 96
     Top = 280
   end
-  object dsCadastroFornecedor: TDataSource
+  object dsCadastroPessoa: TDataSource
     AutoEdit = False
-    DataSet = queryCadastroFornecedor
+    DataSet = queryCadastroPessoa
     Left = 233
     Top = 280
   end
-  object queryCadastroFornecedor: TFDQuery
+  object queryCadastroPessoa: TFDQuery
     Connection = Conexao
     SQL.Strings = (
       'select * from pessoa')
@@ -43,6 +43,19 @@ object UniMainModule: TUniMainModule
     SQL.Strings = (
       'select * from veiculo')
     Left = 96
+    Top = 208
+  end
+  object dsCadastroTipoGasto: TDataSource
+    AutoEdit = False
+    DataSet = queryCadastroTipoGasto
+    Left = 369
+    Top = 280
+  end
+  object queryCadastroTipoGasto: TFDQuery
+    Connection = Conexao
+    SQL.Strings = (
+      'select * from pessoa')
+    Left = 369
     Top = 208
   end
 end

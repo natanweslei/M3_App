@@ -64,36 +64,26 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
       OnClick = buttonCadastroVeiculoClick
     end
   end
-  object panel: TUniPanel
+  object PageControlVeiculo: TUniPageControl
     Left = 0
     Top = 0
     Width = 980
-    Height = 89
-    Hint = ''
-    Align = alTop
-    TabOrder = 1
-    Caption = ''
-  end
-  object PageControlVeiculo: TUniPageControl
-    Left = 0
-    Top = 89
-    Width = 980
-    Height = 538
+    Height = 627
     Hint = ''
     ActivePage = tsVeiculo
     Align = alClient
-    TabOrder = 2
-    ExplicitTop = 129
-    ExplicitHeight = 498
+    TabOrder = 1
+    ExplicitTop = 89
+    ExplicitHeight = 538
     object tsVeiculo: TUniTabSheet
       Hint = ''
       Caption = 'Ve'#237'culo'
-      ExplicitHeight = 470
+      ExplicitHeight = 510
       object gridVeiculo: TUniDBGrid
         Left = 0
-        Top = 0
+        Top = 128
         Width = 972
-        Height = 510
+        Height = 471
         Hint = ''
         DataSource = dsVeiculo
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgAutoRefreshRow]
@@ -138,21 +128,34 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
             Sortable = True
           end>
       end
+      object panelFiltro: TUniPanel
+        Left = 0
+        Top = 0
+        Width = 972
+        Height = 128
+        Hint = ''
+        Align = alTop
+        TabOrder = 1
+        Caption = ''
+        ExplicitLeft = 96
+        ExplicitTop = 40
+        ExplicitWidth = 256
+      end
     end
     object tsEntrada: TUniTabSheet
       Hint = ''
       Caption = 'Entrada'
-      ExplicitHeight = 470
+      ExplicitHeight = 510
       object gridEntrada: TUniDBGrid
         Left = 0
         Top = 0
         Width = 972
-        Height = 161
+        Height = 599
         Hint = ''
         DataSource = dsEntrada
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgAutoRefreshRow]
         LoadMask.Message = 'Loading data...'
-        Align = alTop
+        Align = alClient
         TabOrder = 0
         Columns = <
           item
@@ -187,61 +190,142 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
             Sortable = True
           end>
       end
-      object gridContasPagar: TUniDBGrid
-        Left = 0
-        Top = 304
-        Width = 972
-        Height = 206
-        Hint = ''
-        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgAutoRefreshRow]
-        LoadMask.Message = 'Loading data...'
-        Align = alBottom
-        TabOrder = 1
-      end
     end
     object tsVenda: TUniTabSheet
       Hint = ''
       Caption = 'Venda'
-      ExplicitHeight = 470
-    end
-    object tsDespesas: TUniTabSheet
-      Hint = ''
-      Caption = 'Despesas'
-      ExplicitHeight = 470
-      object UniDBGrid1: TUniDBGrid
+      ExplicitHeight = 510
+      object gridVenda: TUniDBGrid
         Left = 0
         Top = 0
         Width = 972
-        Height = 510
+        Height = 599
         Hint = ''
+        DataSource = dsVenda
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgAutoRefreshRow]
         LoadMask.Message = 'Loading data...'
         Align = alClient
         TabOrder = 0
+        Columns = <
+          item
+            FieldName = 'venda_id'
+            Title.Caption = 'Venda'
+            Width = 64
+            Sortable = True
+          end
+          item
+            FieldName = 'cliente'
+            Title.Caption = 'Cliente'
+            Width = 108
+            DisplayMemo = True
+          end
+          item
+            FieldName = 'veiculo'
+            Title.Caption = 'Ve'#237'culo'
+            Width = 242
+            Sortable = True
+            DisplayMemo = True
+          end
+          item
+            FieldName = 'data_venda'
+            Title.Caption = ' Data Venda'
+            Width = 105
+            Sortable = True
+          end
+          item
+            FieldName = 'valor_veiculo'
+            Title.Caption = 'Valor Ve'#237'culo'
+            Width = 112
+            Sortable = True
+          end>
+      end
+    end
+    object tsGastos: TUniTabSheet
+      Hint = ''
+      Caption = 'Gastos'
+      ExplicitHeight = 510
+      object gridGasto: TUniDBGrid
+        Left = 0
+        Top = 0
+        Width = 972
+        Height = 599
+        Hint = ''
+        DataSource = dsGasto
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgAutoRefreshRow]
+        LoadMask.Message = 'Loading data...'
+        Align = alClient
+        TabOrder = 0
+        Columns = <
+          item
+            FieldName = 'gasto_id'
+            Title.Caption = 'Gasto'
+            Width = 58
+            Sortable = True
+          end
+          item
+            FieldName = 'descricao'
+            Title.Caption = 'Descri'#231#227'o do Gasto'
+            Width = 117
+            Sortable = True
+          end
+          item
+            FieldName = 'tipogasto'
+            Title.Caption = 'Tipo de Gasto'
+            Width = 145
+            Sortable = True
+            DisplayMemo = True
+          end
+          item
+            FieldName = 'veiculo'
+            Title.Caption = 'Ve'#237'culo'
+            Width = 242
+            Sortable = True
+            DisplayMemo = True
+          end
+          item
+            FieldName = 'responsavel'
+            Title.Caption = ' Respons'#225'vel'
+            Width = 226
+            Sortable = True
+            DisplayMemo = True
+          end
+          item
+            FieldName = 'data_gasto'
+            Title.Caption = ' Data do Gasto'
+            Width = 107
+            Sortable = True
+          end
+          item
+            FieldName = 'valor_gasto'
+            Title.Caption = 'Valor Gasto'
+            Width = 120
+            Sortable = True
+          end>
       end
     end
     object tsFinanceiro: TUniTabSheet
       Hint = ''
       Caption = 'Financeiro'
-      ExplicitHeight = 470
+      ExplicitHeight = 510
       object PageControlFinanceiro: TUniPageControl
         Left = 0
         Top = 0
         Width = 972
-        Height = 510
+        Height = 599
         Hint = ''
         ActivePage = UniTabSheet2
         Align = alClient
         TabOrder = 0
-        ExplicitHeight = 470
+        ExplicitHeight = 510
         object tsContasPagar: TUniTabSheet
           Hint = ''
           Caption = 'Contas a Pagar'
-          ExplicitHeight = 442
+          ExplicitHeight = 482
         end
         object UniTabSheet2: TUniTabSheet
           Hint = ''
           Caption = 'Contas a Receber'
-          ExplicitHeight = 442
+          ExplicitHeight = 482
         end
       end
     end
@@ -274,6 +358,26 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
   object queryEntrada: TFDQuery
     Connection = UniMainModule.Conexao
     Left = 716
+    Top = 361
+  end
+  object dsVenda: TDataSource
+    DataSet = queryVenda
+    Left = 636
+    Top = 433
+  end
+  object queryVenda: TFDQuery
+    Connection = UniMainModule.Conexao
+    Left = 636
+    Top = 361
+  end
+  object dsGasto: TDataSource
+    DataSet = queryGasto
+    Left = 564
+    Top = 433
+  end
+  object queryGasto: TFDQuery
+    Connection = UniMainModule.Conexao
+    Left = 564
     Top = 361
   end
 end

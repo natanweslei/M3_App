@@ -14,9 +14,11 @@ type
     Conexao: TFDConnection;
     FDPhysPgDriverLink1: TFDPhysPgDriverLink;
     dsCadastroVeiculo: TDataSource;
-    dsCadastroFornecedor: TDataSource;
-    queryCadastroFornecedor: TFDQuery;
+    dsCadastroPessoa: TDataSource;
+    queryCadastroPessoa: TFDQuery;
     queryCadastroVeiculo: TFDQuery;
+    dsCadastroTipoGasto: TDataSource;
+    queryCadastroTipoGasto: TFDQuery;
   public
     GlobalOperadorId: Integer;
     GlobalNomeOperador: string;

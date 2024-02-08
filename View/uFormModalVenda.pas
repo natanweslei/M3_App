@@ -8,14 +8,31 @@ uses
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, uniGUIClasses,
-  uniScrollBox, uniButton, uniGUIBaseClasses, uniPanel, uniImageList;
+  uniScrollBox, uniButton, uniGUIBaseClasses, uniPanel, uniImageList,
+  uniDateTimePicker, uniDBDateTimePicker, uniGroupBox, uniMemo, uniDBMemo,
+  uniMultiItem, uniComboBox, uniDBComboBox, uniDBLookupComboBox, uniEdit,
+  uniDBEdit;
 
 type
   TFormModalVenda = class(TFormModalModelo)
+    groupVenda: TUniGroupBox;
+    groupDados: TUniGroupBox;
+    editDataVenda: TUniDBDateTimePicker;
+    memoObservacaoVenda: TUniDBMemo;
+    comboPessoa: TUniDBLookupComboBox;
+    scrollVenda: TUniScrollBox;
+    comboVeiculo: TUniDBLookupComboBox;
+    editValorVeiculo: TUniDBFormattedNumberEdit;
+    editTaxa: TUniDBFormattedNumberEdit;
+    procedure UniFormShow(Sender: TObject);
+    procedure queryManutencaoBeforePost(DataSet: TDataSet);
+    procedure queryManutencaoNewRecord(DataSet: TDataSet);
+    procedure buttonFecharClick(Sender: TObject);
   private
-    { Private declarations }
+    FVendaId: Integer;
+    procedure AbreQuery;
   public
-    { Public declarations }
+    property VendaId: Integer read FVendaId write FVendaId;
   end;
 
 function FormModalVenda: TFormModalVenda;
@@ -30,6 +47,46 @@ uses
 function FormModalVenda: TFormModalVenda;
 begin
   Result := TFormModalVenda(UniMainModule.GetFormInstance(TFormModalVenda));
+end;
+
+procedure TFormModalVenda.buttonFecharClick(Sender: TObject);
+begin
+  AbreQuery;
+  inherited;
+end;
+
+procedure TFormModalVenda.queryManutencaoBeforePost(DataSet: TDataSet);
+begin
+  inherited;
+  queryManutencao.FieldByName('venda_id').AsInteger := UniMainModule.GerarSequence('seq_venda_id');
+end;
+
+procedure TFormModalVenda.queryManutencaoNewRecord(DataSet: TDataSet);
+begin
+  inherited;
+  queryManutencao.FieldByName('data_venda').AsDateTime := Now;
+end;
+
+procedure TFormModalVenda.UniFormShow(Sender: TObject);
+begin
+  inherited;
+  AbreQuery;
+end;
+
+procedure TFormModalVenda.AbreQuery;
+begin
+  queryManutencao.Close;
+  queryManutencao.SQL.Clear;
+  queryManutencao.SQL.Add('select * from venda');
+  queryManutencao.SQL.Add('where venda_id = :pvenda_id');
+  queryManutencao.ParamByName('pvenda_id').AsInteger := FVendaId;
+  queryManutencao.Open;
+
+  UniMainModule.queryCadastroPessoa.SQL.Text := 'select * from pessoa';
+  UniMainModule.queryCadastroPessoa.Open;
+
+  UniMainModule.queryCadastroVeiculo.SQL.Text := 'select * from veiculo';
+  UniMainModule.queryCadastroVeiculo.Open;
 end;
 
 end.

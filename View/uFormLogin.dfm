@@ -236,8 +236,10 @@ object FormLogin: TFormLogin
     Width = 196
     Height = 33
     Hint = ''
-    Caption = 'Login'
+    Caption = '    Login'
     TabOrder = 3
+    Images = UniMainModule.ImageListMain
+    ImageIndex = 12
     OnClick = btnLoginClick
   end
 end

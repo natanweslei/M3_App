@@ -460,45 +460,70 @@ object FormMain: TFormMain
     SourceMenu = UniMenuItems1
   end
   object UniMenuItems1: TUniMenuItems
-    Images = ImageListMain
+    Images = UniMainModule.ImageListMain
     Left = 36
     Top = 520
-    object MenuEmpresa: TUniMenuItem
-      Caption = 'Empresa'
-      ImageIndex = 0
-      OnClick = MenuEmpresaClick
-    end
-    object MenuPessoa: TUniMenuItem
-      Caption = 'Pessoa'
-      ImageIndex = 1
-      OnClick = MenuPessoaClick
-    end
-    object MenuTipoGasto: TUniMenuItem
-      Caption = 'Tipo de Gasto'
-      ImageIndex = 2
-      OnClick = MenuTipoGastoClick
+    object menuCadastro: TUniMenuItem
+      Caption = 'Cadastro'
+      ImageIndex = 9
+      object submenuEmpresa: TUniMenuItem
+        Caption = 'Empresa'
+        ImageIndex = 0
+        OnClick = submenuEmpresaClick
+      end
+      object submenuPessoa: TUniMenuItem
+        Caption = 'Pessoa'
+        ImageIndex = 1
+        OnClick = submenuPessoaClick
+      end
+      object submenuTipoGasto: TUniMenuItem
+        Caption = 'Tipo de Gasto'
+        ImageIndex = 2
+        OnClick = submenuTipoGastoClick
+      end
     end
     object MenuManutencaoVeiculos: TUniMenuItem
-      Caption = 'Manuten'#231#227'o de Ve'#237'culos'
+      Caption = 'Manuten'#231#227'o'
       ImageIndex = 3
-      OnClick = MenuManutencaoVeiculosClick
+      object subVeiculo: TUniMenuItem
+        Caption = 'Ve'#237'culo'
+        ImageIndex = 3
+        OnClick = subVeiculoClick
+      end
+      object subEntrada: TUniMenuItem
+        Caption = 'Entrada'
+        ImageIndex = 5
+        OnClick = subEntradaClick
+      end
+      object subVenda: TUniMenuItem
+        Caption = 'Venda'
+        ImageIndex = 7
+        OnClick = subVendaClick
+      end
+      object subGastos: TUniMenuItem
+        Caption = 'Gasto'
+        ImageIndex = 2
+        OnClick = subGastosClick
+      end
+    end
+    object menuFinanceiro: TUniMenuItem
+      Caption = 'Financeiro'
+      ImageIndex = 10
+      object subContasReceber: TUniMenuItem
+        Caption = 'Contas a Receber'
+        ImageIndex = 11
+        OnClick = subContasReceberClick
+      end
     end
     object menuSimulador: TUniMenuItem
       Caption = 'Simulador'
+      ImageIndex = 6
       OnClick = menuSimuladorClick
     end
     object menuSair: TUniMenuItem
       Caption = 'Sair'
-      ImageIndex = 4
+      ImageIndex = 8
       OnClick = menuSairClick
     end
-  end
-  object ImageListMain: TUniNativeImageList
-    Left = 152
-    Top = 520
-    Images = {
-      05000000000000000608000000686F6D653B66613B0000000006080000007573
-      65723B66613B00000000060C000000696E6475737472793B66613B0000000006
-      070000006361723B66613B00000000060C00000073657474696E67733B66613B}
   end
 end

@@ -14,74 +14,58 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
     Align = alBottom
     TabOrder = 0
     Caption = ''
-    object buttonVendaVeiculo: TUniButton
+    object buttonCadastroVeiculo: TUniButton
       AlignWithMargins = True
-      Left = 228
+      Left = 12
       Top = 3
       Width = 100
       Height = 35
       Hint = ''
-      Caption = 'Venda'
+      Caption = 'Ve'#237'culo'
       TabOrder = 1
-      Images = ImageListManutencaoVeiculo
-      OnClick = buttonVendaVeiculoClick
+      Images = UniMainModule.ImageListMain
+      ImageIndex = 3
+      OnClick = buttonCadastroVeiculoClick
     end
     object buttonGastosVeiculo: TUniButton
       AlignWithMargins = True
-      Left = 334
+      Left = 118
       Top = 3
       Width = 100
       Height = 35
       Hint = ''
       Caption = 'Gastos'
       TabOrder = 2
-      Images = ImageListManutencaoVeiculo
+      Images = UniMainModule.ImageListMain
+      ImageIndex = 2
       OnClick = buttonGastosVeiculoClick
     end
-    object buttonEntradaVeiculo: TUniButton
-      AlignWithMargins = True
-      Left = 122
-      Top = 3
-      Width = 100
-      Height = 35
-      Hint = ''
-      Caption = 'Entrada'
-      TabOrder = 3
-      Images = ImageListManutencaoVeiculo
-      OnClick = buttonEntradaVeiculoClick
-    end
-    object buttonCadastroVeiculo: TUniButton
-      AlignWithMargins = True
-      Left = 16
-      Top = 3
-      Width = 100
-      Height = 35
-      Hint = ''
-      Caption = 'Ve'#237'culo'
-      TabOrder = 4
-      Images = ImageListManutencaoVeiculo
-      ImageIndex = 0
-      OnClick = buttonCadastroVeiculoClick
-    end
   end
-  object PageControlVeiculo: TUniPageControl
+  object panelFiltro: TUniPanel
     Left = 0
     Top = 0
     Width = 980
-    Height = 627
+    Height = 128
     Hint = ''
-    ActivePage = tsVeiculo
-    Align = alClient
+    Align = alTop
     TabOrder = 1
-    ExplicitTop = 89
-    ExplicitHeight = 538
+    Caption = ''
+  end
+  object PageControlVeiculo: TUniPageControl
+    Left = 0
+    Top = 128
+    Width = 980
+    Height = 499
+    Hint = ''
+    ActivePage = tsContasReceber
+    Align = alClient
+    TabOrder = 2
     object tsVeiculo: TUniTabSheet
       Hint = ''
       Caption = 'Ve'#237'culo'
-      ExplicitHeight = 510
       object gridVeiculo: TUniDBGrid
         Left = 0
-        Top = 128
+        Top = 0
         Width = 972
         Height = 471
         Hint = ''
@@ -128,127 +112,15 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
             Sortable = True
           end>
       end
-      object panelFiltro: TUniPanel
-        Left = 0
-        Top = 0
-        Width = 972
-        Height = 128
-        Hint = ''
-        Align = alTop
-        TabOrder = 1
-        Caption = ''
-        ExplicitLeft = 96
-        ExplicitTop = 40
-        ExplicitWidth = 256
-      end
     end
-    object tsEntrada: TUniTabSheet
-      Hint = ''
-      Caption = 'Entrada'
-      ExplicitHeight = 510
-      object gridEntrada: TUniDBGrid
-        Left = 0
-        Top = 0
-        Width = 972
-        Height = 599
-        Hint = ''
-        DataSource = dsEntrada
-        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgAutoRefreshRow]
-        LoadMask.Message = 'Loading data...'
-        Align = alClient
-        TabOrder = 0
-        Columns = <
-          item
-            FieldName = 'entrada_id'
-            Title.Caption = 'Entrada'
-            Width = 64
-            Sortable = True
-          end
-          item
-            FieldName = 'fornecedor'
-            Title.Caption = 'Fornecedor'
-            Width = 108
-            DisplayMemo = True
-          end
-          item
-            FieldName = 'veiculo'
-            Title.Caption = 'Ve'#237'culo'
-            Width = 242
-            Sortable = True
-            DisplayMemo = True
-          end
-          item
-            FieldName = 'data_entrada'
-            Title.Caption = ' Data Entrada'
-            Width = 105
-            Sortable = True
-          end
-          item
-            FieldName = 'valor_veiculo'
-            Title.Caption = 'Valor Ve'#237'culo'
-            Width = 112
-            Sortable = True
-          end>
-      end
-    end
-    object tsVenda: TUniTabSheet
-      Hint = ''
-      Caption = 'Venda'
-      ExplicitHeight = 510
-      object gridVenda: TUniDBGrid
-        Left = 0
-        Top = 0
-        Width = 972
-        Height = 599
-        Hint = ''
-        DataSource = dsVenda
-        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgAutoRefreshRow]
-        LoadMask.Message = 'Loading data...'
-        Align = alClient
-        TabOrder = 0
-        Columns = <
-          item
-            FieldName = 'venda_id'
-            Title.Caption = 'Venda'
-            Width = 64
-            Sortable = True
-          end
-          item
-            FieldName = 'cliente'
-            Title.Caption = 'Cliente'
-            Width = 108
-            DisplayMemo = True
-          end
-          item
-            FieldName = 'veiculo'
-            Title.Caption = 'Ve'#237'culo'
-            Width = 242
-            Sortable = True
-            DisplayMemo = True
-          end
-          item
-            FieldName = 'data_venda'
-            Title.Caption = ' Data Venda'
-            Width = 105
-            Sortable = True
-          end
-          item
-            FieldName = 'valor_veiculo'
-            Title.Caption = 'Valor Ve'#237'culo'
-            Width = 112
-            Sortable = True
-          end>
-      end
-    end
-    object tsGastos: TUniTabSheet
+    object tsGasto: TUniTabSheet
       Hint = ''
       Caption = 'Gastos'
-      ExplicitHeight = 510
       object gridGasto: TUniDBGrid
         Left = 0
         Top = 0
         Width = 972
-        Height = 599
+        Height = 471
         Hint = ''
         DataSource = dsGasto
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgAutoRefreshRow]
@@ -303,31 +175,13 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
           end>
       end
     end
-    object tsFinanceiro: TUniTabSheet
+    object tsContasReceber: TUniTabSheet
       Hint = ''
-      Caption = 'Financeiro'
-      ExplicitHeight = 510
-      object PageControlFinanceiro: TUniPageControl
-        Left = 0
-        Top = 0
-        Width = 972
-        Height = 599
-        Hint = ''
-        ActivePage = UniTabSheet2
-        Align = alClient
-        TabOrder = 0
-        ExplicitHeight = 510
-        object tsContasPagar: TUniTabSheet
-          Hint = ''
-          Caption = 'Contas a Pagar'
-          ExplicitHeight = 482
-        end
-        object UniTabSheet2: TUniTabSheet
-          Hint = ''
-          Caption = 'Contas a Receber'
-          ExplicitHeight = 482
-        end
-      end
+      Caption = 'Contas a Receber'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 980
+      ExplicitHeight = 499
     end
   end
   object queryVeiculo: TFDQuery
@@ -341,43 +195,14 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
     Left = 872
     Top = 424
   end
-  object ImageListManutencaoVeiculo: TUniNativeImageList
-    Left = 888
-    Top = 488
-    Images = {
-      050000000000000006080000006361723B66615F3B00000000060F0000004E65
-      7749636F6E436C733B66615F3B00000000060F0000004E657749636F6E436C73
-      3B66615F3B00000000060F0000004E657749636F6E436C733B66615F3B000000
-      00060F0000004E657749636F6E436C733B66615F3B}
-  end
-  object dsEntrada: TDataSource
-    DataSet = queryEntrada
-    Left = 716
-    Top = 433
-  end
-  object queryEntrada: TFDQuery
+  object queryGasto: TFDQuery
     Connection = UniMainModule.Conexao
-    Left = 716
-    Top = 361
-  end
-  object dsVenda: TDataSource
-    DataSet = queryVenda
-    Left = 636
-    Top = 433
-  end
-  object queryVenda: TFDQuery
-    Connection = UniMainModule.Conexao
-    Left = 636
+    Left = 748
     Top = 361
   end
   object dsGasto: TDataSource
     DataSet = queryGasto
-    Left = 564
+    Left = 748
     Top = 433
-  end
-  object queryGasto: TFDQuery
-    Connection = UniMainModule.Conexao
-    Left = 564
-    Top = 361
   end
 end

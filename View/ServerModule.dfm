@@ -2,6 +2,7 @@ object UniServerModule: TUniServerModule
   OldCreateOrder = False
   AutoCoInitialize = True
   TempFolder = 'temp\'
+  SessionTimeout = 60000000
   Title = 'Garagem 1.0'
   SuppressErrors = []
   Bindings = <>

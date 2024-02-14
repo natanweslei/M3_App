@@ -7,7 +7,7 @@ uses
   FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool,
   FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.PG, FireDAC.Phys.PGDef, FireDAC.VCLUI.Wait,
   FireDAC.Comp.Client, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
-  FireDAC.Comp.DataSet;
+  FireDAC.Comp.DataSet, uniGUIBaseClasses, uniGUIClasses, uniImageList;
 
 type
   TUniMainModule = class(TUniGUIMainModule)
@@ -19,6 +19,7 @@ type
     queryCadastroVeiculo: TFDQuery;
     dsCadastroTipoGasto: TDataSource;
     queryCadastroTipoGasto: TFDQuery;
+    ImageListMain: TUniNativeImageList;
   public
     GlobalOperadorId: Integer;
     GlobalNomeOperador: string;

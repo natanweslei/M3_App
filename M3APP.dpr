@@ -21,7 +21,12 @@ uses
   uFormModalGasto in 'View\uFormModalGasto.pas' {FormModalTipoGasto: TUniForm},
   uFormModalSimulador in 'View\uFormModalSimulador.pas' {FormModalSimulador: TUniForm},
   CalculadoraFinanciamento in 'Model\CalculadoraFinanciamento.pas',
-  Biblioteca in 'Model\Biblioteca.pas';
+  Biblioteca in 'Model\Biblioteca.pas',
+  uFrameManutencaoEntrada in 'View\uFrameManutencaoEntrada.pas' {FrameManutencaoEntrada: TUniFrame},
+  uFrameManutencaoVenda in 'View\uFrameManutencaoVenda.pas' {FrameManutencaoVenda: TUniFrame},
+  uFrameManutencaoGasto in 'View\uFrameManutencaoGasto.pas' {FrameManutencaoGasto: TUniFrame},
+  CalculadoraPrice in 'Model\CalculadoraPrice.pas',
+  uFrameManutencaoContasReceber in 'View\uFrameManutencaoContasReceber.pas' {FrameManutencaoContasReceber: TUniFrame};
 
 {$R *.res}
 

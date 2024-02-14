@@ -52,13 +52,15 @@ object FormModalModelo: TFormModalModelo
     object buttonGravar: TUniButton
       AlignWithMargins = True
       Left = 147
-      Top = 6
+      Top = 3
       Width = 130
       Height = 30
       Hint = ''
       Caption = 'Gravar'
       Anchors = [akLeft, akTop, akBottom]
       TabOrder = 3
+      Images = imageListFormModalModelo
+      ImageIndex = 1
       OnClick = buttonGravarClick
     end
     object buttonExcluir: TUniButton
@@ -83,6 +85,8 @@ object FormModalModelo: TFormModalModelo
       Hint = ''
       Caption = 'Fechar'
       TabOrder = 5
+      Images = imageListFormModalModelo
+      ImageIndex = 4
       OnClick = buttonFecharClick
     end
   end
@@ -101,8 +105,9 @@ object FormModalModelo: TFormModalModelo
     Left = 699
     Top = 323
     Images = {
-      0400000000000000060800000066696C653B66613B0000000006070000006164
-      643B66613B00000000060900000074726173683B66613B000000000607000000
-      62616E3B66613B}
+      0500000000000000060800000066696C653B66613B000000000610000000706C
+      61792D636972636C653B66615F3B00000000060900000074726173683B66613B
+      00000000060700000062616E3B66613B00000000060C0000007369676E2D6F75
+      743B66613B}
   end
 end

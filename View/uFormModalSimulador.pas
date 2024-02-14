@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFormModalModelo, FireDAC.Stan.Intf, CalculadoraFinanciamento,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFormModalModelo, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, uniGUIClasses,
@@ -13,11 +13,12 @@ uses
 
 type
   TFormModalSimulador = class(TFormModalModelo)
-    editValorVeiculo: TUniNumberEdit;
-    editTaxa: TUniNumberEdit;
-    editValorParcela: TUniNumberEdit;
     groupSimulador: TUniGroupBox;
-    editQuantidadeParcelas: TUniNumberEdit;
+    editValorVeiculo: TUniFormattedNumberEdit;
+    editQuantidadeParcelas: TUniFormattedNumberEdit;
+    editTaxa: TUniFormattedNumberEdit;
+    editValorParcela: TUniFormattedNumberEdit;
+    editValorParcelaPrice: TUniFormattedNumberEdit;
     procedure editValorVeiculoExit(Sender: TObject);
     procedure UniFormShow(Sender: TObject);
     procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
@@ -32,7 +33,7 @@ implementation
 {$R *.dfm}
 
 uses
-  MainModule, uniGUIApplication;
+  MainModule, uniGUIApplication, CalculadoraFinanciamento, CalculadoraPrice;
 
 function FormModalSimulador: TFormModalSimulador;
 begin
@@ -41,6 +42,9 @@ end;
 
 procedure TFormModalSimulador.editValorVeiculoExit(Sender: TObject);
 var
+  CalculadoraPrice: TCalculadoraPrice;
+  Prestacao, TotalPago, SaldoDevedor: Double;
+
   CalculadoraFinanciamento: TCalculadoraFinanciamento;
 begin
   inherited;
@@ -54,6 +58,12 @@ begin
   CalculadoraFinanciamento := TCalculadoraFinanciamento.Create(editValorVeiculo.Value, editTaxa.Value, editQuantidadeParcelas.Value);
   editValorParcela.Value := CalculadoraFinanciamento.CalcularValorParcela;
   CalculadoraFinanciamento.Free;
+
+  CalculadoraPrice := TCalculadoraPrice.Create(editValorVeiculo.Value, editTaxa.Value, editQuantidadeParcelas.Value);
+  editValorParcelaPrice.Value := CalculadoraPrice.CalcularPrestacao;
+  TotalPago := CalculadoraPrice.CalcularTotalPago;
+  SaldoDevedor := CalculadoraPrice.CalcularSaldoDevedor(6);
+  CalculadoraPrice.Free;
 end;
 
 procedure TFormModalSimulador.UniFormShow(Sender: TObject);

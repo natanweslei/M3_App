@@ -14,7 +14,7 @@ inherited FrameTipoGasto: TFrameTipoGasto
         Left = 0
         Top = 0
         Width = 837
-        Height = 128
+        Height = 81
         Hint = ''
         Align = alTop
         TabOrder = 1
@@ -50,9 +50,9 @@ inherited FrameTipoGasto: TFrameTipoGasto
       end
       object gridManutencao: TUniDBGrid
         Left = 0
-        Top = 128
+        Top = 81
         Width = 837
-        Height = 354
+        Height = 401
         Hint = ''
         DataSource = dsManutencao
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgConfirmDelete, dgAutoRefreshRow]

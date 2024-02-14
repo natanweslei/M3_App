@@ -15,19 +15,29 @@ type
     UniImage1: TUniImage;
     UniMenuItems1: TUniMenuItems;
     UniTreeMenu1: TUniTreeMenu;
-    MenuEmpresa: TUniMenuItem;
-    MenuPessoa: TUniMenuItem;
-    MenuTipoGasto: TUniMenuItem;
     MenuManutencaoVeiculos: TUniMenuItem;
     menuSair: TUniMenuItem;
-    ImageListMain: TUniNativeImageList;
     menuSimulador: TUniMenuItem;
-    procedure MenuTipoGastoClick(Sender: TObject);
-    procedure MenuEmpresaClick(Sender: TObject);
-    procedure MenuPessoaClick(Sender: TObject);
-    procedure MenuManutencaoVeiculosClick(Sender: TObject);
+    subVeiculo: TUniMenuItem;
+    subEntrada: TUniMenuItem;
+    subVenda: TUniMenuItem;
+    subGastos: TUniMenuItem;
+    menuCadastro: TUniMenuItem;
+    submenuEmpresa: TUniMenuItem;
+    submenuPessoa: TUniMenuItem;
+    submenuTipoGasto: TUniMenuItem;
+    menuFinanceiro: TUniMenuItem;
+    subContasReceber: TUniMenuItem;
     procedure menuSairClick(Sender: TObject);
     procedure menuSimuladorClick(Sender: TObject);
+    procedure submenuEmpresaClick(Sender: TObject);
+    procedure submenuPessoaClick(Sender: TObject);
+    procedure submenuTipoGastoClick(Sender: TObject);
+    procedure subVeiculoClick(Sender: TObject);
+    procedure subEntradaClick(Sender: TObject);
+    procedure subVendaClick(Sender: TObject);
+    procedure subGastosClick(Sender: TObject);
+    procedure subContasReceberClick(Sender: TObject);
   private
   public
     Procedure OpenFrame(AClassName: string; ACaption: string);
@@ -102,24 +112,44 @@ begin
   end;
 end;
 
-procedure TFormMain.MenuEmpresaClick(Sender: TObject);
+procedure TFormMain.submenuEmpresaClick(Sender: TObject);
 begin
   OpenFrame('TFrameEmpresa', 'Empresa');
 end;
 
-procedure TFormMain.MenuPessoaClick(Sender: TObject);
+procedure TFormMain.submenuPessoaClick(Sender: TObject);
 begin
   OpenFrame('TFramePessoa', 'Pessoa');
 end;
 
-procedure TFormMain.MenuTipoGastoClick(Sender: TObject);
+procedure TFormMain.submenuTipoGastoClick(Sender: TObject);
 begin
-  OpenFrame('TFrameTipoGasto', 'Tipo de Despesa');
+  OpenFrame('TFrameTipoGasto', 'Tipo de Gasto');
 end;
 
-procedure TFormMain.MenuManutencaoVeiculosClick(Sender: TObject);
+procedure TFormMain.subVeiculoClick(Sender: TObject);
 begin
-  OpenFrame('TFrameManutencaoVeiculo', 'Veículo');
+  OpenFrame('TFrameManutencaoVeiculo', 'Manutenção de Veículos');
+end;
+
+procedure TFormMain.subEntradaClick(Sender: TObject);
+begin
+  OpenFrame('TFrameManutencaoEntrada', 'Manutenção de Entradas');
+end;
+
+procedure TFormMain.subVendaClick(Sender: TObject);
+begin
+  OpenFrame('TFrameManutencaoVenda', 'Manutenção de Vendas');
+end;
+
+procedure TFormMain.subGastosClick(Sender: TObject);
+begin
+  OpenFrame('TFrameManutencaoGasto', 'Manutenção de Gastos');
+end;
+
+procedure TFormMain.subContasReceberClick(Sender: TObject);
+begin
+  OpenFrame('TFrameManutencaoContasReceber', 'Manutenção de Contas a Receber');
 end;
 
 procedure TFormMain.menuSimuladorClick(Sender: TObject);

@@ -1,4 +1,4 @@
-unit uFrameManutencaoVeiculo;
+unit uFrameManutencaoGasto;
 
 interface
 
@@ -11,25 +11,15 @@ uses
   FireDAC.Comp.Client, uniImageList;
 
 type
-  TFrameManutencaoVeiculo = class(TUniFrame)
+  TFrameManutencaoGasto = class(TUniFrame)
     panelBotoes: TUniPanel;
-    gridVeiculo: TUniDBGrid;
-    buttonCadastroVeiculo: TUniButton;
-    queryVeiculo: TFDQuery;
-    dsVeiculo: TDataSource;
-    panelFiltro: TUniPanel;
-    PageControlVeiculo: TUniPageControl;
-    tsVeiculo: TUniTabSheet;
-    tsGasto: TUniTabSheet;
-    gridGasto: TUniDBGrid;
-    queryGasto: TFDQuery;
-    dsGasto: TDataSource;
     buttonGastosVeiculo: TUniButton;
-    tsContasReceber: TUniTabSheet;
-    procedure UniFrameCreate(Sender: TObject);
-    procedure buttonCadastroVeiculoClick(Sender: TObject);
-    procedure queryVeiculoAfterScroll(DataSet: TDataSet);
+    gridGasto: TUniDBGrid;
+    dsGasto: TDataSource;
+    queryGasto: TFDQuery;
+    panelFiltro: TUniPanel;
     procedure buttonGastosVeiculoClick(Sender: TObject);
+    procedure UniFrameCreate(Sender: TObject);
   private
     procedure ExecutaPesquisa(AFiltro: string);
   end;
@@ -39,22 +29,9 @@ implementation
 {$R *.dfm}
 
 uses
-  MainModule, uFormModalVeiculo, uFormModalGasto;
+  MainModule, uFormModalGasto;
 
-procedure TFrameManutencaoVeiculo.buttonCadastroVeiculoClick(Sender: TObject);
-begin
-  if queryVeiculo.Active then
-    FormModalVeiculo.VeiculoId := queryVeiculo.FieldByName('veiculo_id').AsInteger;
-
-  FormModalVeiculo.ShowModal(
-    procedure(ASender: TComponent; AResult: Integer)
-    begin
-      queryVeiculo.Refresh;
-    end
-  );
-end;
-
-procedure TFrameManutencaoVeiculo.buttonGastosVeiculoClick(Sender: TObject);
+procedure TFrameManutencaoGasto.buttonGastosVeiculoClick(Sender: TObject);
 begin
   if queryGasto.Active then
     FormModalGasto.GastoId := queryGasto.FieldByName('gasto_id').AsInteger;
@@ -68,19 +45,7 @@ begin
   );
 end;
 
-procedure TFrameManutencaoVeiculo.ExecutaPesquisa(AFiltro: string);
-begin
-  queryVeiculo.Close;
-  queryVeiculo.SQL.Clear;
-  queryVeiculo.SQL.Add('select * from veiculo');
-
-  if AFiltro <> EmptyStr then
-    queryVeiculo.SQL.Add(AFiltro);
-
-  queryVeiculo.Open;
-end;
-
-procedure TFrameManutencaoVeiculo.queryVeiculoAfterScroll(DataSet: TDataSet);
+procedure TFrameManutencaoGasto.ExecutaPesquisa(AFiltro: string);
 begin
   queryGasto.Close;
   queryGasto.SQL.Clear;
@@ -104,22 +69,18 @@ begin
   queryGasto.SQL.Add('inner join tipo_gasto');
   queryGasto.SQL.Add('on tipo_gasto.tipogasto_id = gasto.tipogasto_id');
 
-  queryGasto.SQL.Add('where gasto.veiculo_id = :pveiculo_id');
-
-  if queryVeiculo.RecordCount = 0 then
-    queryGasto.ParamByName('pveiculo_id').AsInteger := 0
-  else
-    queryGasto.ParamByName('pveiculo_id').AsInteger := queryVeiculo.FieldByName('veiculo_id').AsInteger;
+  if AFiltro <> EmptyStr then
+    queryGasto.SQL.Add(AFiltro);
 
   queryGasto.Open;
 end;
 
-procedure TFrameManutencaoVeiculo.UniFrameCreate(Sender: TObject);
+procedure TFrameManutencaoGasto.UniFrameCreate(Sender: TObject);
 begin
   ExecutaPesquisa(EmptyStr);
 end;
 
 initialization
-  RegisterClass(TFrameManutencaoVeiculo);
+  RegisterClass(TFrameManutencaoGasto);
 
 end.

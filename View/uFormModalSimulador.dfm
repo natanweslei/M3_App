@@ -3,6 +3,7 @@ inherited FormModalSimulador: TFormModalSimulador
   ClientWidth = 395
   Caption = 'FormModalSimulador'
   OnShow = UniFormShow
+  ActiveControl = editValorVeiculo
   ExplicitWidth = 395
   ExplicitHeight = 350
   PixelsPerInch = 96
@@ -10,31 +11,28 @@ inherited FormModalSimulador: TFormModalSimulador
   inherited panelBotoes: TUniPanel
     Top = 305
     Width = 395
+    TabOrder = 1
     ExplicitTop = 305
-    ExplicitWidth = 400
+    ExplicitWidth = 395
     inherited buttonCancelar: TUniButton
-      Left = 43
-      Top = 12
+      Left = 40
       Visible = False
-      ExplicitLeft = 43
-      ExplicitTop = 12
+      ExplicitLeft = 40
     end
     inherited buttonNovo: TUniButton
+      Left = 19
       Visible = False
+      ExplicitLeft = 19
     end
     inherited buttonGravar: TUniButton
-      Left = 3
-      Top = 14
+      Left = 40
       Visible = False
-      ExplicitLeft = 3
-      ExplicitTop = 14
+      ExplicitLeft = 40
     end
     inherited buttonExcluir: TUniButton
-      Left = 0
-      Top = 3
+      Left = 48
       Visible = False
-      ExplicitLeft = 0
-      ExplicitTop = 3
+      ExplicitLeft = 48
     end
     inherited buttonFechar: TUniButton
       Left = 311
@@ -50,62 +48,73 @@ inherited FormModalSimulador: TFormModalSimulador
     Height = 297
     Hint = ''
     Caption = 'Simulador'
-    TabOrder = 1
-    object editTaxa: TUniNumberEdit
-      Left = 32
-      Top = 124
-      Width = 315
-      Hint = ''
-      TabOrder = 3
-      BlankValue = 0
-      FieldLabel = 'Taxa (a.m)'
-      FieldLabelWidth = 130
-      FieldLabelAlign = laRight
-      DecimalPrecision = 6
-      DecimalSeparator = ','
-      OnExit = editValorVeiculoExit
-    end
-    object editValorParcela: TUniNumberEdit
-      Left = 32
-      Top = 216
-      Width = 315
-      Hint = ''
-      TabOrder = 4
-      ReadOnly = True
-      FieldLabel = 'Valor da Parcela'
-      FieldLabelWidth = 130
-      FieldLabelAlign = laRight
-      DecimalSeparator = ','
-    end
-    object editValorVeiculo: TUniNumberEdit
-      Left = 32
-      Top = 64
-      Width = 315
+    TabOrder = 0
+    object editQuantidadeParcelas: TUniFormattedNumberEdit
+      Left = 40
+      Top = 84
+      Width = 297
       Hint = ''
       TabOrder = 1
-      MaxValue = 900000.000000000000000000
-      MinValue = 1.000000000000000000
-      BlankValue = 0
-      FieldLabel = 'Valor do Ve'#237'culo'
-      FieldLabelWidth = 130
+      SelectOnFocus = True
+      FieldLabel = 'Parcelas'
       FieldLabelAlign = laRight
-      DecimalUseOSDefault = True
+      DecimalPrecision = 0
+      DecimalSeparator = ','
+      ThousandSeparator = '.'
       OnExit = editValorVeiculoExit
     end
-    object editQuantidadeParcelas: TUniNumberEdit
-      Left = 32
-      Top = 95
-      Width = 315
+    object editTaxa: TUniFormattedNumberEdit
+      Left = 40
+      Top = 112
+      Width = 297
       Hint = ''
       TabOrder = 2
-      Value = 1.000000000000000000
-      MaxValue = 500.000000000000000000
-      MinValue = 1.000000000000000000
-      BlankValue = 0
-      FieldLabel = 'Quantidade de Parcelas'
-      FieldLabelWidth = 130
+      SelectOnFocus = True
+      FieldLabel = 'Taxa (a.m)'
+      FieldLabelAlign = laRight
+      DecimalPrecision = 5
       DecimalSeparator = ','
+      ThousandSeparator = '.'
       OnExit = editValorVeiculoExit
+    end
+    object editValorParcela: TUniFormattedNumberEdit
+      Left = 40
+      Top = 160
+      Width = 297
+      Hint = ''
+      BorderStyle = ubsNone
+      TabOrder = 3
+      ReadOnly = True
+      FieldLabel = 'Valor da Parcela'
+      FieldLabelAlign = laRight
+      DecimalSeparator = ','
+      ThousandSeparator = '.'
+    end
+    object editValorVeiculo: TUniFormattedNumberEdit
+      Left = 40
+      Top = 56
+      Width = 297
+      Hint = ''
+      BodyRTL = False
+      TabOrder = 0
+      SelectOnFocus = True
+      FieldLabel = 'Valor do Ve'#237'culo'
+      FieldLabelAlign = laRight
+      DecimalSeparator = ','
+      ThousandSeparator = '.'
+      OnExit = editValorVeiculoExit
+    end
+    object editValorParcelaPrice: TUniFormattedNumberEdit
+      Left = 40
+      Top = 208
+      Width = 297
+      Hint = ''
+      TabOrder = 5
+      ReadOnly = True
+      FieldLabel = 'Parcela Price'
+      FieldLabelAlign = laRight
+      DecimalSeparator = ','
+      ThousandSeparator = '.'
     end
   end
 end

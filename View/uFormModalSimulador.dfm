@@ -50,10 +50,10 @@ inherited FormModalSimulador: TFormModalSimulador
     TabOrder = 0
     object editQuantidadeParcelas: TUniFormattedNumberEdit
       Left = 40
-      Top = 84
+      Top = 143
       Width = 297
       Hint = ''
-      TabOrder = 1
+      TabOrder = 3
       SelectOnFocus = True
       FieldLabel = 'Parcelas'
       FieldLabelAlign = laRight
@@ -64,10 +64,10 @@ inherited FormModalSimulador: TFormModalSimulador
     end
     object editTaxa: TUniFormattedNumberEdit
       Left = 40
-      Top = 112
+      Top = 172
       Width = 297
       Hint = ''
-      TabOrder = 2
+      TabOrder = 4
       SelectOnFocus = True
       FieldLabel = 'Taxa (a.m)'
       FieldLabelAlign = laRight
@@ -78,11 +78,11 @@ inherited FormModalSimulador: TFormModalSimulador
     end
     object editValorParcela: TUniFormattedNumberEdit
       Left = 40
-      Top = 160
+      Top = 213
       Width = 297
       Hint = ''
       BorderStyle = ubsNone
-      TabOrder = 3
+      TabOrder = 5
       ReadOnly = True
       FieldLabel = 'Valor da Parcela'
       FieldLabelAlign = laRight
@@ -98,6 +98,35 @@ inherited FormModalSimulador: TFormModalSimulador
       TabOrder = 0
       SelectOnFocus = True
       FieldLabel = 'Valor do Ve'#237'culo'
+      FieldLabelAlign = laRight
+      DecimalSeparator = ','
+      ThousandSeparator = '.'
+      OnKeyUp = editValorVeiculoKeyUp
+    end
+    object editValorEntrada: TUniFormattedNumberEdit
+      Left = 40
+      Top = 85
+      Width = 297
+      Hint = ''
+      BodyRTL = False
+      TabOrder = 1
+      SelectOnFocus = True
+      FieldLabel = 'Valor do Entrada'
+      FieldLabelAlign = laRight
+      DecimalSeparator = ','
+      ThousandSeparator = '.'
+      OnKeyUp = editValorVeiculoKeyUp
+    end
+    object editValorFinanciado: TUniFormattedNumberEdit
+      Left = 40
+      Top = 114
+      Width = 297
+      Hint = ''
+      BodyRTL = False
+      TabOrder = 2
+      ReadOnly = True
+      SelectOnFocus = True
+      FieldLabel = 'Valor Financiado'
       FieldLabelAlign = laRight
       DecimalSeparator = ','
       ThousandSeparator = '.'

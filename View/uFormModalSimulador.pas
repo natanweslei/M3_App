@@ -18,6 +18,8 @@ type
     editQuantidadeParcelas: TUniFormattedNumberEdit;
     editTaxa: TUniFormattedNumberEdit;
     editValorParcela: TUniFormattedNumberEdit;
+    editValorEntrada: TUniFormattedNumberEdit;
+    editValorFinanciado: TUniFormattedNumberEdit;
     procedure editValorVeiculoKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
   private
@@ -47,10 +49,16 @@ begin
   if editValorVeiculo.Value = 0 then
     Exit;
 
+  editValorFinanciado.Value := editValorVeiculo.Value - editValorEntrada.Value;
+
   if editTaxa.Value = 0 then
     Exit;
 
-  CalculadoraFinanciamento := TCalculadoraFinanciamento.Create(editValorVeiculo.Value, editTaxa.Value, editQuantidadeParcelas.Value);
+  CalculadoraFinanciamento := TCalculadoraFinanciamento.Create(
+    editValorVeiculo.Value - editValorEntrada.Value,
+    editTaxa.Value,
+    editQuantidadeParcelas.Value
+  );
   editValorParcela.Value := CalculadoraFinanciamento.CalcularValorParcela;
   CalculadoraFinanciamento.Free;
 end;

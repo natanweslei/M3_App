@@ -52,13 +52,13 @@ begin
   queryContasReceber.SQL.Add('from financeiro');
 
   queryContasReceber.SQL.Add('inner join veiculo');
-  queryContasReceber.SQL.Add('on veiculo.veiculo_id = gasto.veiculo_id');
+  queryContasReceber.SQL.Add('on veiculo.veiculo_id = financeiro.veiculo_id');
 
   queryContasReceber.SQL.Add('inner join pessoa');
-  queryContasReceber.SQL.Add('on pessoa.pessoa_id = gasto.pessoa_id');
+  queryContasReceber.SQL.Add('on pessoa.pessoa_id = financeiro.pessoa_id');
 
   queryContasReceber.SQL.Add('inner join tipo_gasto');
-  queryContasReceber.SQL.Add('on tipo_gasto.tipogasto_id = gasto.tipogasto_id');
+  queryContasReceber.SQL.Add('on tipo_gasto.tipogasto_id = financeiro.tipogasto_id');
 
   if AFiltro <> EmptyStr then
     queryContasReceber.SQL.Add(AFiltro);

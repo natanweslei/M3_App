@@ -18,10 +18,8 @@ type
     editQuantidadeParcelas: TUniFormattedNumberEdit;
     editTaxa: TUniFormattedNumberEdit;
     editValorParcela: TUniFormattedNumberEdit;
-    editValorParcelaPrice: TUniFormattedNumberEdit;
-    procedure editValorVeiculoExit(Sender: TObject);
-    procedure UniFormShow(Sender: TObject);
-    procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
+    procedure editValorVeiculoKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
 
   end;
@@ -40,11 +38,8 @@ begin
   Result := TFormModalSimulador(UniMainModule.GetFormInstance(TFormModalSimulador));
 end;
 
-procedure TFormModalSimulador.editValorVeiculoExit(Sender: TObject);
+procedure TFormModalSimulador.editValorVeiculoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
 var
-  CalculadoraPrice: TCalculadoraPrice;
-  Prestacao, TotalPago, SaldoDevedor: Double;
-
   CalculadoraFinanciamento: TCalculadoraFinanciamento;
 begin
   inherited;
@@ -58,37 +53,6 @@ begin
   CalculadoraFinanciamento := TCalculadoraFinanciamento.Create(editValorVeiculo.Value, editTaxa.Value, editQuantidadeParcelas.Value);
   editValorParcela.Value := CalculadoraFinanciamento.CalcularValorParcela;
   CalculadoraFinanciamento.Free;
-
-  CalculadoraPrice := TCalculadoraPrice.Create(editValorVeiculo.Value, editTaxa.Value, editQuantidadeParcelas.Value);
-  editValorParcelaPrice.Value := CalculadoraPrice.CalcularPrestacao;
-  TotalPago := CalculadoraPrice.CalcularTotalPago;
-  SaldoDevedor := CalculadoraPrice.CalcularSaldoDevedor(6);
-  CalculadoraPrice.Free;
-end;
-
-procedure TFormModalSimulador.UniFormShow(Sender: TObject);
-begin
-  inherited;
-//
-end;
-
-procedure TFormModalSimulador.UniFormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  inherited;
-//
 end;
 
 end.
-
-//  if not CharInSet(Key, ['0'..'9', ',', '.']) then
-//  begin
-//    Key := #0;
-//  end
-//  else if (Key = '.') and (Pos('.', editValorVeiculo.Text) > 0) then
-//  begin
-//    Key := #0;
-//  end
-//  else if (Key = ',') and (Pos(',', editValorVeiculo.Text) > 0) then
-//  begin
-//    Key := '.';
-//  end;

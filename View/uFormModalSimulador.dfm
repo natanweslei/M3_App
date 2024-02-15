@@ -2,7 +2,6 @@ inherited FormModalSimulador: TFormModalSimulador
   ClientHeight = 350
   ClientWidth = 395
   Caption = 'FormModalSimulador'
-  OnShow = UniFormShow
   ActiveControl = editValorVeiculo
   ExplicitWidth = 395
   ExplicitHeight = 350
@@ -61,7 +60,7 @@ inherited FormModalSimulador: TFormModalSimulador
       DecimalPrecision = 0
       DecimalSeparator = ','
       ThousandSeparator = '.'
-      OnExit = editValorVeiculoExit
+      OnKeyUp = editValorVeiculoKeyUp
     end
     object editTaxa: TUniFormattedNumberEdit
       Left = 40
@@ -75,7 +74,7 @@ inherited FormModalSimulador: TFormModalSimulador
       DecimalPrecision = 5
       DecimalSeparator = ','
       ThousandSeparator = '.'
-      OnExit = editValorVeiculoExit
+      OnKeyUp = editValorVeiculoKeyUp
     end
     object editValorParcela: TUniFormattedNumberEdit
       Left = 40
@@ -102,19 +101,7 @@ inherited FormModalSimulador: TFormModalSimulador
       FieldLabelAlign = laRight
       DecimalSeparator = ','
       ThousandSeparator = '.'
-      OnExit = editValorVeiculoExit
-    end
-    object editValorParcelaPrice: TUniFormattedNumberEdit
-      Left = 40
-      Top = 208
-      Width = 297
-      Hint = ''
-      TabOrder = 5
-      ReadOnly = True
-      FieldLabel = 'Parcela Price'
-      FieldLabelAlign = laRight
-      DecimalSeparator = ','
-      ThousandSeparator = '.'
+      OnKeyUp = editValorVeiculoKeyUp
     end
   end
 end

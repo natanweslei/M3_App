@@ -25,13 +25,15 @@ type
     editValorVeiculo: TUniDBFormattedNumberEdit;
     editTaxa: TUniDBFormattedNumberEdit;
     editQuantidadeParcelas: TUniDBFormattedNumberEdit;
-    editValorParcela: TUniFormattedNumberEdit;
+    editValorParcela: TUniDBFormattedNumberEdit;
     editValorEntrada: TUniDBFormattedNumberEdit;
+    editValorFinanciado: TUniDBFormattedNumberEdit;
     procedure UniFormShow(Sender: TObject);
     procedure queryManutencaoBeforePost(DataSet: TDataSet);
     procedure queryManutencaoNewRecord(DataSet: TDataSet);
     procedure buttonFecharClick(Sender: TObject);
-    procedure editValorVeiculoExit(Sender: TObject);
+    procedure editValorVeiculoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     FVendaId: Integer;
     procedure AbreQuery;
@@ -59,13 +61,15 @@ begin
   inherited;
 end;
 
-procedure TFormModalVenda.editValorVeiculoExit(Sender: TObject);
+procedure TFormModalVenda.editValorVeiculoKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 var
   CalculadoraFinanciamento: TCalculadoraFinanciamento;
 begin
   inherited;
   if editValorVeiculo.Value = 0 then
     Exit;
+
+  editValorFinanciado.Value := editValorVeiculo.Value - editValorEntrada.Value;
 
   if editTaxa.Value = 0 then
     Exit;

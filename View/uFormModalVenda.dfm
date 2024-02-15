@@ -26,7 +26,7 @@ inherited FormModalVenda: TFormModalVenda
     ExplicitTop = 104
     ExplicitWidth = 256
     ExplicitHeight = 256
-    ScrollHeight = 319
+    ScrollHeight = 401
     ScrollWidth = 777
     object groupDados: TUniGroupBox
       Left = 16
@@ -47,11 +47,12 @@ inherited FormModalVenda: TFormModalVenda
         TabOrder = 1
         MaxValue = 900000.000000000000000000
         MinValue = 1.000000000000000000
+        SelectOnFocus = True
         FieldLabel = 'Valor Ve'#237'culo'
         FieldLabelAlign = laRight
         DecimalSeparator = ','
         ThousandSeparator = '.'
-        OnExit = editValorVeiculoExit
+        OnKeyDown = editValorVeiculoKeyDown
       end
       object editTaxa: TUniDBFormattedNumberEdit
         Left = 191
@@ -61,14 +62,15 @@ inherited FormModalVenda: TFormModalVenda
         Hint = ''
         DataField = 'taxa_veiculo'
         DataSource = dsManutencao
-        TabOrder = 4
+        TabOrder = 5
         MaxValue = 100.000000000000000000
+        SelectOnFocus = True
         FieldLabel = 'Taxa'
         FieldLabelAlign = laRight
         DecimalPrecision = 5
         DecimalSeparator = ','
         ThousandSeparator = '.'
-        OnExit = editValorVeiculoExit
+        OnKeyDown = editValorVeiculoKeyDown
       end
       object editQuantidadeParcelas: TUniDBFormattedNumberEdit
         Left = 15
@@ -78,23 +80,28 @@ inherited FormModalVenda: TFormModalVenda
         Hint = ''
         DataField = 'quantidade_parcelas_veiculo'
         DataSource = dsManutencao
-        TabOrder = 3
+        TabOrder = 4
         MaxValue = 360.000000000000000000
         MinValue = 1.000000000000000000
+        SelectOnFocus = True
         FieldLabel = 'Parcelas'
         FieldLabelAlign = laRight
         DecimalPrecision = 0
         DecimalSeparator = ','
         ThousandSeparator = '.'
-        OnExit = editValorVeiculoExit
+        OnKeyDown = editValorVeiculoKeyDown
       end
-      object editValorParcela: TUniFormattedNumberEdit
+      object editValorParcela: TUniDBFormattedNumberEdit
         Left = 370
         Top = 51
-        Width = 204
+        Width = 170
+        Height = 22
         Hint = ''
-        TabOrder = 5
+        DataField = 'valor_parcela'
+        DataSource = dsManutencao
+        TabOrder = 6
         ReadOnly = True
+        SelectOnFocus = True
         FieldLabel = 'Valor Parcela'
         FieldLabelAlign = laRight
         DecimalSeparator = ','
@@ -111,11 +118,30 @@ inherited FormModalVenda: TFormModalVenda
         TabOrder = 2
         MaxValue = 900000.000000000000000000
         MinValue = 1.000000000000000000
+        SelectOnFocus = True
         FieldLabel = 'Valor Entrada'
         FieldLabelAlign = laRight
         DecimalSeparator = ','
         ThousandSeparator = '.'
-        OnExit = editValorVeiculoExit
+        OnKeyDown = editValorVeiculoKeyDown
+      end
+      object editValorFinanciado: TUniDBFormattedNumberEdit
+        Left = 370
+        Top = 23
+        Width = 170
+        Height = 22
+        Hint = ''
+        DataField = 'valor_financiado'
+        DataSource = dsManutencao
+        TabOrder = 3
+        ReadOnly = True
+        MaxValue = 900000.000000000000000000
+        MinValue = 1.000000000000000000
+        SelectOnFocus = True
+        FieldLabel = 'Valor Financiado'
+        FieldLabelAlign = laRight
+        DecimalSeparator = ','
+        ThousandSeparator = '.'
       end
     end
     object groupVenda: TUniGroupBox
@@ -178,7 +204,7 @@ inherited FormModalVenda: TFormModalVenda
       Left = 16
       Top = 230
       Width = 761
-      Height = 89
+      Height = 171
       Hint = ''
       DataField = 'observacao_venda'
       DataSource = dsManutencao

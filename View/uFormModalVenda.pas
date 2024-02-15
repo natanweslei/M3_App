@@ -24,10 +24,14 @@ type
     comboVeiculo: TUniDBLookupComboBox;
     editValorVeiculo: TUniDBFormattedNumberEdit;
     editTaxa: TUniDBFormattedNumberEdit;
+    editQuantidadeParcelas: TUniDBFormattedNumberEdit;
+    editValorParcela: TUniFormattedNumberEdit;
+    editValorEntrada: TUniDBFormattedNumberEdit;
     procedure UniFormShow(Sender: TObject);
     procedure queryManutencaoBeforePost(DataSet: TDataSet);
     procedure queryManutencaoNewRecord(DataSet: TDataSet);
     procedure buttonFecharClick(Sender: TObject);
+    procedure editValorVeiculoExit(Sender: TObject);
   private
     FVendaId: Integer;
     procedure AbreQuery;
@@ -42,7 +46,7 @@ implementation
 {$R *.dfm}
 
 uses
-  MainModule, uniGUIApplication;
+  MainModule, uniGUIApplication, CalculadoraFinanciamento;
 
 function FormModalVenda: TFormModalVenda;
 begin
@@ -53,6 +57,29 @@ procedure TFormModalVenda.buttonFecharClick(Sender: TObject);
 begin
   AbreQuery;
   inherited;
+end;
+
+procedure TFormModalVenda.editValorVeiculoExit(Sender: TObject);
+var
+  CalculadoraFinanciamento: TCalculadoraFinanciamento;
+begin
+  inherited;
+  if editValorVeiculo.Value = 0 then
+    Exit;
+
+  if editTaxa.Value = 0 then
+    Exit;
+
+  if editQuantidadeParcelas.Value = 0 then
+    Exit;
+
+  CalculadoraFinanciamento := TCalculadoraFinanciamento.Create(
+    editValorVeiculo.Value - editValorEntrada.Value,
+    editTaxa.Value,
+    editQuantidadeParcelas.Value
+  );
+  editValorParcela.Value := CalculadoraFinanciamento.CalcularValorParcela;
+  CalculadoraFinanciamento.Free;
 end;
 
 procedure TFormModalVenda.queryManutencaoBeforePost(DataSet: TDataSet);

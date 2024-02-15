@@ -52,7 +52,7 @@ object FormModalModelo: TFormModalModelo
     object buttonGravar: TUniButton
       AlignWithMargins = True
       Left = 147
-      Top = 3
+      Top = 6
       Width = 130
       Height = 30
       Hint = ''

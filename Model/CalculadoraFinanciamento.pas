@@ -28,7 +28,7 @@ end;
 
 function TCalculadoraFinanciamento.CalcularJurosCompostos: Double;
 begin
-  Result := FValorTotal * Power(1 + (FTaxaJuros / 100), FQuantidadeParcelas);
+  Result := FValorTotal * Power(1 + (FTaxaJuros * 0.01), FQuantidadeParcelas);
 end;
 
 function TCalculadoraFinanciamento.CalcularValorParcela: Double;

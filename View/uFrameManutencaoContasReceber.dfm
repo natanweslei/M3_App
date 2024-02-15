@@ -51,7 +51,7 @@ object FrameManutencaoContasReceber: TFrameManutencaoContasReceber
     Columns = <
       item
         FieldName = 'financeiro_id'
-        Title.Caption = 'Gasto'
+        Title.Caption = 'Financeiro'
         Width = 58
         Sortable = True
       end

@@ -44,6 +44,7 @@ object FrameManutencaoContasReceber: TFrameManutencaoContasReceber
     Width = 980
     Height = 499
     Hint = ''
+    DataSource = dsContasReceber
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgAutoRefreshRow]
     LoadMask.Message = 'Loading data...'
     Align = alClient
@@ -101,6 +102,7 @@ object FrameManutencaoContasReceber: TFrameManutencaoContasReceber
     Top = 344
   end
   object dsContasReceber: TDataSource
+    DataSet = queryContasReceber
     Left = 872
     Top = 424
   end

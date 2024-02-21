@@ -10,6 +10,8 @@ uses
   FireDAC.Comp.DataSet, uniGUIBaseClasses, uniGUIClasses, uniImageList;
 
 type
+  TStatus_Financeiro = (sf_ABERTO, sf_VENCIDO, sf_PAGO);
+
   TUniMainModule = class(TUniGUIMainModule)
     Conexao: TFDConnection;
     FDPhysPgDriverLink1: TFDPhysPgDriverLink;
@@ -20,6 +22,7 @@ type
     dsCadastroTipoGasto: TDataSource;
     queryCadastroTipoGasto: TFDQuery;
     ImageListMain: TUniNativeImageList;
+    procedure UniGUIMainModuleBeforeLogin(Sender: TObject; var Handled: Boolean);
   public
     GlobalOperadorId: Integer;
     GlobalNomeOperador: string;
@@ -52,6 +55,16 @@ begin
 
   Result := LQuerySequence.FieldByName('sequence').AsInteger;
   LQuerySequence.Free;
+end;
+
+procedure TUniMainModule.UniGUIMainModuleBeforeLogin(Sender: TObject; var Handled: Boolean);
+var
+  queryStatusFinanceiro: TFDQuery;
+begin
+  queryStatusFinanceiro := TFDQuery.Create(nil);
+  queryStatusFinanceiro.Connection := UniMainModule.Conexao;
+  queryStatusFinanceiro.ExecSQL('CALL alterar_status_financeiro();');
+  queryStatusFinanceiro.Free;
 end;
 
 initialization

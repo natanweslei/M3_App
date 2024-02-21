@@ -151,7 +151,7 @@ begin
 
     queryContasReceber.FieldByName('financeiro_id').AsInteger := UniMainModule.GerarSequence('seq_financeiro_id');
     queryContasReceber.FieldByName('tipogasto_id').AsInteger := 1;
-    queryContasReceber.FieldByName('descricao').AsString := ' VENDA ';
+    queryContasReceber.FieldByName('descricao').AsString := ' REFERENTE A VENDA: ' + queryManutencao.FieldByName('venda_id').AsString;
     queryContasReceber.FieldByName('valor_documento').AsFloat := cdParcelasvalor_documento.Value;
     queryContasReceber.FieldByName('data_lancamento').AsDateTime := Now;
     queryContasReceber.FieldByName('data_vencimento').AsDateTime := cdParcelasdata_vencimento.Value;
@@ -160,7 +160,7 @@ begin
     queryContasReceber.FieldByName('numero_parcela').AsInteger := cdParcelasnumero_parcela.Value;
     queryContasReceber.FieldByName('veiculo_id').AsInteger := comboVeiculo.DataSource.DataSet.FieldByName('veiculo_id').AsInteger;
     queryContasReceber.FieldByName('tipo_financeiro').AsString := 'CONTA_RECEBER';
-    queryContasReceber.FieldByName('origem').AsString := 'VENDA';
+    queryContasReceber.FieldByName('status_financeiro').AsString := 'ABERTO';
     queryContasReceber.FieldByName('venda_id').AsInteger := queryManutencao.FieldByName('venda_id').AsInteger;
 
     queryContasReceber.Post;

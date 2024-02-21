@@ -22,6 +22,7 @@ inherited FormModalVenda: TFormModalVenda
       DataField = 'valor_veiculo'
       DataSource = dsManutencao
       TabOrder = 1
+      Color = clBtnFace
       MaxValue = 900000.000000000000000000
       SelectOnFocus = True
       FieldLabel = 'Valor Ve'#237'culo'

@@ -14,18 +14,28 @@ object FrameManutencaoContasReceber: TFrameManutencaoContasReceber
     Align = alBottom
     TabOrder = 0
     Caption = ''
-    object buttonCadastroVeiculo: TUniButton
+    object buttonContaReceber: TUniButton
       AlignWithMargins = True
       Left = 12
-      Top = 3
+      Top = 6
       Width = 141
-      Height = 35
+      Height = 32
       Hint = ''
       Caption = 'Contas a Receber'
       TabOrder = 1
       Images = UniMainModule.ImageListMain
       ImageIndex = 3
-      OnClick = buttonCadastroVeiculoClick
+      OnClick = buttonContaReceberClick
+    end
+    object buttonStatusFinanceiro: TUniButton
+      Left = 184
+      Top = 6
+      Width = 161
+      Height = 32
+      Hint = ''
+      Caption = 'Alterar Status Financeiro'
+      TabOrder = 2
+      OnClick = buttonStatusFinanceiroClick
     end
   end
   object panelFiltro: TUniPanel
@@ -38,7 +48,7 @@ object FrameManutencaoContasReceber: TFrameManutencaoContasReceber
     TabOrder = 1
     Caption = ''
   end
-  object gridGasto: TUniDBGrid
+  object gridContaReceber: TUniDBGrid
     Left = 0
     Top = 128
     Width = 980
@@ -49,50 +59,73 @@ object FrameManutencaoContasReceber: TFrameManutencaoContasReceber
     LoadMask.Message = 'Loading data...'
     Align = alClient
     TabOrder = 2
+    OnTitleClick = gridContaReceberTitleClick
+    OnDrawColumnCell = gridContaReceberDrawColumnCell
     Columns = <
       item
         FieldName = 'financeiro_id'
         Title.Caption = 'Financeiro'
-        Width = 58
+        Width = 71
         Sortable = True
       end
       item
-        FieldName = 'descricao'
-        Title.Caption = 'Descri'#231#227'o do Gasto'
-        Width = 117
+        FieldName = 'status_financeiro'
+        Title.Alignment = taCenter
+        Title.Caption = 'Status'
+        Width = 92
+        Font.Height = -13
+        Font.Style = [fsBold]
+        Alignment = taCenter
         Sortable = True
-      end
-      item
-        FieldName = 'tipogasto'
-        Title.Caption = 'Tipo de Gasto'
-        Width = 145
-        Sortable = True
-        DisplayMemo = True
       end
       item
         FieldName = 'veiculo'
         Title.Caption = 'Ve'#237'culo'
-        Width = 242
+        Width = 145
         Sortable = True
         DisplayMemo = True
       end
       item
         FieldName = 'cliente'
         Title.Caption = 'Cliente'
-        Width = 226
+        Width = 124
         Sortable = True
         DisplayMemo = True
       end
       item
-        FieldName = 'data_lancamento'
-        Title.Caption = ' Data Lan'#231'amento'
-        Width = 107
+        FieldName = 'data_vencimento'
+        Title.Caption = 'Data Vencimento'
+        Width = 98
         Sortable = True
       end
       item
         FieldName = 'valor_documento'
         Title.Caption = 'Valor Documento'
-        Width = 120
+        Width = 103
+        Sortable = True
+      end
+      item
+        FieldName = 'descricao'
+        Title.Caption = 'Descri'#231#227'o do Gasto'
+        Width = 124
+        Sortable = True
+      end
+      item
+        FieldName = 'data_lancamento'
+        Title.Caption = ' Data Lan'#231'amento'
+        Width = 105
+        Sortable = True
+      end
+      item
+        FieldName = 'quantidade_parcelas'
+        Title.Caption = 'Total Parcelas'
+        Width = 75
+        Sortable = True
+      end
+      item
+        FieldName = 'numero_parcela'
+        Title.Caption = 'Parcela'
+        Width = 52
         Sortable = True
       end>
   end

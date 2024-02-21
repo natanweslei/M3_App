@@ -2,6 +2,7 @@ object UniMainModule: TUniMainModule
   OldCreateOrder = False
   Theme = 'gray'
   MonitoredKeys.Keys = <>
+  OnBeforeLogin = UniGUIMainModuleBeforeLogin
   Height = 604
   Width = 800
   object Conexao: TFDConnection

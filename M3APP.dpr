@@ -26,7 +26,8 @@ uses
   uFrameManutencaoVenda in 'View\uFrameManutencaoVenda.pas' {FrameManutencaoVenda: TUniFrame},
   uFrameManutencaoGasto in 'View\uFrameManutencaoGasto.pas' {FrameManutencaoGasto: TUniFrame},
   CalculadoraPrice in 'Model\CalculadoraPrice.pas',
-  uFrameManutencaoContasReceber in 'View\uFrameManutencaoContasReceber.pas' {FrameManutencaoContasReceber: TUniFrame};
+  uFrameManutencaoContasReceber in 'View\uFrameManutencaoContasReceber.pas' {FrameManutencaoContasReceber: TUniFrame},
+  uFormStatusFinanceiro in 'View\uFormStatusFinanceiro.pas' {FormStatusFinanceiro: TUniForm};
 
 {$R *.res}
 

@@ -22,11 +22,11 @@ type
     dsCadastroTipoGasto: TDataSource;
     queryCadastroTipoGasto: TFDQuery;
     ImageListMain: TUniNativeImageList;
-    procedure UniGUIMainModuleBeforeLogin(Sender: TObject; var Handled: Boolean);
   public
     GlobalOperadorId: Integer;
     GlobalNomeOperador: string;
     function GerarSequence(ASequence: string): Integer;
+    procedure AlterarStatusFinanceiro;
   end;
 
 function UniMainModule: TUniMainModule;
@@ -57,7 +57,7 @@ begin
   LQuerySequence.Free;
 end;
 
-procedure TUniMainModule.UniGUIMainModuleBeforeLogin(Sender: TObject; var Handled: Boolean);
+procedure TUniMainModule.AlterarStatusFinanceiro;
 var
   queryStatusFinanceiro: TFDQuery;
 begin

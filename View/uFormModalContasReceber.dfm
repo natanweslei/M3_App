@@ -1,10 +1,10 @@
-inherited FormModalGasto: TFormModalGasto
-  Caption = 'FormModalGastos'
+inherited FormModalContasReceber: TFormModalContasReceber
+  Caption = 'FormModalContasReceber'
   OnShow = UniFormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited panelBotoes: TUniPanel
-    ExplicitWidth = 860
+    ExplicitWidth = 792
     inherited buttonExcluir: TUniButton
       OnClick = nil
     end
@@ -33,7 +33,6 @@ inherited FormModalGasto: TFormModalGasto
       Align = alTop
       TabOrder = 0
       Caption = ''
-      ExplicitWidth = 796
       object comboResponsavel: TUniDBLookupComboBox
         Left = 23
         Top = 83

@@ -47,6 +47,136 @@ object FrameManutencaoContasReceber: TFrameManutencaoContasReceber
     Align = alTop
     TabOrder = 1
     Caption = ''
+    inline FramePainelFiltro: TFramePainelFiltro
+      AlignWithMargins = True
+      Left = 4
+      Top = 4
+      Width = 972
+      Height = 120
+      Align = alClient
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      TabOrder = 1
+      Background.Picture.Data = {00}
+      ExplicitLeft = 4
+      ExplicitTop = 4
+      ExplicitWidth = 972
+      ExplicitHeight = 120
+      inherited comboPessoa: TUniDBLookupComboBox
+        AlignWithMargins = True
+        Top = 48
+        OnChange = FramePainelFiltrocomboVeiculoChange
+        ExplicitTop = 48
+      end
+      inherited comboVeiculo: TUniDBLookupComboBox
+        AlignWithMargins = True
+        Top = 13
+        OnChange = FramePainelFiltrocomboVeiculoChange
+        ExplicitTop = 13
+      end
+      inherited editPesquisa: TUniEdit
+        AlignWithMargins = True
+        Left = 832
+        Top = 11
+        Width = 137
+        Visible = False
+        ExplicitLeft = 832
+        ExplicitTop = 11
+        ExplicitWidth = 137
+      end
+      inherited groupData: TUniGroupBox
+        Top = 0
+        Width = 266
+        Height = 75
+        Caption = 'Data Vencimento'
+        ExplicitTop = 0
+        ExplicitWidth = 266
+        ExplicitHeight = 75
+        inherited editDataFinal: TUniDateTimePicker
+          Top = 47
+          OnChange = FramePainelFiltroeditDataInicialChange
+          ExplicitTop = 47
+        end
+        inherited editDataInicial: TUniDateTimePicker
+          OnChange = FramePainelFiltroeditDataInicialChange
+        end
+        inherited radioIgual: TUniRadioButton
+          Top = 33
+          OnClick = FramePainelFiltroradioIgualClick
+          ExplicitTop = 33
+        end
+        inherited radioEntre: TUniRadioButton
+          Top = 51
+          OnClick = FramePainelFiltroradioIgualClick
+          ExplicitTop = 51
+        end
+        inherited radioNaoFiltrar: TUniRadioButton
+          OnClick = FramePainelFiltroradioIgualClick
+        end
+      end
+    end
+    object checkAberto: TUniCheckBox
+      Left = 107
+      Top = 96
+      Width = 57
+      Height = 17
+      Hint = ''
+      Checked = True
+      Caption = 'Aberto'
+      TabOrder = 2
+      OnChange = checkAbertoChange
+    end
+    object checkVencido: TUniCheckBox
+      Left = 240
+      Top = 96
+      Width = 64
+      Height = 17
+      Hint = ''
+      Checked = True
+      Caption = 'Vencido'
+      TabOrder = 3
+      OnChange = checkAbertoChange
+    end
+    object checkPago: TUniCheckBox
+      Left = 376
+      Top = 96
+      Width = 65
+      Height = 17
+      Hint = ''
+      Checked = True
+      Caption = 'Pago'
+      TabOrder = 4
+      OnChange = checkAbertoChange
+    end
+    object panelStatusPago: TUniSimplePanel
+      Left = 344
+      Top = 93
+      Width = 26
+      Height = 22
+      Hint = ''
+      ParentColor = False
+      Color = clGreen
+      TabOrder = 5
+    end
+    object panelStatusAberto: TUniSimplePanel
+      Left = 75
+      Top = 93
+      Width = 26
+      Height = 22
+      Hint = ''
+      ParentColor = False
+      Color = clBlue
+      TabOrder = 6
+    end
+    object panelStatusVencido: TUniSimplePanel
+      Left = 208
+      Top = 93
+      Width = 26
+      Height = 22
+      Hint = ''
+      ParentColor = False
+      Color = clRed
+      TabOrder = 7
+    end
   end
   object gridContaReceber: TUniDBGrid
     Left = 0
@@ -59,7 +189,6 @@ object FrameManutencaoContasReceber: TFrameManutencaoContasReceber
     LoadMask.Message = 'Loading data...'
     Align = alClient
     TabOrder = 2
-    OnTitleClick = gridContaReceberTitleClick
     OnDrawColumnCell = gridContaReceberDrawColumnCell
     Columns = <
       item
@@ -102,6 +231,7 @@ object FrameManutencaoContasReceber: TFrameManutencaoContasReceber
         FieldName = 'valor_documento'
         Title.Caption = 'Valor Documento'
         Width = 103
+        Font.Height = -13
         Sortable = True
       end
       item

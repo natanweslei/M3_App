@@ -1,4 +1,4 @@
-unit uFormModalGasto;
+unit uFormModalContasReceber;
 
 interface
 
@@ -14,7 +14,7 @@ uses
   uniDBEdit;
 
 type
-  TFormModalGasto = class(TFormModalModelo)
+  TFormModalContasReceber = class(TFormModalModelo)
     scrollGasto: TUniScrollBox;
     panelTipoGasto: TUniPanel;
     gridTipoGasto: TUniDBGrid;
@@ -28,12 +28,12 @@ type
     procedure UniFormShow(Sender: TObject);
     procedure queryManutencaoNewRecord(DataSet: TDataSet);
   private
-    FGastoId: Integer;
+    FFinanceiroId: Integer;
   public
-    property GastoId: Integer read FGastoId write FGastoId;
+    property FinanceiroId: Integer read FFinanceiroId write FFinanceiroId;
   end;
 
-function FormModalGasto: TFormModalGasto;
+function FormModalContasReceber: TFormModalContasReceber;
 
 implementation
 
@@ -42,32 +42,31 @@ implementation
 uses
   MainModule, uniGUIApplication;
 
-function FormModalGasto: TFormModalGasto;
+function FormModalContasReceber: TFormModalContasReceber;
 begin
-  Result := TFormModalGasto(UniMainModule.GetFormInstance(TFormModalGasto));
+  Result := TFormModalContasReceber(UniMainModule.GetFormInstance(TFormModalContasReceber));
 end;
 
-procedure TFormModalGasto.queryManutencaoBeforePost(DataSet: TDataSet);
+procedure TFormModalContasReceber.queryManutencaoBeforePost(DataSet: TDataSet);
 begin
   inherited;
   queryManutencao.FieldByName('gasto_id').AsInteger := UniMainModule.GerarSequence('seq_gasto_id');
 end;
 
-procedure TFormModalGasto.queryManutencaoNewRecord(DataSet: TDataSet);
+procedure TFormModalContasReceber.queryManutencaoNewRecord(DataSet: TDataSet);
 begin
   inherited;
   queryManutencao.FieldByName('data_gasto').AsDateTime := Now;
 end;
 
-procedure TFormModalGasto.UniFormShow(Sender: TObject);
+procedure TFormModalContasReceber.UniFormShow(Sender: TObject);
 begin
   inherited;
 
   queryManutencao.Close;
-  queryManutencao.SQL.Clear;
   queryManutencao.SQL.Add('select * from gasto');
   queryManutencao.SQL.Add('where gasto_id = :pgasto_id');
-  queryManutencao.ParamByName('pgasto_id').AsInteger := FGastoId;
+  queryManutencao.ParamByName('pgasto_id').AsInteger := FFinanceiroId;
   queryManutencao.Open;
 
   UniMainModule.queryCadastroPessoa.Open('select * from pessoa where operador');

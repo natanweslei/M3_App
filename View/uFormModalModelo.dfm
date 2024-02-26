@@ -1,26 +1,29 @@
 object FormModalModelo: TFormModalModelo
   Left = 0
   Top = 0
-  ClientHeight = 557
-  ClientWidth = 798
+  ClientHeight = 528
+  ClientWidth = 792
   Caption = 'Modelo'
-  BorderStyle = bsNone
+  BorderStyle = bsDialog
   OldCreateOrder = False
   OnClose = UniFormClose
+  BorderIcons = []
   MonitoredKeys.Keys = <>
   PixelsPerInch = 96
   TextHeight = 13
   object panelBotoes: TUniPanel
     Left = 0
-    Top = 512
-    Width = 798
+    Top = 483
+    Width = 792
     Height = 45
     Hint = ''
     Align = alBottom
     TabOrder = 0
     Caption = ''
+    ExplicitTop = 512
+    ExplicitWidth = 798
     DesignSize = (
-      798
+      792
       45)
     object buttonCancelar: TUniButton
       AlignWithMargins = True

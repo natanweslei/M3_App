@@ -1,6 +1,8 @@
 inherited FormModalEntrada: TFormModalEntrada
   Caption = 'FormModalEntrada'
   OnShow = UniFormShow
+  ExplicitWidth = 320
+  ExplicitHeight = 240
   PixelsPerInch = 96
   TextHeight = 13
   inherited panelBotoes: TUniPanel
@@ -11,8 +13,8 @@ inherited FormModalEntrada: TFormModalEntrada
   object scrollEntrada: TUniScrollBox [1]
     Left = 0
     Top = 0
-    Width = 798
-    Height = 512
+    Width = 792
+    Height = 483
     Hint = ''
     Align = alClient
     TabOrder = 1

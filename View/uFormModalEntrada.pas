@@ -69,11 +69,8 @@ begin
   queryManutencao.ParamByName('pentrada_id').AsInteger := FEntradaId;
   queryManutencao.Open;
 
-  UniMainModule.queryCadastroPessoa.SQL.Text := 'select * from pessoa';
-  UniMainModule.queryCadastroPessoa.Open;
-
-  UniMainModule.queryCadastroVeiculo.SQL.Text := 'select * from veiculo';
-  UniMainModule.queryCadastroVeiculo.Open;
+  UniMainModule.queryCadastroPessoa.Open('select * from pessoa');
+  UniMainModule.queryCadastroVeiculo.Open('select * from veiculo');
 end;
 
 end.

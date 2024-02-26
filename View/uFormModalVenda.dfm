@@ -1,8 +1,6 @@
 inherited FormModalVenda: TFormModalVenda
   Caption = 'FormModalVenda'
   OnShow = UniFormShow
-  ExplicitWidth = 798
-  ExplicitHeight = 557
   PixelsPerInch = 96
   TextHeight = 13
   object groupDados: TUniGroupBox [1]
@@ -199,7 +197,7 @@ inherited FormModalVenda: TFormModalVenda
     Left = 16
     Top = 430
     Width = 761
-    Height = 73
+    Height = 46
     Hint = ''
     DataField = 'observacao_venda'
     DataSource = dsManutencao

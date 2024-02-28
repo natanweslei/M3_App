@@ -15,6 +15,7 @@ object FramePainelFiltro: TFramePainelFiltro
     ListSource = UniMainModule.dsCadastroPessoa
     KeyField = 'pessoa_id'
     ListFieldIndex = 0
+    ClearButton = True
     DataField = 'pessoa_id'
     TabOrder = 0
     Color = clWindow
@@ -32,6 +33,7 @@ object FramePainelFiltro: TFramePainelFiltro
     ListSource = UniMainModule.dsCadastroVeiculo
     KeyField = 'veiculo_id'
     ListFieldIndex = 0
+    ClearButton = True
     DataField = 'veiculo_id'
     TabOrder = 1
     Color = clWindow

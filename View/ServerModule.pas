@@ -14,12 +14,8 @@ uses
 type
   TUniServerModule = class(TUniGUIServerModule)
     procedure UniGUIServerModuleBeforeInit(Sender: TObject);
-  private
-    { Private declarations }
   protected
     procedure FirstInit; override;
-  public
-    { Public declarations }
   end;
 
 function UniServerModule: TUniServerModule;

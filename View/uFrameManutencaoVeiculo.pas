@@ -8,7 +8,8 @@ uses
   uniDBGrid, uniPageControl, uniGUIBaseClasses, uFrameModelo, uniLabel, uniButton, uniBitBtn,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, uniImageList, uniGUITypes;
+  FireDAC.Comp.Client, uniImageList, uniGUITypes, uFramePainelFiltro, uniDBImage,
+  uniFileUpload, uniImage, uniDBNavigator;
 
 type
   TFrameManutencaoVeiculo = class(TUniFrame)
@@ -18,24 +19,31 @@ type
     queryVeiculo: TFDQuery;
     dsVeiculo: TDataSource;
     panelFiltro: TUniPanel;
-    PageControlVeiculo: TUniPageControl;
-    tsVeiculo: TUniTabSheet;
-    tsGasto: TUniTabSheet;
     gridGasto: TUniDBGrid;
     queryGasto: TFDQuery;
     dsGasto: TDataSource;
     buttonGastosVeiculo: TUniButton;
-    tsContasReceber: TUniTabSheet;
     gridContaReceber: TUniDBGrid;
     dsContasReceber: TDataSource;
     queryContasReceber: TFDQuery;
+    FramePainelFiltro: TFramePainelFiltro;
+    panelCentro: TUniPanel;
+    imageVeiculos: TUniDBImage;
+    buttonImagens: TUniFileUploadButton;
+    queryImagensVeiculo: TFDQuery;
+    dsImagensVeiculo: TDataSource;
+    navigaterImagensVeiculo: TUniDBNavigator;
+    panelBotton: TUniPanel;
+    panelImagemLeft: TUniPanel;
     procedure UniFrameCreate(Sender: TObject);
     procedure buttonCadastroVeiculoClick(Sender: TObject);
     procedure queryVeiculoAfterScroll(DataSet: TDataSet);
     procedure buttonGastosVeiculoClick(Sender: TObject);
     procedure gridContaReceberDrawColumnCell(Sender: TObject; ACol, ARow: Integer; Column: TUniDBGridColumn; Attribs: TUniCellAttribs);
+    procedure FramePainelFiltro1comboVeiculoChange(Sender: TObject);
+    procedure buttonImagensCompleted(Sender: TObject; AStream: TFileStream);
   private
-    procedure ExecutaPesquisa(AFiltro: string);
+    procedure ExecutaPesquisa;
   end;
 
 implementation
@@ -72,16 +80,57 @@ begin
   );
 end;
 
-procedure TFrameManutencaoVeiculo.ExecutaPesquisa(AFiltro: string);
+procedure TFrameManutencaoVeiculo.buttonImagensCompleted(Sender: TObject; AStream: TFileStream);
 begin
+  if queryVeiculo.FieldByName('veiculo_id').AsInteger = 0 then
+  begin
+    MessageDlg('Nenhum veículo selecionado!', mtWarning, [mbOK]);
+    Exit;
+  end;
+
+  imageVeiculos.LoadFromStream(AStream);
+
+  queryImagensVeiculo.Insert;
+  queryImagensVeiculo.FieldByName('imagem_id').AsInteger := UniMainModule.GerarSequence('seq_imagem_id');
+  queryImagensVeiculo.FieldByName('veiculo_id').AsInteger := queryVeiculo.FieldByName('veiculo_id').AsInteger;
+  TBlobField(queryImagensVeiculo.FieldByName('imagem')).LoadFromStream(AStream);
+  queryImagensVeiculo.Post;
+end;
+
+procedure TFrameManutencaoVeiculo.ExecutaPesquisa;
+var
+  LFiltro: string;
+
+  function WhereAnd: string;
+  begin
+    if LFiltro = EmptyStr then
+      Result := ' where '
+    else
+      Result := ' and ';
+  end;
+begin
+  LFiltro := EmptyStr;
+
   queryVeiculo.Close;
   queryVeiculo.SQL.Clear;
   queryVeiculo.SQL.Add('select * from veiculo');
 
-  if AFiltro <> EmptyStr then
-    queryVeiculo.SQL.Add(AFiltro);
+  if not FramePainelFiltro.comboVeiculo.ListSource.DataSet.IsEmpty then
+  begin
+    if FramePainelFiltro.comboVeiculo.KeyValue > 0 then
+      LFiltro := WhereAnd + 'veiculo_id = ' + FramePainelFiltro.comboVeiculo.KeyValueStr;
+  end;
+
+  queryVeiculo.SQL.Add(LFiltro);
 
   queryVeiculo.Open;
+
+//  queryVeiculoAfterScroll(nil);
+end;
+
+procedure TFrameManutencaoVeiculo.FramePainelFiltro1comboVeiculoChange(Sender: TObject);
+begin
+  ExecutaPesquisa;
 end;
 
 procedure TFrameManutencaoVeiculo.gridContaReceberDrawColumnCell(Sender: TObject; ACol, ARow: Integer; Column: TUniDBGridColumn; Attribs: TUniCellAttribs);
@@ -170,13 +219,23 @@ begin
 
   queryContasReceber.Open;
 
+  queryImagensVeiculo.Close;
+  queryImagensVeiculo.SQL.Clear;
+  queryImagensVeiculo.SQL.Add('select * from imagens_veiculo');
+  queryImagensVeiculo.SQL.Add('where veiculo_id = :pveiculo_id');
+
+  if queryVeiculo.RecordCount = 0 then
+    queryImagensVeiculo.ParamByName('pveiculo_id').AsInteger := 0
+  else
+    queryImagensVeiculo.ParamByName('pveiculo_id').AsInteger := queryVeiculo.FieldByName('veiculo_id').AsInteger;
+
+  queryImagensVeiculo.Open;
 end;
 
 procedure TFrameManutencaoVeiculo.UniFrameCreate(Sender: TObject);
 begin
-  ExecutaPesquisa(EmptyStr);
+  ExecutaPesquisa;
   UniMainModule.AlterarStatusFinanceiro;
-  PageControlVeiculo.ActivePage := tsVeiculo;
 end;
 
 initialization

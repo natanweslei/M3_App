@@ -4,6 +4,7 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
   Width = 980
   Height = 672
   OnCreate = UniFrameCreate
+  OnDestroy = UniFrameDestroy
   TabOrder = 0
   object panelBotoes: TUniPanel
     Left = 0
@@ -65,72 +66,79 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
     Left = 3
     Top = 3
     Width = 974
-    Height = 60
+    Height = 70
     Hint = ''
     Align = alTop
     TabOrder = 1
     Caption = ''
     AlwaysOnTop = True
-    inline FramePainelFiltro: TFramePainelFiltro
-      Left = 1
-      Top = 1
-      Width = 972
-      Height = 58
-      Align = alClient
-      Anchors = [akLeft, akTop, akRight, akBottom]
-      Visible = False
+    object comboVeiculo: TUniDBLookupComboBox
+      Left = 15
+      Top = 24
+      Width = 346
+      Hint = ''
+      ListField = 'modelo;marca'
+      ListSource = UniMainModule.dsCadastroVeiculo
+      KeyField = 'veiculo_id'
+      ListFieldIndex = 0
+      ClearButton = True
+      DataField = 'veiculo_id'
       TabOrder = 1
-      Background.Picture.Data = {00}
-      ExplicitLeft = 1
-      ExplicitTop = 1
-      ExplicitWidth = 972
-      ExplicitHeight = 58
-      inherited comboPessoa: TUniDBLookupComboBox
-        Left = 839
-        Top = 31
-        Visible = False
-        ExplicitLeft = 839
-        ExplicitTop = 31
-      end
-      inherited comboVeiculo: TUniDBLookupComboBox
-        AlignWithMargins = True
-        Top = 11
-        Width = 426
-        OnChange = FramePainelFiltro1comboVeiculoChange
-        ExplicitTop = 11
-        ExplicitWidth = 426
-      end
-      inherited editPesquisa: TUniEdit
-        Left = 519
-        Top = 11
-        EmptyText = 'Digite para pesquisar (Marca, Modelo ou Placa)'
-        ClearButton = True
-        ExplicitLeft = 519
-        ExplicitTop = 11
-      end
-      inherited groupData: TUniGroupBox
-        Left = 831
-        Visible = False
-        ExplicitLeft = 831
-      end
+      Color = clWindow
+      FieldLabel = 'Ve'#237'culo'
+      FieldLabelWidth = 60
+      FieldLabelAlign = laRight
+      Style = csDropDown
+      OnChange = comboVeiculoChange
+    end
+    object comboMarca: TUniComboBox
+      Left = 367
+      Top = 24
+      Width = 250
+      Hint = ''
+      Text = ''
+      Items.Strings = (
+        'FIAT'
+        'CHEVROLET'
+        'VOLKSWAGEN'
+        'FORD'
+        'HONDA'
+        'TOYOTA'
+        'HYUNDAI'
+        'NISSAN'
+        'RENAULT'
+        'PEUGEOT'
+        'CITRO'#203'N'
+        'JEEP'
+        'MITSUBISHI'
+        'MERCEDES-bENZ'
+        'BMW'
+        'AUDI')
+      TabOrder = 2
+      ForceSelection = True
+      CharCase = ecUpperCase
+      ClearButton = True
+      FieldLabel = 'Marca'
+      FieldLabelAlign = laRight
+      IconItems = <>
+      OnChange = comboMarcaChange
     end
   end
   object panelCentro: TUniPanel
     Left = 0
-    Top = 66
+    Top = 76
     Width = 980
-    Height = 355
+    Height = 345
     Hint = ''
     Align = alClient
     TabOrder = 2
     Caption = ''
-    ExplicitHeight = 289
     object gridVeiculo: TUniDBGrid
       AlignWithMargins = True
       Left = 4
       Top = 4
       Width = 632
-      Height = 347
+      Height = 337
       Hint = ''
       DataSource = dsVeiculo
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgAutoRefreshRow]
@@ -180,32 +188,28 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
       Left = 639
       Top = 1
       Width = 340
-      Height = 353
+      Height = 343
       Hint = ''
       Align = alRight
       TabOrder = 2
       Caption = ''
       DesignSize = (
         340
-        353)
+        343)
       object imageVeiculos: TUniDBImage
         Left = 1
         Top = 1
         Width = 338
-        Height = 351
+        Height = 341
         Hint = ''
         DataField = 'imagem'
         DataSource = dsImagensVeiculo
         Proportional = True
         Align = alClient
-        ExplicitLeft = 38
-        ExplicitTop = 65
-        ExplicitWidth = 302
-        ExplicitHeight = 168
       end
       object navigaterImagensVeiculo: TUniDBNavigator
         Left = 114
-        Top = 321
+        Top = 312
         Width = 108
         Height = 19
         Hint = ''
@@ -225,7 +229,6 @@ object FrameManutencaoVeiculo: TFrameManutencaoVeiculo
     Align = alBottom
     TabOrder = 3
     Caption = ''
-    ExplicitTop = 355
     object gridContaReceber: TUniDBGrid
       AlignWithMargins = True
       Left = 4

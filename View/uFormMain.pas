@@ -12,7 +12,6 @@ type
   TFormMain = class(TUniForm)
     PageControlMain: TUniPageControl;
     TabSheetMain: TUniTabSheet;
-    UniImage1: TUniImage;
     UniMenuItems1: TUniMenuItems;
     UniTreeMenu1: TUniTreeMenu;
     MenuManutencaoVeiculos: TUniMenuItem;
@@ -38,6 +37,7 @@ type
     procedure subVendaClick(Sender: TObject);
     procedure subGastosClick(Sender: TObject);
     procedure subContasReceberClick(Sender: TObject);
+    procedure UniFormAfterShow(Sender: TObject);
   private
   public
     Procedure OpenFrame(AClassName: string; ACaption: string);
@@ -52,6 +52,7 @@ implementation
 uses
   uFrameModelo,
   uFormModalSimulador,
+  uFormAlertaFinanceiro,
   uniGUIVars,
   MainModule,
   uniGUIApplication;
@@ -119,7 +120,7 @@ end;
 
 procedure TFormMain.submenuPessoaClick(Sender: TObject);
 begin
-  OpenFrame('TFramePessoa', 'Pessoa');
+  OpenFrame('TFrameManutencaoPessoa', 'Pessoa');
 end;
 
 procedure TFormMain.submenuTipoGastoClick(Sender: TObject);
@@ -150,6 +151,12 @@ end;
 procedure TFormMain.subContasReceberClick(Sender: TObject);
 begin
   OpenFrame('TFrameManutencaoContasReceber', 'Manutenção de Contas a Receber');
+end;
+
+procedure TFormMain.UniFormAfterShow(Sender: TObject);
+begin
+  if UniMainModule.TemFinanceiroVencido > 0 then
+    FormAlertaFinanceiro.ShowModal;
 end;
 
 procedure TFormMain.menuSimuladorClick(Sender: TObject);

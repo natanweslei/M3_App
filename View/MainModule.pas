@@ -27,6 +27,7 @@ type
     GlobalNomeOperador: string;
     function GerarSequence(ASequence: string): Integer;
     procedure AlterarStatusFinanceiro;
+    function TemFinanceiroVencido: Integer;
   end;
 
 function UniMainModule: TUniMainModule;
@@ -55,6 +56,17 @@ begin
 
   Result := LQuerySequence.FieldByName('sequence').AsInteger;
   LQuerySequence.Free;
+end;
+
+function TUniMainModule.TemFinanceiroVencido: Integer;
+var
+  LQueryVencido: TFDQuery;
+begin
+  LQueryVencido := TFDQuery.Create(nil);
+  LQueryVencido.Connection := Conexao;
+  LQueryVencido.Open('select count(*) from financeiro where status_financeiro = ''VENCIDO''');
+
+  Result := LQueryVencido.RecordCount;
 end;
 
 procedure TUniMainModule.AlterarStatusFinanceiro;

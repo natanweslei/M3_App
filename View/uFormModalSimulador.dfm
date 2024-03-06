@@ -1,10 +1,10 @@
 inherited FormModalSimulador: TFormModalSimulador
   ClientHeight = 350
   ClientWidth = 395
-  Caption = 'FormModalSimulador'
+  Caption = 'Simulador'
   ActiveControl = editValorVeiculo
-  ExplicitWidth = 395
-  ExplicitHeight = 350
+  ExplicitWidth = 401
+  ExplicitHeight = 379
   PixelsPerInch = 96
   TextHeight = 13
   inherited panelBotoes: TUniPanel

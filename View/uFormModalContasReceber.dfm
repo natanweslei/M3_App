@@ -4,7 +4,6 @@ inherited FormModalContasReceber: TFormModalContasReceber
   PixelsPerInch = 96
   TextHeight = 13
   inherited panelBotoes: TUniPanel
-    ExplicitWidth = 792
     inherited buttonExcluir: TUniButton
       OnClick = nil
     end

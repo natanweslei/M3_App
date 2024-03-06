@@ -8,7 +8,8 @@ uses
   uniDBGrid, uniPageControl, uniGUIBaseClasses, uFrameModelo, uniLabel, uniButton, uniBitBtn,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, uniImageList;
+  FireDAC.Comp.Client, uniImageList, uniMultiItem, uniComboBox, uniDBComboBox,
+  uniDBLookupComboBox;
 
 type
   TFrameManutencaoEntrada = class(TUniFrame)
@@ -18,10 +19,14 @@ type
     queryEntrada: TFDQuery;
     gridEntrada: TUniDBGrid;
     panelFiltro: TUniPanel;
+    comboVeiculo: TUniDBLookupComboBox;
+    comboPessoa: TUniDBLookupComboBox;
     procedure UniFrameCreate(Sender: TObject);
     procedure buttonEntradaVeiculoClick(Sender: TObject);
+    procedure comboVeiculoChange(Sender: TObject);
+    procedure comboPessoaChange(Sender: TObject);
   private
-    procedure ExecutaPesquisa(AFiltro: string);
+    procedure ExecutaPesquisa;
   end;
 
 implementation
@@ -45,8 +50,20 @@ begin
   );
 end;
 
-procedure TFrameManutencaoEntrada.ExecutaPesquisa(AFiltro: string);
+procedure TFrameManutencaoEntrada.ExecutaPesquisa;
+var
+  LFiltro: string;
+
+  function WhereAnd: string;
+  begin
+    if LFiltro = EmptyStr then
+      Result := ' where '
+    else
+      Result := ' and ';
+  end;
 begin
+  LFiltro := EmptyStr;
+
   queryEntrada.Close;
   queryEntrada.SQL.Clear;
   queryEntrada.SQL.Add('select');
@@ -64,15 +81,36 @@ begin
   queryEntrada.SQL.Add('inner join pessoa');
   queryEntrada.SQL.Add('on pessoa.pessoa_id = entrada.pessoa_id');
 
-  if AFiltro <> EmptyStr then
-    queryEntrada.SQL.Add(AFiltro);
+  if not comboVeiculo.ListSource.DataSet.IsEmpty then
+  begin
+    if comboVeiculo.KeyValue > 0 then
+      LFiltro := WhereAnd + 'entrada.veiculo_id = ' + comboVeiculo.KeyValueStr;
+  end;
+
+  if not comboPessoa.ListSource.DataSet.IsEmpty then
+  begin
+    if comboPessoa.KeyValue > 0 then
+      LFiltro := LFiltro + WhereAnd + 'entrada.pessoa_id = ' + comboPessoa.KeyValueStr;
+  end;
+
+  queryEntrada.SQL.Add(LFiltro);
 
   queryEntrada.Open;
 end;
 
+procedure TFrameManutencaoEntrada.comboPessoaChange(Sender: TObject);
+begin
+  ExecutaPesquisa;
+end;
+
+procedure TFrameManutencaoEntrada.comboVeiculoChange(Sender: TObject);
+begin
+  ExecutaPesquisa;
+end;
+
 procedure TFrameManutencaoEntrada.UniFrameCreate(Sender: TObject);
 begin
-  ExecutaPesquisa(EmptyStr);
+  ExecutaPesquisa;
 end;
 
 initialization

@@ -36,7 +36,7 @@ type
     procedure queryConsultaAfterScroll(DataSet: TDataSet);
     procedure dsManutencaoStateChange(Sender: TObject);
   protected
-    procedure MostraManute; virtual;
+    procedure MostraManutencao; virtual;
   end;
 
 implementation
@@ -110,34 +110,22 @@ begin
     queryManutencao.Cancel;
 end;
 
-procedure TFrameModelo.MostraManute;
+procedure TFrameModelo.MostraManutencao;
 begin
 
 end;
 
 procedure TFrameModelo.queryConsultaAfterScroll(DataSet: TDataSet);
 begin
-  MostraManute;
+  MostraManutencao;
 end;
 
 procedure TFrameModelo.UniFrameCreate(Sender: TObject);
 begin
-//  buttonIncluir.Caption  := '<i class="fa fa fa-file-o         fa-2x" aria-hidden="true"></i><br>Inserir';
-//  buttonAlterar.Caption  := '<i class="fa fa fa-file-text-o    fa-2x" aria-hidden="true"></i><br>Alterar';
-//  buttonExcluir.caption  := '<i class="fa fa fa-minus-square-o fa-2x" aria-hidden="true"></i><br>Excluir';
-//  buttonCancelar.Caption := '<i class="fa fa fa fa-rotate-left fa-2x" aria-hidden="true"></i><br>Cancelar';
-//  buttonGravar.Caption   := '<i class="fa fa-check-square-o    fa-2x" aria-hidden="true"></i><br>Gravar';
+  PageControlModelo.ActivePage := tsConsulta;
 
-//  BtFiltrar.Caption   := '<i class="fa fa fa-search-plus    fa-2x" aria-hidden="true"></i>Filtrar' ;//'<span class="glyphicon glyphicon-zoom-in btn btn-default btn-lg"> Filtrar</span>';
-                         //'<i class="fa fa fa-search-plus       fa-2x" aria-hidden="true"></i>Filtrar';
-
-  if tsConsulta.Visible then
-  begin
-    PageControlModelo.ActivePage := tsConsulta;
-
-    if gridConsulta.CanFocus then
-      gridConsulta.SetFocus;
-  end;
+  if gridConsulta.CanFocus then
+    gridConsulta.SetFocus;
 end;
 
 procedure TFrameModelo.UniFrameDestroy(Sender: TObject);

@@ -5,10 +5,7 @@ inherited FrameEmpresa: TFrameEmpresa
     Width = 1058
     ExplicitWidth = 1058
     inherited tsConsulta: TUniTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 1050
-      ExplicitHeight = 549
       inherited gridConsulta: TUniDBGrid
         Width = 1050
         OnDblClick = gridConsultaDblClick

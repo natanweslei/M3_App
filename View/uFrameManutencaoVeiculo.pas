@@ -8,8 +8,8 @@ uses
   uniDBGrid, uniPageControl, uniGUIBaseClasses, uFrameModelo, uniLabel, uniButton, uniBitBtn,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, uniImageList, uniGUITypes, uFramePainelFiltro, uniDBImage,
-  uniFileUpload, uniImage, uniDBNavigator;
+  FireDAC.Comp.Client, uniImageList, uniGUITypes, uniDBImage, uniFileUpload, uniImage, uniDBNavigator,
+  uniMultiItem, uniComboBox, uniDBComboBox, uniDBLookupComboBox;
 
 type
   TFrameManutencaoVeiculo = class(TUniFrame)
@@ -26,7 +26,6 @@ type
     gridContaReceber: TUniDBGrid;
     dsContasReceber: TDataSource;
     queryContasReceber: TFDQuery;
-    FramePainelFiltro: TFramePainelFiltro;
     panelCentro: TUniPanel;
     imageVeiculos: TUniDBImage;
     buttonImagens: TUniFileUploadButton;
@@ -35,6 +34,8 @@ type
     navigaterImagensVeiculo: TUniDBNavigator;
     panelBotton: TUniPanel;
     panelImagemLeft: TUniPanel;
+    comboVeiculo: TUniDBLookupComboBox;
+    comboMarca: TUniComboBox;
     procedure UniFrameCreate(Sender: TObject);
     procedure buttonCadastroVeiculoClick(Sender: TObject);
     procedure queryVeiculoAfterScroll(DataSet: TDataSet);
@@ -42,6 +43,9 @@ type
     procedure gridContaReceberDrawColumnCell(Sender: TObject; ACol, ARow: Integer; Column: TUniDBGridColumn; Attribs: TUniCellAttribs);
     procedure FramePainelFiltro1comboVeiculoChange(Sender: TObject);
     procedure buttonImagensCompleted(Sender: TObject; AStream: TFileStream);
+    procedure comboVeiculoChange(Sender: TObject);
+    procedure comboMarcaChange(Sender: TObject);
+    procedure UniFrameDestroy(Sender: TObject);
   private
     procedure ExecutaPesquisa;
   end;
@@ -115,20 +119,33 @@ begin
   queryVeiculo.SQL.Clear;
   queryVeiculo.SQL.Add('select * from veiculo');
 
-  if not FramePainelFiltro.comboVeiculo.ListSource.DataSet.IsEmpty then
+  if not comboVeiculo.ListSource.DataSet.IsEmpty then
   begin
-    if FramePainelFiltro.comboVeiculo.KeyValue > 0 then
-      LFiltro := WhereAnd + 'veiculo_id = ' + FramePainelFiltro.comboVeiculo.KeyValueStr;
+    if comboVeiculo.KeyValue > 0 then
+      LFiltro := WhereAnd + 'veiculo_id = ' + comboVeiculo.KeyValueStr;
   end;
+
+  if comboMarca.ItemIndex >= 0 then
+    LFiltro := LFiltro + WhereAnd + 'marca = ' + QuotedStr(comboMarca.Items[comboMarca.ItemIndex]);
 
   queryVeiculo.SQL.Add(LFiltro);
 
   queryVeiculo.Open;
 
-//  queryVeiculoAfterScroll(nil);
+  queryVeiculoAfterScroll(nil);
 end;
 
 procedure TFrameManutencaoVeiculo.FramePainelFiltro1comboVeiculoChange(Sender: TObject);
+begin
+  ExecutaPesquisa;
+end;
+
+procedure TFrameManutencaoVeiculo.comboMarcaChange(Sender: TObject);
+begin
+  ExecutaPesquisa;
+end;
+
+procedure TFrameManutencaoVeiculo.comboVeiculoChange(Sender: TObject);
 begin
   ExecutaPesquisa;
 end;
@@ -236,6 +253,13 @@ procedure TFrameManutencaoVeiculo.UniFrameCreate(Sender: TObject);
 begin
   ExecutaPesquisa;
   UniMainModule.AlterarStatusFinanceiro;
+  UniMainModule.queryCadastroVeiculo.Open('select * from veiculo');
+end;
+
+procedure TFrameManutencaoVeiculo.UniFrameDestroy(Sender: TObject);
+begin
+  if UniMainModule.queryCadastroVeiculo.Active then
+    UniMainModule.queryCadastroVeiculo.Close;
 end;
 
 initialization

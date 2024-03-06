@@ -1,10 +1,6 @@
 inherited FrameTipoGasto: TFrameTipoGasto
   inherited PageControlModelo: TUniPageControl
     inherited tsConsulta: TUniTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
-      ExplicitWidth = 837
-      ExplicitHeight = 549
       inherited panelFiltros: TUniPanel
         Visible = False
       end

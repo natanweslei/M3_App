@@ -11,7 +11,7 @@ uses
   uFrameModelo in 'View\uFrameModelo.pas' {FrameModelo: TUniFrame},
   uFrameTipoGasto in 'View\uFrameTipoGasto.pas' {FraFormTipoGasto: TUniFrame},
   uFrameManutencaoVeiculo in 'View\uFrameManutencaoVeiculo.pas' {FrameManutencaoVeiculo},
-  uFramePessoa in 'View\uFramePessoa.pas' {FramePessoa: TUniFrame},
+  uFrameManutencaoPessoa in 'View\uFrameManutencaoPessoa.pas' {FrameManutencaoPessoa: TUniFrame},
   uAPI in 'API\uAPI.pas',
   uFormModalModelo in 'View\uFormModalModelo.pas' {FormModalModelo: TUniForm},
   uFrameEmpresa in 'View\uFrameEmpresa.pas' {FrameEmpresa: TUniFrame},
@@ -29,7 +29,8 @@ uses
   uFrameManutencaoContasReceber in 'View\uFrameManutencaoContasReceber.pas' {FrameManutencaoContasReceber: TUniFrame},
   uFormStatusFinanceiro in 'View\uFormStatusFinanceiro.pas' {FormStatusFinanceiro: TUniForm},
   uFormModalContasReceber in 'View\uFormModalContasReceber.pas' {FormModalContasReceber: TUniForm},
-  uFramePainelFiltro in 'View\uFramePainelFiltro.pas' {FramePainelFiltro: TUniFrame};
+  uFormAlertaFinanceiro in 'View\uFormAlertaFinanceiro.pas' {FormAlertaFinanceiro: TUniForm},
+  uFormModalPessoa in 'View\uFormModalPessoa.pas' {FormModalPessoa: TUniForm};
 
 {$R *.res}
 

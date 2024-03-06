@@ -23,23 +23,27 @@ object FormStatusFinanceiro: TFormStatusFinanceiro
     TabOrder = 0
   end
   object buttonConfirmar: TUniButton
-    Left = 24
-    Top = 177
-    Width = 75
-    Height = 25
+    Left = 231
+    Top = 174
+    Width = 90
+    Height = 28
     Hint = ''
     Caption = 'Confirmar'
     TabOrder = 1
+    Images = UniMainModule.ImageListMain
+    ImageIndex = 14
     OnClick = buttonConfirmarClick
   end
   object buttonCancelar: TUniButton
-    Left = 246
-    Top = 177
-    Width = 75
-    Height = 25
+    Left = 24
+    Top = 174
+    Width = 90
+    Height = 28
     Hint = ''
     Caption = 'Cancelar'
     TabOrder = 2
+    Images = UniMainModule.ImageListMain
+    ImageIndex = 15
     OnClick = buttonCancelarClick
   end
 end

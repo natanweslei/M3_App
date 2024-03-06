@@ -29,7 +29,7 @@ type
     procedure gridConsultaDblClick(Sender: TObject);
     procedure queryManutencaoBeforePost(DataSet: TDataSet);
   protected
-    procedure MostraManute; override;
+    procedure MostraManutencao; override;
   end;
 
 implementation
@@ -45,7 +45,7 @@ begin
   PageControlModelo.ActivePage := tsManutencao;
 end;
 
-procedure TFrameEmpresa.MostraManute;
+procedure TFrameEmpresa.MostraManutencao;
 begin
   inherited;
   queryManutencao.Close;

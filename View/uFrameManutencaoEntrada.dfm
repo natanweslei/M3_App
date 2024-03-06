@@ -30,9 +30,9 @@ object FrameManutencaoEntrada: TFrameManutencaoEntrada
   end
   object gridEntrada: TUniDBGrid
     Left = 0
-    Top = 128
+    Top = 73
     Width = 980
-    Height = 499
+    Height = 554
     Hint = ''
     DataSource = dsEntrada
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgAutoRefreshRow]
@@ -76,11 +76,48 @@ object FrameManutencaoEntrada: TFrameManutencaoEntrada
     Left = 0
     Top = 0
     Width = 980
-    Height = 128
+    Height = 73
     Hint = ''
     Align = alTop
     TabOrder = 2
     Caption = ''
+    object comboVeiculo: TUniDBLookupComboBox
+      Left = 15
+      Top = 24
+      Width = 346
+      Hint = ''
+      ListField = 'veiculo_id;modelo;marca'
+      ListSource = UniMainModule.dsCadastroVeiculo
+      KeyField = 'veiculo_id'
+      ListFieldIndex = 0
+      ClearButton = True
+      DataField = 'veiculo_id'
+      TabOrder = 1
+      Color = clWindow
+      FieldLabel = 'Ve'#237'culo'
+      FieldLabelWidth = 60
+      FieldLabelAlign = laRight
+      OnChange = comboVeiculoChange
+    end
+    object comboPessoa: TUniDBLookupComboBox
+      Left = 375
+      Top = 24
+      Width = 346
+      Hint = ''
+      ListField = 'pessoa_id;nome'
+      ListSource = UniMainModule.dsCadastroPessoa
+      KeyField = 'pessoa_id'
+      ListFieldIndex = 0
+      ClearButton = True
+      DataField = 'pessoa_id'
+      TabOrder = 2
+      Color = clWindow
+      FieldLabel = 'Fornecedor'
+      FieldLabelWidth = 70
+      FieldLabelAlign = laRight
+      ForceSelection = True
+      OnChange = comboPessoaChange
+    end
   end
   object dsEntrada: TDataSource
     DataSet = queryEntrada

@@ -8,8 +8,8 @@ uses
   uniDBGrid, uniPageControl, uniGUIBaseClasses, uFrameModelo, uniLabel, uniButton, uniBitBtn,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, uniImageList, uniGUITypes, uFramePainelFiltro, UniDateTimePicker, DateUtils,
-  uniRadioGroup, uniCheckBox, uniColorButton;
+  FireDAC.Comp.Client, uniImageList, uniGUITypes, UniDateTimePicker, DateUtils, uniRadioGroup, uniCheckBox,
+  uniColorButton, uniRadioButton, uniGroupBox, uniMultiItem, uniComboBox, uniDBComboBox, uniDBLookupComboBox;
 
 type
   TFrameManutencaoContasReceber = class(TUniFrame)
@@ -20,21 +20,30 @@ type
     panelFiltro: TUniPanel;
     gridContaReceber: TUniDBGrid;
     buttonStatusFinanceiro: TUniButton;
-    FramePainelFiltro: TFramePainelFiltro;
     checkAberto: TUniCheckBox;
     checkVencido: TUniCheckBox;
     checkPago: TUniCheckBox;
     panelStatusPago: TUniSimplePanel;
     panelStatusAberto: TUniSimplePanel;
     panelStatusVencido: TUniSimplePanel;
+    comboPessoa: TUniDBLookupComboBox;
+    comboVeiculo: TUniDBLookupComboBox;
+    editDataInicial: TUniDateTimePicker;
+    editDataFinal: TUniDateTimePicker;
+    groupData: TUniGroupBox;
+    radioIgual: TUniRadioButton;
+    radioEntre: TUniRadioButton;
+    radioNaoFiltrar: TUniRadioButton;
     procedure UniFrameCreate(Sender: TObject);
     procedure buttonContaReceberClick(Sender: TObject);
     procedure buttonStatusFinanceiroClick(Sender: TObject);
     procedure gridContaReceberDrawColumnCell(Sender: TObject; ACol, ARow: Integer; Column: TUniDBGridColumn; Attribs: TUniCellAttribs);
-    procedure FramePainelFiltroradioIgualClick(Sender: TObject);
-    procedure FramePainelFiltrocomboVeiculoChange(Sender: TObject);
+    procedure radioIgualClick(Sender: TObject);
+    procedure comboVeiculoChange(Sender: TObject);
     procedure checkAbertoChange(Sender: TObject);
-    procedure FramePainelFiltroeditDataInicialChange(Sender: TObject);
+    procedure editDataInicialChange(Sender: TObject);
+    procedure comboPessoaChange(Sender: TObject);
+    procedure UniFrameDestroy(Sender: TObject);
   private
     procedure ExecutaPesquisa;
   end;
@@ -111,16 +120,16 @@ begin
   queryContasReceber.SQL.Add('inner join pessoa');
   queryContasReceber.SQL.Add('on pessoa.pessoa_id = financeiro.pessoa_id');
 
-  if not FramePainelFiltro.comboVeiculo.ListSource.DataSet.IsEmpty then
+  if not comboVeiculo.ListSource.DataSet.IsEmpty then
   begin
-    if FramePainelFiltro.comboVeiculo.KeyValue > 0 then
-      LFiltro := WhereAnd + 'financeiro.veiculo_id = ' + FramePainelFiltro.comboVeiculo.KeyValueStr;
+    if comboVeiculo.KeyValue > 0 then
+      LFiltro := WhereAnd + 'financeiro.veiculo_id = ' + comboVeiculo.KeyValueStr;
   end;
 
-  if not FramePainelFiltro.comboPessoa.ListSource.DataSet.IsEmpty then
+  if not comboPessoa.ListSource.DataSet.IsEmpty then
   begin
-    if FramePainelFiltro.comboPessoa.KeyValue > 0 then
-      LFiltro := LFiltro + WhereAnd + 'financeiro.pessoa_id = ' + FramePainelFiltro.comboPessoa.KeyValueStr;
+    if comboPessoa.KeyValue > 0 then
+      LFiltro := LFiltro + WhereAnd + 'financeiro.pessoa_id = ' + comboPessoa.KeyValueStr;
   end;
 
   if not checkAberto.Checked then
@@ -132,15 +141,15 @@ begin
   if not checkPago.Checked then
     LFiltro := LFiltro + WhereAnd + 'financeiro.status_financeiro <> ''PAGO''';
 
-  if FramePainelFiltro.radioIgual.Checked then
-    LFiltro := LFiltro + WhereAnd + 'to_char(financeiro.data_vencimento, ''dd/mm/yyyy'') = ' + QuotedStr(DateToStr(FramePainelFiltro.editDataInicial.DateTime));
+  if radioIgual.Checked then
+    LFiltro := LFiltro + WhereAnd + 'to_char(financeiro.data_vencimento, ''dd/mm/yyyy'') = ' + QuotedStr(DateToStr(editDataInicial.DateTime));
 
-  if FramePainelFiltro.radioEntre.Checked then
+  if radioEntre.Checked then
   begin
     LFiltro := LFiltro +
                WhereAnd +
-               'financeiro.data_vencimento between to_date(' + QuotedStr(DateToStr(FramePainelFiltro.editDataInicial.DateTime)) + ', ''dd/mm/yyyy'')' +
-               ' and to_date(' + QuotedStr(DateToStr(FramePainelFiltro.editDataFinal.DateTime)) + ', ''dd/mm/yyyy'')';
+               'financeiro.data_vencimento between to_date(' + QuotedStr(DateToStr(editDataInicial.DateTime)) + ', ''dd/mm/yyyy'')' +
+               ' and to_date(' + QuotedStr(DateToStr(editDataFinal.DateTime)) + ', ''dd/mm/yyyy'')';
   end;
 
   queryContasReceber.SQL.Add(LFiltro);
@@ -152,12 +161,17 @@ begin
   queryContasReceber.Open;
 end;
 
-procedure TFrameManutencaoContasReceber.FramePainelFiltrocomboVeiculoChange(Sender: TObject);
+procedure TFrameManutencaoContasReceber.comboPessoaChange(Sender: TObject);
 begin
   ExecutaPesquisa;
 end;
 
-procedure TFrameManutencaoContasReceber.FramePainelFiltroeditDataInicialChange(Sender: TObject);
+procedure TFrameManutencaoContasReceber.comboVeiculoChange(Sender: TObject);
+begin
+  ExecutaPesquisa;
+end;
+
+procedure TFrameManutencaoContasReceber.editDataInicialChange(Sender: TObject);
 begin
   ExecutaPesquisa;
 end;
@@ -188,17 +202,32 @@ end;
 procedure TFrameManutencaoContasReceber.UniFrameCreate(Sender: TObject);
 begin
   UniMainModule.AlterarStatusFinanceiro;
-  FramePainelFiltro.editDataInicial.DateTime := StartOfTheMonth(Now);
-  FramePainelFiltro.editDataFinal.DateTime := EndOfTheMonth(Now);
-  FramePainelFiltro.radioNaoFiltrar.Checked := True;
-  FramePainelFiltroradioIgualClick(nil);
+
+  UniMainModule.queryCadastroPessoa.Open('select * from pessoa');
+  UniMainModule.queryCadastroVeiculo.Open('select * from veiculo');
+
+  editDataInicial.DateTime := StartOfTheMonth(Now);
+  editDataFinal.DateTime := EndOfTheMonth(Now);
+
+  radioNaoFiltrar.Checked := True;
+  radioIgualClick(nil);
+
   ExecutaPesquisa;
 end;
 
-procedure TFrameManutencaoContasReceber.FramePainelFiltroradioIgualClick(Sender: TObject);
+procedure TFrameManutencaoContasReceber.UniFrameDestroy(Sender: TObject);
 begin
-  FramePainelFiltro.editDataInicial.Enabled := FramePainelFiltro.radioIgual.Checked or FramePainelFiltro.radioEntre.Checked;
-  FramePainelFiltro.editDataFinal.Enabled := FramePainelFiltro.radioEntre.Checked;
+  if UniMainModule.queryCadastroPessoa.Active then
+    UniMainModule.queryCadastroPessoa.Close;
+
+  if UniMainModule.queryCadastroVeiculo.Active then
+    UniMainModule.queryCadastroVeiculo.Close;
+end;
+
+procedure TFrameManutencaoContasReceber.radioIgualClick(Sender: TObject);
+begin
+  editDataInicial.Enabled := radioIgual.Checked or radioEntre.Checked;
+  editDataFinal.Enabled := radioEntre.Checked;
   ExecutaPesquisa;
 end;
 

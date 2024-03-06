@@ -1,14 +1,16 @@
 inherited FormModalVeiculo: TFormModalVeiculo
-  Caption = 'FormModalVeiculo'
+  Caption = 'Ve'#237'culo'
   OnShow = UniFormShow
   OnCreate = UniFormCreate
+  ExplicitWidth = 798
+  ExplicitHeight = 557
   PixelsPerInch = 96
   TextHeight = 13
   object scrollVeiculo: TUniScrollBox [1]
     Left = 0
     Top = 0
-    Width = 798
-    Height = 512
+    Width = 792
+    Height = 483
     Hint = ''
     Align = alClient
     TabOrder = 1
@@ -140,6 +142,7 @@ inherited FormModalVeiculo: TFormModalVeiculo
         TabOrder = 0
         FieldLabel = 'Marca'
         FieldLabelAlign = laRight
+        ClearButton = True
         ForceSelection = True
         IconItems = <>
       end
@@ -158,6 +161,7 @@ inherited FormModalVeiculo: TFormModalVeiculo
         TabOrder = 1
         FieldLabel = 'Situa'#231#227'o'
         FieldLabelAlign = laRight
+        ClearButton = True
         ForceSelection = True
         IconItems = <>
       end

@@ -8,7 +8,8 @@ uses
   uniDBGrid, uniPageControl, uniGUIBaseClasses, uFrameModelo, uniLabel, uniButton, uniBitBtn,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, uniImageList;
+  FireDAC.Comp.Client, uniImageList, uniMultiItem, uniComboBox, uniDBComboBox,
+  uniDBLookupComboBox;
 
 type
   TFrameManutencaoVenda = class(TUniFrame)
@@ -18,10 +19,14 @@ type
     queryVenda: TFDQuery;
     gridVenda: TUniDBGrid;
     panelFiltro: TUniPanel;
+    comboVeiculo: TUniDBLookupComboBox;
+    comboPessoa: TUniDBLookupComboBox;
     procedure buttonVendaVeiculoClick(Sender: TObject);
     procedure UniFrameCreate(Sender: TObject);
+    procedure comboVeiculoChange(Sender: TObject);
+    procedure comboPessoaChange(Sender: TObject);
   private
-    procedure ExecutaPesquisa(AFiltro: string);
+    procedure ExecutaPesquisa;
   end;
 
 implementation
@@ -45,8 +50,20 @@ begin
   );
 end;
 
-procedure TFrameManutencaoVenda.ExecutaPesquisa(AFiltro: string);
+procedure TFrameManutencaoVenda.ExecutaPesquisa;
+var
+  LFiltro: string;
+
+  function WhereAnd: string;
+  begin
+    if LFiltro = EmptyStr then
+      Result := ' where '
+    else
+      Result := ' and ';
+  end;
 begin
+  LFiltro := EmptyStr;
+
   queryVenda.Close;
   queryVenda.SQL.Clear;
   queryVenda.SQL.Add('select');
@@ -64,15 +81,36 @@ begin
   queryVenda.SQL.Add('inner join pessoa');
   queryVenda.SQL.Add('on pessoa.pessoa_id = venda.pessoa_id');
 
-  if AFiltro <> EmptyStr then
-    queryVenda.SQL.Add(AFiltro);
+  if not comboVeiculo.ListSource.DataSet.IsEmpty then
+  begin
+    if comboVeiculo.KeyValue > 0 then
+      LFiltro := WhereAnd + 'venda.veiculo_id = ' + comboVeiculo.KeyValueStr;
+  end;
+
+  if not comboPessoa.ListSource.DataSet.IsEmpty then
+  begin
+    if comboPessoa.KeyValue > 0 then
+      LFiltro := LFiltro + WhereAnd + 'venda.pessoa_id = ' + comboPessoa.KeyValueStr;
+  end;
+
+  queryVenda.SQL.Add(LFiltro);
 
   queryVenda.Open;
 end;
 
+procedure TFrameManutencaoVenda.comboPessoaChange(Sender: TObject);
+begin
+  ExecutaPesquisa;
+end;
+
+procedure TFrameManutencaoVenda.comboVeiculoChange(Sender: TObject);
+begin
+  ExecutaPesquisa;
+end;
+
 procedure TFrameManutencaoVenda.UniFrameCreate(Sender: TObject);
 begin
-  ExecutaPesquisa(EmptyStr);
+  ExecutaPesquisa;
 end;
 
 initialization

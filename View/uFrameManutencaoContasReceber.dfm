@@ -4,6 +4,7 @@ object FrameManutencaoContasReceber: TFrameManutencaoContasReceber
   Width = 980
   Height = 672
   OnCreate = UniFrameCreate
+  OnDestroy = UniFrameDestroy
   TabOrder = 0
   object panelBotoes: TUniPanel
     Left = 0
@@ -35,6 +36,8 @@ object FrameManutencaoContasReceber: TFrameManutencaoContasReceber
       Hint = ''
       Caption = 'Alterar Status Financeiro'
       TabOrder = 2
+      Images = UniMainModule.ImageListMain
+      ImageIndex = 16
       OnClick = buttonStatusFinanceiroClick
     end
   end
@@ -47,71 +50,106 @@ object FrameManutencaoContasReceber: TFrameManutencaoContasReceber
     Align = alTop
     TabOrder = 1
     Caption = ''
-    inline FramePainelFiltro: TFramePainelFiltro
-      AlignWithMargins = True
-      Left = 4
-      Top = 4
-      Width = 972
-      Height = 120
-      Align = alClient
-      Anchors = [akLeft, akTop, akRight, akBottom]
+    object comboPessoa: TUniDBLookupComboBox
+      Left = 15
+      Top = 51
+      Width = 346
+      Hint = ''
+      ListField = 'pessoa_id;nome'
+      ListSource = UniMainModule.dsCadastroPessoa
+      KeyField = 'pessoa_id'
+      ListFieldIndex = 0
+      ClearButton = True
+      DataField = 'pessoa_id'
+      TabOrder = 0
+      Color = clWindow
+      FieldLabel = 'Cliente'
+      FieldLabelWidth = 60
+      FieldLabelAlign = laRight
+      ForceSelection = True
+      OnChange = comboPessoaChange
+    end
+    object comboVeiculo: TUniDBLookupComboBox
+      Left = 15
+      Top = 16
+      Width = 346
+      Hint = ''
+      ListField = 'veiculo_id;modelo;marca'
+      ListSource = UniMainModule.dsCadastroVeiculo
+      KeyField = 'veiculo_id'
+      ListFieldIndex = 0
+      ClearButton = True
+      DataField = 'veiculo_id'
       TabOrder = 1
-      Background.Picture.Data = {00}
-      ExplicitLeft = 4
-      ExplicitTop = 4
-      ExplicitWidth = 972
-      ExplicitHeight = 120
-      inherited comboPessoa: TUniDBLookupComboBox
-        AlignWithMargins = True
+      Color = clWindow
+      FieldLabel = 'Ve'#237'culo'
+      FieldLabelWidth = 60
+      FieldLabelAlign = laRight
+      OnChange = comboVeiculoChange
+    end
+    object groupData: TUniGroupBox
+      Left = 367
+      Top = 3
+      Width = 314
+      Height = 81
+      Hint = ''
+      Caption = 'Data Vencimento'
+      TabOrder = 9
+      object editDataFinal: TUniDateTimePicker
+        Left = 82
         Top = 48
-        OnChange = FramePainelFiltrocomboVeiculoChange
-        ExplicitTop = 48
+        Width = 166
+        Hint = ''
+        DateTime = 45343.000000000000000000
+        DateFormat = 'dd/MM/yyyy'
+        TimeFormat = 'HH:mm:ss'
+        TabOrder = 1
+        FieldLabel = 'Data Final'
+        FieldLabelWidth = 70
+        FieldLabelAlign = laRight
       end
-      inherited comboVeiculo: TUniDBLookupComboBox
-        AlignWithMargins = True
+      object editDataInicial: TUniDateTimePicker
+        Left = 82
         Top = 13
-        OnChange = FramePainelFiltrocomboVeiculoChange
-        ExplicitTop = 13
+        Width = 166
+        Hint = ''
+        DateTime = 45343.000000000000000000
+        DateFormat = 'dd/MM/yyyy'
+        TimeFormat = 'HH:mm:ss'
+        TabOrder = 2
+        FieldLabel = 'Data Inicial'
+        FieldLabelWidth = 70
+        FieldLabelAlign = laRight
       end
-      inherited editPesquisa: TUniEdit
-        AlignWithMargins = True
-        Left = 832
-        Top = 11
-        Width = 137
-        Visible = False
-        ExplicitLeft = 832
-        ExplicitTop = 11
-        ExplicitWidth = 137
+      object radioIgual: TUniRadioButton
+        Left = 8
+        Top = 35
+        Width = 45
+        Height = 17
+        Hint = ''
+        Caption = 'Igual'
+        TabOrder = 3
+        OnClick = radioIgualClick
       end
-      inherited groupData: TUniGroupBox
-        Top = 0
-        Width = 266
-        Height = 75
-        Caption = 'Data Vencimento'
-        ExplicitTop = 0
-        ExplicitWidth = 266
-        ExplicitHeight = 75
-        inherited editDataFinal: TUniDateTimePicker
-          Top = 47
-          OnChange = FramePainelFiltroeditDataInicialChange
-          ExplicitTop = 47
-        end
-        inherited editDataInicial: TUniDateTimePicker
-          OnChange = FramePainelFiltroeditDataInicialChange
-        end
-        inherited radioIgual: TUniRadioButton
-          Top = 33
-          OnClick = FramePainelFiltroradioIgualClick
-          ExplicitTop = 33
-        end
-        inherited radioEntre: TUniRadioButton
-          Top = 51
-          OnClick = FramePainelFiltroradioIgualClick
-          ExplicitTop = 51
-        end
-        inherited radioNaoFiltrar: TUniRadioButton
-          OnClick = FramePainelFiltroradioIgualClick
-        end
+      object radioEntre: TUniRadioButton
+        Left = 8
+        Top = 56
+        Width = 48
+        Height = 17
+        Hint = ''
+        Caption = 'Entre'
+        TabOrder = 4
+        OnClick = radioIgualClick
+      end
+      object radioNaoFiltrar: TUniRadioButton
+        Left = 8
+        Top = 15
+        Width = 67
+        Height = 17
+        Hint = ''
+        Caption = 'N'#227'o filtrar'
+        TabOrder = 5
+        OnClick = radioIgualClick
       end
     end
     object checkAberto: TUniCheckBox

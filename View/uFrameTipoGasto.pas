@@ -52,6 +52,7 @@ begin
   tsConsulta.Visible := False;
   inherited;
 
+  PageControlModelo.ActivePage := tsManutencao;
   editDescricao.MaxLength := 200;
 
   queryManutencao.Close;

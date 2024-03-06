@@ -8,7 +8,7 @@ uses
   uniDBGrid, uniPageControl, uniGUIBaseClasses, uFrameModelo, uniLabel, uniButton, uniBitBtn,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, uniImageList;
+  FireDAC.Comp.Client, uniImageList, uniMultiItem, uniComboBox, uniDBComboBox, uniDBLookupComboBox;
 
 type
   TFrameManutencaoGasto = class(TUniFrame)
@@ -18,10 +18,15 @@ type
     dsGasto: TDataSource;
     queryGasto: TFDQuery;
     panelFiltro: TUniPanel;
+    comboVeiculo: TUniDBLookupComboBox;
+    comboPessoa: TUniDBLookupComboBox;
     procedure buttonGastosVeiculoClick(Sender: TObject);
     procedure UniFrameCreate(Sender: TObject);
+    procedure UniFrameDestroy(Sender: TObject);
+    procedure comboVeiculoChange(Sender: TObject);
+    procedure comboPessoaChange(Sender: TObject);
   private
-    procedure ExecutaPesquisa(AFiltro: string);
+    procedure ExecutaPesquisa;
   end;
 
 implementation
@@ -45,8 +50,20 @@ begin
   );
 end;
 
-procedure TFrameManutencaoGasto.ExecutaPesquisa(AFiltro: string);
+procedure TFrameManutencaoGasto.ExecutaPesquisa;
+var
+  LFiltro: string;
+
+  function WhereAnd: string;
+  begin
+    if LFiltro = EmptyStr then
+      Result := ' where '
+    else
+      Result := ' and ';
+  end;
 begin
+  LFiltro := EmptyStr;
+
   queryGasto.Close;
   queryGasto.SQL.Clear;
   queryGasto.SQL.Add('select');
@@ -69,15 +86,47 @@ begin
   queryGasto.SQL.Add('inner join tipo_gasto');
   queryGasto.SQL.Add('on tipo_gasto.tipogasto_id = gasto.tipogasto_id');
 
-  if AFiltro <> EmptyStr then
-    queryGasto.SQL.Add(AFiltro);
+  if not comboVeiculo.ListSource.DataSet.IsEmpty then
+  begin
+    if comboVeiculo.KeyValue > 0 then
+      LFiltro := WhereAnd + 'gasto.veiculo_id = ' + comboVeiculo.KeyValueStr;
+  end;
+
+  if not comboPessoa.ListSource.DataSet.IsEmpty then
+  begin
+    if comboPessoa.KeyValue > 0 then
+      LFiltro := LFiltro + WhereAnd + 'gasto.pessoa_id = ' + comboPessoa.KeyValueStr;
+  end;
+
+  queryGasto.SQL.Add(LFiltro);
 
   queryGasto.Open;
 end;
 
+procedure TFrameManutencaoGasto.comboPessoaChange(Sender: TObject);
+begin
+  ExecutaPesquisa;
+end;
+
+procedure TFrameManutencaoGasto.comboVeiculoChange(Sender: TObject);
+begin
+  ExecutaPesquisa;
+end;
+
 procedure TFrameManutencaoGasto.UniFrameCreate(Sender: TObject);
 begin
-  ExecutaPesquisa(EmptyStr);
+  ExecutaPesquisa;
+  UniMainModule.queryCadastroVeiculo.Open('select * from veiculo');
+  UniMainModule.queryCadastroPessoa.Open('select * from pessoa');
+end;
+
+procedure TFrameManutencaoGasto.UniFrameDestroy(Sender: TObject);
+begin
+  if UniMainModule.queryCadastroVeiculo.Active then
+    UniMainModule.queryCadastroVeiculo.Close;
+
+  if UniMainModule.queryCadastroPessoa.Active then
+    UniMainModule.queryCadastroPessoa.Close;
 end;
 
 initialization

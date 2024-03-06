@@ -1,5 +1,5 @@
 inherited FormModalVenda: TFormModalVenda
-  Caption = 'FormModalVenda'
+  Caption = 'Venda'
   OnShow = UniFormShow
   PixelsPerInch = 96
   TextHeight = 13

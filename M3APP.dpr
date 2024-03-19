@@ -13,7 +13,6 @@ uses
   uFrameManutencaoVeiculo in 'View\uFrameManutencaoVeiculo.pas' {FrameManutencaoVeiculo},
   uFrameManutencaoPessoa in 'View\uFrameManutencaoPessoa.pas' {FrameManutencaoPessoa: TUniFrame},
   uAPI in 'API\uAPI.pas',
-  uFormModalModelo in 'View\uFormModalModelo.pas' {FormModalModelo: TUniForm},
   uFrameEmpresa in 'View\uFrameEmpresa.pas' {FrameEmpresa: TUniFrame},
   uFormModalVeiculo in 'View\uFormModalVeiculo.pas' {FormModalVeiculo: TUniForm},
   uFormModalEntrada in 'View\uFormModalEntrada.pas' {FormModalEntrada: TUniForm},
@@ -30,7 +29,9 @@ uses
   uFormStatusFinanceiro in 'View\uFormStatusFinanceiro.pas' {FormStatusFinanceiro: TUniForm},
   uFormModalContasReceber in 'View\uFormModalContasReceber.pas' {FormModalContasReceber: TUniForm},
   uFormAlertaFinanceiro in 'View\uFormAlertaFinanceiro.pas' {FormAlertaFinanceiro: TUniForm},
-  uFormModalPessoa in 'View\uFormModalPessoa.pas' {FormModalPessoa: TUniForm};
+  uFormModalPessoa in 'View\uFormModalPessoa.pas' {FormModalPessoa: TUniForm},
+  uFormModalModelo in 'View\uFormModalModelo.pas' {FormModalModelo: TUniForm},
+  uFormModalAcesso in 'View\uFormModalAcesso.pas' {FormModalAcesso: TUniForm};
 
 {$R *.res}
 

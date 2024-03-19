@@ -1,19 +1,21 @@
 inherited FormModalVenda: TFormModalVenda
   Caption = 'Venda'
   OnShow = UniFormShow
+  ExplicitWidth = 805
+  ExplicitHeight = 587
   PixelsPerInch = 96
   TextHeight = 13
   object groupDados: TUniGroupBox [1]
     Left = 16
-    Top = 117
+    Top = 131
     Width = 761
-    Height = 92
+    Height = 70
     Hint = ''
     Caption = ''
     TabOrder = 1
     object editValorVeiculo: TUniDBFormattedNumberEdit
       Left = 15
-      Top = 23
+      Top = 7
       Width = 170
       Height = 22
       Hint = ''
@@ -32,7 +34,7 @@ inherited FormModalVenda: TFormModalVenda
     end
     object editTaxa: TUniDBFormattedNumberEdit
       Left = 15
-      Top = 51
+      Top = 35
       Width = 170
       Height = 22
       Hint = ''
@@ -51,7 +53,7 @@ inherited FormModalVenda: TFormModalVenda
     end
     object editQuantidadeParcelas: TUniDBFormattedNumberEdit
       Left = 191
-      Top = 51
+      Top = 35
       Width = 170
       Height = 22
       Hint = ''
@@ -65,12 +67,13 @@ inherited FormModalVenda: TFormModalVenda
       DecimalPrecision = 0
       DecimalSeparator = ','
       ThousandSeparator = '.'
+      OnChange = editQuantidadeParcelasChange
       OnChangeValue = editValorEntradaChangeValue
       OnKeyUp = editValorVeiculoKeyUp
     end
     object editValorParcela: TUniDBFormattedNumberEdit
       Left = 370
-      Top = 51
+      Top = 35
       Width = 170
       Height = 22
       Hint = ''
@@ -87,7 +90,7 @@ inherited FormModalVenda: TFormModalVenda
     end
     object editValorEntrada: TUniDBFormattedNumberEdit
       Left = 191
-      Top = 23
+      Top = 7
       Width = 170
       Height = 22
       Hint = ''
@@ -105,7 +108,7 @@ inherited FormModalVenda: TFormModalVenda
     end
     object editValorFinanciado: TUniDBFormattedNumberEdit
       Left = 370
-      Top = 23
+      Top = 7
       Width = 170
       Height = 22
       Hint = ''
@@ -123,7 +126,7 @@ inherited FormModalVenda: TFormModalVenda
     end
     object editPrimeiraParcela: TUniDBDateTimePicker
       Left = 546
-      Top = 23
+      Top = 7
       Width = 205
       Hint = ''
       DataField = 'primeira_parcela'
@@ -141,7 +144,7 @@ inherited FormModalVenda: TFormModalVenda
     Left = 16
     Top = 10
     Width = 761
-    Height = 95
+    Height = 119
     Hint = ''
     Caption = ''
     TabOrder = 2
@@ -155,19 +158,20 @@ inherited FormModalVenda: TFormModalVenda
       DateTime = 45328.000000000000000000
       DateFormat = 'dd/MM/yyyy'
       TimeFormat = 'HH:mm:ss'
-      TabOrder = 2
+      TabOrder = 4
       FieldLabel = 'Data da Venda'
       FieldLabelAlign = laRight
     end
     object comboPessoa: TUniDBLookupComboBox
       Left = 15
       Top = 23
-      Width = 465
+      Width = 401
       Hint = ''
       ListField = 'pessoa_id;nome'
       ListSource = UniMainModule.dsCadastroPessoa
       KeyField = 'pessoa_id'
       ListFieldIndex = 0
+      ClearButton = True
       DataField = 'pessoa_id'
       DataSource = dsManutencao
       TabOrder = 1
@@ -179,25 +183,61 @@ inherited FormModalVenda: TFormModalVenda
     object comboVeiculo: TUniDBLookupComboBox
       Left = 15
       Top = 52
-      Width = 465
+      Width = 401
       Hint = ''
       ListField = 'veiculo_id;modelo;marca'
       ListSource = UniMainModule.dsCadastroVeiculo
       KeyField = 'veiculo_id'
       ListFieldIndex = 0
+      ClearButton = True
       DataField = 'veiculo_id'
       DataSource = dsManutencao
-      TabOrder = 3
+      TabOrder = 2
       Color = clWindow
       FieldLabel = 'Ve'#237'culo'
       FieldLabelAlign = laRight
     end
+    object comboEmpresa: TUniDBLookupComboBox
+      Left = 432
+      Top = 52
+      Width = 316
+      Hint = ''
+      ListField = 'empresa_id;nome_fantasia'
+      ListSource = UniMainModule.dsCadastroEmpresa
+      KeyField = 'empresa_id'
+      ListFieldIndex = 0
+      ClearButton = True
+      DataField = 'empresa_id'
+      DataSource = dsManutencao
+      TabOrder = 5
+      Color = clWindow
+      FieldLabel = 'Empresa'
+      FieldLabelAlign = laRight
+    end
+    object comboVendedor: TUniDBLookupComboBox
+      Left = 15
+      Top = 82
+      Width = 401
+      Hint = ''
+      ListField = 'pessoa_id;nome'
+      ListSource = UniMainModule.dsCadastroVendedor
+      KeyField = 'pessoa_id'
+      ListFieldIndex = 0
+      ClearButton = True
+      DataField = 'pessoa_id'
+      DataSource = dsManutencao
+      TabOrder = 3
+      Color = clWindow
+      FieldLabel = 'Vendedor'
+      FieldLabelAlign = laRight
+      ForceSelection = True
+    end
   end
   object memoObservacaoVenda: TUniDBMemo [3]
     Left = 16
-    Top = 430
+    Top = 393
     Width = 761
-    Height = 46
+    Height = 120
     Hint = ''
     DataField = 'observacao_venda'
     DataSource = dsManutencao
@@ -207,9 +247,9 @@ inherited FormModalVenda: TFormModalVenda
   end
   object gridContasReceber: TUniDBGrid [4]
     Left = 16
-    Top = 217
+    Top = 202
     Width = 761
-    Height = 194
+    Height = 187
     Hint = ''
     DataSource = dsContasReceber
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgAutoRefreshRow]
@@ -218,7 +258,6 @@ inherited FormModalVenda: TFormModalVenda
     TabOrder = 4
   end
   inherited queryManutencao: TFDQuery
-    BeforePost = queryManutencaoBeforePost
     OnNewRecord = queryManutencaoNewRecord
   end
   object dsContasReceber: TDataSource

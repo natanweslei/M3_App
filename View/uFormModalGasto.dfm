@@ -15,8 +15,8 @@ inherited FormModalGasto: TFormModalGasto
   object scrollGasto: TUniScrollBox [1]
     Left = 0
     Top = 0
-    Width = 792
-    Height = 483
+    Width = 799
+    Height = 513
     Hint = ''
     Align = alClient
     TabOrder = 1
@@ -26,7 +26,7 @@ inherited FormModalGasto: TFormModalGasto
     object panelTipoGasto: TUniPanel
       Left = 0
       Top = 0
-      Width = 790
+      Width = 797
       Height = 153
       Hint = ''
       Align = alTop
@@ -41,6 +41,7 @@ inherited FormModalGasto: TFormModalGasto
         ListSource = UniMainModule.dsCadastroPessoa
         KeyField = 'pessoa_id'
         ListFieldIndex = 0
+        ClearButton = True
         DataField = 'pessoa_id'
         DataSource = dsManutencao
         TabOrder = 3
@@ -58,6 +59,7 @@ inherited FormModalGasto: TFormModalGasto
         ListSource = UniMainModule.dsCadastroVeiculo
         KeyField = 'veiculo_id'
         ListFieldIndex = 0
+        ClearButton = True
         DataField = 'veiculo_id'
         DataSource = dsManutencao
         TabOrder = 5
@@ -104,6 +106,7 @@ inherited FormModalGasto: TFormModalGasto
         ListSource = UniMainModule.dsCadastroTipoGasto
         KeyField = 'tipogasto_id'
         ListFieldIndex = 0
+        ClearButton = True
         DataField = 'tipogasto_id'
         DataSource = dsManutencao
         TabOrder = 1
@@ -120,6 +123,7 @@ inherited FormModalGasto: TFormModalGasto
         DataField = 'descricao'
         DataSource = dsManutencao
         TabOrder = 6
+        ClearButton = True
         FieldLabel = 'Descri'#231#227'o'
         FieldLabelAlign = laRight
       end
@@ -127,8 +131,8 @@ inherited FormModalGasto: TFormModalGasto
     object gridTipoGasto: TUniDBGrid
       Left = 0
       Top = 153
-      Width = 790
-      Height = 328
+      Width = 797
+      Height = 358
       Hint = ''
       DataSource = dsManutencao
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgAutoRefreshRow]
@@ -163,7 +167,6 @@ inherited FormModalGasto: TFormModalGasto
     end
   end
   inherited queryManutencao: TFDQuery
-    BeforePost = queryManutencaoBeforePost
     OnNewRecord = queryManutencaoNewRecord
     Top = 200
   end

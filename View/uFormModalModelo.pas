@@ -28,10 +28,8 @@ type
     procedure buttonExcluirClick(Sender: TObject);
     procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
     procedure buttonFecharClick(Sender: TObject);
-  private
-    { Private declarations }
-  public
-    { Public declarations }
+  protected
+    procedure VerificarDados; Virtual;
   end;
 
 function FormModalModelo: TFormModalModelo;
@@ -58,6 +56,7 @@ end;
 
 procedure TFormModalModelo.buttonGravarClick(Sender: TObject);
 begin
+  VerificarDados;
   queryManutencao.Post;
 end;
 
@@ -110,6 +109,11 @@ procedure TFormModalModelo.UniFormClose(Sender: TObject; var Action: TCloseActio
 begin
   if queryManutencao.Active then
     queryManutencao.Close;
+end;
+
+procedure TFormModalModelo.VerificarDados;
+begin
+
 end;
 
 end.

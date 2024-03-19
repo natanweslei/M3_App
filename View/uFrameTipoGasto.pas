@@ -18,7 +18,6 @@ type
     editDescricao: TUniDBEdit;
     checkAtivo: TUniDBCheckBox;
     procedure UniFrameCreate(Sender: TObject);
-    procedure queryManutencaoBeforePost(DataSet: TDataSet);
     procedure queryManutencaoAfterPost(DataSet: TDataSet);
     procedure queryManutencaoNewRecord(DataSet: TDataSet);
   end;
@@ -35,15 +34,10 @@ begin
   queryManutencao.Refresh;
 end;
 
-procedure TFrameTipoGasto.queryManutencaoBeforePost(DataSet: TDataSet);
-begin
-  inherited;
-  queryManutencao.FieldByName('tipogasto_id').AsInteger := UniMainModule.GerarSequence('seq_tipogasto_id');
-end;
-
 procedure TFrameTipoGasto.queryManutencaoNewRecord(DataSet: TDataSet);
 begin
   inherited;
+  queryManutencao.FieldByName('tipogasto_id').AsInteger := UniMainModule.GerarSequence('seq_tipogasto_id');
   queryManutencao.FieldByName('ativo').AsBoolean := True;
 end;
 
@@ -55,9 +49,7 @@ begin
   PageControlModelo.ActivePage := tsManutencao;
   editDescricao.MaxLength := 200;
 
-  queryManutencao.Close;
-  queryManutencao.SQL.Clear;
-  queryManutencao.Open('select tipogasto_id, descricao, ativo from tipo_gasto');
+  queryManutencao.Open('select * from tipo_gasto');
 
   dsManutencaoStateChange(nil);
 end;

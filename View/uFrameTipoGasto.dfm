@@ -78,7 +78,6 @@ inherited FrameTipoGasto: TFrameTipoGasto
     end
   end
   inherited queryManutencao: TFDQuery
-    BeforePost = queryManutencaoBeforePost
     AfterPost = queryManutencaoAfterPost
     OnNewRecord = queryManutencaoNewRecord
   end

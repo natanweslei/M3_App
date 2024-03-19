@@ -30,11 +30,11 @@ type
     comboSituacao: TUniDBComboBox;
     groupDados: TUniGroupBox;
     groupVeiculo: TUniGroupBox;
-    procedure queryManutencaoBeforePost(DataSet: TDataSet);
     procedure UniFormCreate(Sender: TObject);
     procedure UniFormShow(Sender: TObject);
     procedure buttonExcluirClick(Sender: TObject);
     procedure buttonGravarClick(Sender: TObject);
+    procedure queryManutencaoNewRecord(DataSet: TDataSet);
   private
     FVeiculoId: Integer;
   public
@@ -76,9 +76,10 @@ begin
   inherited;
 end;
 
-procedure TFormModalVeiculo.queryManutencaoBeforePost(DataSet: TDataSet);
+procedure TFormModalVeiculo.queryManutencaoNewRecord(DataSet: TDataSet);
 begin
   inherited;
+
   queryManutencao.FieldByName('veiculo_id').AsInteger := UniMainModule.GerarSequence('seq_veiculo_id');
 end;
 

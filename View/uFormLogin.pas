@@ -79,6 +79,9 @@ begin
 
   UniMainModule.GlobalOperadorId := qryLogin.FieldByName('pessoa_id').AsInteger;
   UniMainModule.GlobalNomeOperador := qryLogin.FieldByName('nome').AsString;
+
+  UniMainModule.CarregarAcessoOperador;
+
   qryLogin.Free;
 
   ModalResult := mrOk;

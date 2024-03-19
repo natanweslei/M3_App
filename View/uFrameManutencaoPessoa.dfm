@@ -11,9 +11,8 @@ object FrameManutencaoPessoa: TFrameManutencaoPessoa
     Left = 3
     Top = 3
     Width = 1017
-    Height = 70
+    Height = 22
     Hint = ''
-    Visible = False
     Align = alTop
     TabOrder = 0
     Caption = ''
@@ -28,7 +27,6 @@ object FrameManutencaoPessoa: TFrameManutencaoPessoa
     Align = alBottom
     TabOrder = 1
     Caption = ''
-    ExplicitWidth = 980
     object buttonCadastroPessoa: TUniButton
       AlignWithMargins = True
       Left = 12
@@ -53,14 +51,15 @@ object FrameManutencaoPessoa: TFrameManutencaoPessoa
       TabOrder = 2
       Images = UniMainModule.ImageListMain
       ImageIndex = 17
+      OnClick = buttonAcessoClick
     end
   end
   object gridPessoa: TUniDBGrid
     AlignWithMargins = True
     Left = 3
-    Top = 79
+    Top = 31
     Width = 1017
-    Height = 475
+    Height = 523
     Hint = ''
     DataSource = dsPessoa
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgAutoRefreshRow]

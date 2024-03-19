@@ -25,7 +25,6 @@ type
     editValorVeiculo: TUniDBFormattedNumberEdit;
     editTaxa: TUniDBFormattedNumberEdit;
     procedure UniFormShow(Sender: TObject);
-    procedure queryManutencaoBeforePost(DataSet: TDataSet);
     procedure queryManutencaoNewRecord(DataSet: TDataSet);
   private
     FEntradaId: Integer;
@@ -47,15 +46,11 @@ begin
   Result := TFormModalEntrada(UniMainModule.GetFormInstance(TFormModalEntrada));
 end;
 
-procedure TFormModalEntrada.queryManutencaoBeforePost(DataSet: TDataSet);
-begin
-  inherited;
-  queryManutencao.FieldByName('entrada_id').AsInteger := UniMainModule.GerarSequence('seq_entrada_id');
-end;
-
 procedure TFormModalEntrada.queryManutencaoNewRecord(DataSet: TDataSet);
 begin
   inherited;
+
+  queryManutencao.FieldByName('entrada_id').AsInteger := UniMainModule.GerarSequence('seq_entrada_id');
   queryManutencao.FieldByName('data_entrada').AsDateTime := Now;
 end;
 

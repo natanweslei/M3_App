@@ -2,15 +2,13 @@ inherited FormModalVeiculo: TFormModalVeiculo
   Caption = 'Ve'#237'culo'
   OnShow = UniFormShow
   OnCreate = UniFormCreate
-  ExplicitWidth = 798
-  ExplicitHeight = 557
   PixelsPerInch = 96
   TextHeight = 13
   object scrollVeiculo: TUniScrollBox [1]
     Left = 0
     Top = 0
-    Width = 792
-    Height = 483
+    Width = 799
+    Height = 513
     Hint = ''
     Align = alClient
     TabOrder = 1
@@ -58,6 +56,7 @@ inherited FormModalVeiculo: TFormModalVeiculo
         DataSource = dsManutencao
         CharCase = ecUpperCase
         TabOrder = 0
+        ClearButton = True
         FieldLabel = 'Renavam'
         FieldLabelAlign = laRight
       end
@@ -71,6 +70,7 @@ inherited FormModalVeiculo: TFormModalVeiculo
         DataSource = dsManutencao
         CharCase = ecUpperCase
         TabOrder = 1
+        ClearButton = True
         FieldLabel = 'N'#250'mero CRV'
         FieldLabelAlign = laRight
       end
@@ -91,6 +91,7 @@ inherited FormModalVeiculo: TFormModalVeiculo
         TabOrder = 2
         FieldLabel = 'Combust'#237'vel'
         FieldLabelAlign = laRight
+        ClearButton = True
         IconItems = <>
       end
       object editChassi: TUniDBEdit
@@ -103,6 +104,7 @@ inherited FormModalVeiculo: TFormModalVeiculo
         DataSource = dsManutencao
         CharCase = ecUpperCase
         TabOrder = 3
+        ClearButton = True
         FieldLabel = 'Chassi'
         FieldLabelAlign = laRight
       end
@@ -134,6 +136,12 @@ inherited FormModalVeiculo: TFormModalVeiculo
           'RENAULT'
           'PEUGEOT'
           'CITRO'#203'N'
+          'KTM'
+          'YAMAHA'
+          'SUSUKI'
+          'HARLEY'
+          'KAWASAKI'
+          'DUCATTI'
           'JEEP'
           'MITSUBISHI'
           'MERCEDES-bENZ'
@@ -175,6 +183,7 @@ inherited FormModalVeiculo: TFormModalVeiculo
         DataSource = dsManutencao
         CharCase = ecUpperCase
         TabOrder = 3
+        ClearButton = True
         InputMask.Mask = '9999'
         FieldLabel = 'Ano Fabrica'#231#227'o'
         FieldLabelAlign = laRight
@@ -189,6 +198,7 @@ inherited FormModalVeiculo: TFormModalVeiculo
         DataSource = dsManutencao
         CharCase = ecUpperCase
         TabOrder = 6
+        ClearButton = True
         InputMask.Mask = '9999'
         FieldLabel = 'Ano Modelo'
         FieldLabelAlign = laRight
@@ -203,6 +213,7 @@ inherited FormModalVeiculo: TFormModalVeiculo
         DataSource = dsManutencao
         CharCase = ecUpperCase
         TabOrder = 2
+        ClearButton = True
         FieldLabel = 'Modelo'
         FieldLabelAlign = laRight
       end
@@ -216,6 +227,7 @@ inherited FormModalVeiculo: TFormModalVeiculo
         DataSource = dsManutencao
         CharCase = ecUpperCase
         TabOrder = 4
+        ClearButton = True
         InputMask.Mask = '***-9*99'
         FieldLabel = 'Placa'
         FieldLabelAlign = laRight
@@ -230,12 +242,13 @@ inherited FormModalVeiculo: TFormModalVeiculo
         DataSource = dsManutencao
         CharCase = ecUpperCase
         TabOrder = 5
+        ClearButton = True
         FieldLabel = 'Vers'#227'o'
         FieldLabelAlign = laRight
       end
     end
   end
   inherited queryManutencao: TFDQuery
-    BeforePost = queryManutencaoBeforePost
+    OnNewRecord = queryManutencaoNewRecord
   end
 end

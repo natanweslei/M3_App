@@ -25,6 +25,7 @@ type
     procedure UniFrameDestroy(Sender: TObject);
     procedure gridPessoaDrawColumnCell(Sender: TObject; ACol, ARow: Integer; Column: TUniDBGridColumn; Attribs: TUniCellAttribs);
     procedure queryPessoaAfterScroll(DataSet: TDataSet);
+    procedure buttonAcessoClick(Sender: TObject);
   private
     procedure ExecutaPesquisa;
   end;
@@ -34,7 +35,21 @@ implementation
 {$R *.dfm}
 
 uses
-  MainModule, uFormModalPessoa;
+  MainModule, uFormModalPessoa, uFormModalAcesso;
+
+procedure TFrameManutencaoPessoa.buttonAcessoClick(Sender: TObject);
+begin
+  if queryPessoa.Active then
+    FormModalAcesso.PessoaId := queryPessoa.FieldByName('pessoa_id').AsInteger;
+
+  FormModalAcesso.ShowModal(
+    procedure(ASender: TComponent; AResult: Integer)
+    begin
+      if AResult = mrOk then
+        queryPessoa.Refresh;
+    end
+  );
+end;
 
 procedure TFrameManutencaoPessoa.buttonCadastroPessoaClick(Sender: TObject);
 begin
@@ -67,18 +82,6 @@ begin
   queryPessoa.Close;
   queryPessoa.SQL.Clear;
   queryPessoa.SQL.Add('select * from pessoa');
-//
-//  if not comboVeiculo.ListSource.DataSet.IsEmpty then
-//  begin
-//    if comboVeiculo.KeyValue > 0 then
-//      LFiltro := WhereAnd + 'veiculo_id = ' + comboVeiculo.KeyValueStr;
-//  end;
-//
-//  if comboMarca.ItemIndex >= 0 then
-//    LFiltro := LFiltro + WhereAnd + 'marca = ' + QuotedStr(comboMarca.Items[comboMarca.ItemIndex]);
-
-  queryPessoa.SQL.Add(LFiltro);
-
   queryPessoa.Open;
 end;
 

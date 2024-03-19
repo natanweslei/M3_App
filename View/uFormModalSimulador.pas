@@ -20,10 +20,7 @@ type
     editValorParcela: TUniFormattedNumberEdit;
     editValorEntrada: TUniFormattedNumberEdit;
     editValorFinanciado: TUniFormattedNumberEdit;
-    procedure editValorVeiculoKeyUp(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
-  private
-
+    procedure editValorVeiculoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
   end;
 
 function FormModalSimulador: TFormModalSimulador;
@@ -59,8 +56,12 @@ begin
     editTaxa.Value,
     editQuantidadeParcelas.Value
   );
-  editValorParcela.Value := CalculadoraFinanciamento.CalcularValorParcela;
-  CalculadoraFinanciamento.Free;
+
+  try
+    editValorParcela.Value := CalculadoraFinanciamento.CalcularValorParcela;
+  finally
+    CalculadoraFinanciamento.Free;
+  end;
 end;
 
 end.

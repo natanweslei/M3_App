@@ -107,6 +107,7 @@ object FrameManutencaoContasReceber: TFrameManutencaoContasReceber
         FieldLabel = 'Data Final'
         FieldLabelWidth = 70
         FieldLabelAlign = laRight
+        OnChange = editDataInicialChange
       end
       object editDataInicial: TUniDateTimePicker
         Left = 82
@@ -120,6 +121,7 @@ object FrameManutencaoContasReceber: TFrameManutencaoContasReceber
         FieldLabel = 'Data Inicial'
         FieldLabelWidth = 70
         FieldLabelAlign = laRight
+        OnChange = editDataInicialChange
       end
       object radioIgual: TUniRadioButton
         Left = 8

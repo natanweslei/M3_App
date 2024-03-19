@@ -22,7 +22,7 @@ type
     editNome: TUniDBEdit;
     editDataNascimento: TUniDBDateTimePicker;
     editRegistroGeral: TUniDBEdit;
-    groupTelefones: TUniGroupBox;
+    groupTrabalho: TUniGroupBox;
     editTelefoneCelular: TUniDBEdit;
     editTelefoneComercial: TUniDBEdit;
     groupEnderecos: TUniGroupBox;
@@ -36,9 +36,24 @@ type
     groupConfiguracoes: TUniGroupBox;
     checkVendedor: TUniDBCheckBox;
     checkOperador: TUniDBCheckBox;
+    editEmail: TUniDBEdit;
+    editEmpresaTrabalho: TUniDBEdit;
+    editProfissaoTrabalho: TUniDBEdit;
+    editTelefoneTrabalho: TUniDBEdit;
+    editEnderecoTrabalho: TUniDBEdit;
+    editContato: TUniDBEdit;
+    editContato2: TUniDBEdit;
+    editContato3: TUniDBEdit;
+    editContato4: TUniDBEdit;
+    editTelefoneContato: TUniDBEdit;
+    editTelefoneContato2: TUniDBEdit;
+    editTelefoneContato3: TUniDBEdit;
+    editTelefoneContato4: TUniDBEdit;
     procedure UniFormShow(Sender: TObject);
-    procedure queryManutencaoBeforePost(DataSet: TDataSet);
     procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
+    procedure queryManutencaoNewRecord(DataSet: TDataSet);
+    procedure buttonGravarClick(Sender: TObject);
+    procedure checkOperadorClick(Sender: TObject);
   private
     FPessoaId: Integer;
   public
@@ -59,9 +74,33 @@ begin
   Result := TFormModalPessoa(UniMainModule.GetFormInstance(TFormModalPessoa));
 end;
 
-procedure TFormModalPessoa.queryManutencaoBeforePost(DataSet: TDataSet);
+procedure TFormModalPessoa.buttonGravarClick(Sender: TObject);
+begin
+  if Trim(queryManutencao.FieldByName('nome').AsString) = EmptyStr then
+  begin
+    MessageDlg('É necessário definir o nome!', mtWarning, [mbOK]);
+
+    if editNome.CanFocus then
+      editNome.SetFocus;
+
+    Exit;
+  end;
+
+  inherited;
+end;
+
+procedure TFormModalPessoa.checkOperadorClick(Sender: TObject);
 begin
   inherited;
+  editUsuario.Enabled := checkOperador.Checked;
+  editSenha.Enabled := checkOperador.Checked;
+end;
+
+procedure TFormModalPessoa.queryManutencaoNewRecord(DataSet: TDataSet);
+begin
+  inherited;
+  checkOperadorClick(nil);
+
   queryManutencao.FieldByName('pessoa_id').AsInteger := UniMainModule.GerarSequence('seq_pessoa_id');
 end;
 
@@ -90,10 +129,13 @@ begin
   editSenha.MaxLength := 20;
 
   queryManutencao.Close;
+  queryManutencao.SQL.Clear;
   queryManutencao.SQL.Add('select * from pessoa');
   queryManutencao.SQL.Add('where pessoa_id = :ppessoa_id');
   queryManutencao.ParamByName('ppessoa_id').AsInteger := FPessoaId;
   queryManutencao.Open;
+
+  checkOperadorClick(nil);
 end;
 
 end.

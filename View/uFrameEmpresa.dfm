@@ -5,7 +5,10 @@ inherited FrameEmpresa: TFrameEmpresa
     Width = 1058
     ExplicitWidth = 1058
     inherited tsConsulta: TUniTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 1050
+      ExplicitHeight = 549
       inherited gridConsulta: TUniDBGrid
         Width = 1050
         OnDblClick = gridConsultaDblClick
@@ -125,7 +128,7 @@ inherited FrameEmpresa: TFrameEmpresa
           end
           object editNomeEmpresa: TUniDBEdit
             Left = 20
-            Top = 34
+            Top = 39
             Width = 797
             Height = 22
             Hint = ''
@@ -258,7 +261,7 @@ inherited FrameEmpresa: TFrameEmpresa
     Top = 288
   end
   inherited queryManutencao: TFDQuery
-    BeforePost = queryManutencaoBeforePost
+    OnNewRecord = queryManutencaoNewRecord
     Left = 956
   end
 end

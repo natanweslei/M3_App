@@ -24,7 +24,6 @@ type
     editValorGasto: TUniDBFormattedNumberEdit;
     comboTipoGasto: TUniDBLookupComboBox;
     editDescricaoGasto: TUniDBEdit;
-    procedure queryManutencaoBeforePost(DataSet: TDataSet);
     procedure UniFormShow(Sender: TObject);
     procedure queryManutencaoNewRecord(DataSet: TDataSet);
   private
@@ -47,15 +46,11 @@ begin
   Result := TFormModalGasto(UniMainModule.GetFormInstance(TFormModalGasto));
 end;
 
-procedure TFormModalGasto.queryManutencaoBeforePost(DataSet: TDataSet);
-begin
-  inherited;
-  queryManutencao.FieldByName('gasto_id').AsInteger := UniMainModule.GerarSequence('seq_gasto_id');
-end;
-
 procedure TFormModalGasto.queryManutencaoNewRecord(DataSet: TDataSet);
 begin
   inherited;
+
+  queryManutencao.FieldByName('gasto_id').AsInteger := UniMainModule.GerarSequence('seq_gasto_id');
   queryManutencao.FieldByName('data_gasto').AsDateTime := Now;
 end;
 

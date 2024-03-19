@@ -7,6 +7,7 @@ object FormMain: TFormMain
   OldCreateOrder = False
   MonitoredKeys.Keys = <>
   OnAfterShow = UniFormAfterShow
+  OnCreate = UniFormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object PageControlMain: TUniPageControl
@@ -23,16 +24,16 @@ object FormMain: TFormMain
       Caption = 'Home'
     end
   end
-  object UniTreeMenu1: TUniTreeMenu
+  object UniTreeMenu: TUniTreeMenu
     Left = 0
     Top = 0
     Width = 249
     Height = 599
     Hint = ''
     Items.FontData = {0100000000}
-    SourceMenu = UniMenuItems1
+    SourceMenu = UniMenuItems
   end
-  object UniMenuItems1: TUniMenuItems
+  object UniMenuItems: TUniMenuItems
     Images = UniMainModule.ImageListMain
     Left = 36
     Top = 520
@@ -55,46 +56,51 @@ object FormMain: TFormMain
         OnClick = submenuTipoGastoClick
       end
     end
-    object MenuManutencaoVeiculos: TUniMenuItem
+    object MenuManutencao: TUniMenuItem
       Caption = 'Manuten'#231#227'o'
+      GroupIndex = 1
       ImageIndex = 3
-      object subVeiculo: TUniMenuItem
+      object submenuVeiculo: TUniMenuItem
         Caption = 'Ve'#237'culo'
         ImageIndex = 3
-        OnClick = subVeiculoClick
+        OnClick = submenuVeiculoClick
       end
-      object subEntrada: TUniMenuItem
+      object submenuEntrada: TUniMenuItem
         Caption = 'Entrada'
         ImageIndex = 5
-        OnClick = subEntradaClick
+        Visible = False
+        OnClick = submenuEntradaClick
       end
-      object subVenda: TUniMenuItem
+      object submenuVenda: TUniMenuItem
         Caption = 'Venda'
         ImageIndex = 7
-        OnClick = subVendaClick
+        OnClick = submenuVendaClick
       end
-      object subGastos: TUniMenuItem
+      object submenuGastos: TUniMenuItem
         Caption = 'Gasto'
         ImageIndex = 2
-        OnClick = subGastosClick
+        OnClick = submenuGastosClick
       end
     end
     object menuFinanceiro: TUniMenuItem
       Caption = 'Financeiro'
+      GroupIndex = 2
       ImageIndex = 10
-      object subContasReceber: TUniMenuItem
+      object submenuContasReceber: TUniMenuItem
         Caption = 'Contas a Receber'
         ImageIndex = 11
-        OnClick = subContasReceberClick
+        OnClick = submenuContasReceberClick
       end
     end
     object menuSimulador: TUniMenuItem
       Caption = 'Simulador'
+      GroupIndex = 3
       ImageIndex = 6
       OnClick = menuSimuladorClick
     end
     object menuSair: TUniMenuItem
       Caption = 'Sair'
+      GroupIndex = 4
       ImageIndex = 8
       OnClick = menuSairClick
     end

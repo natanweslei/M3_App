@@ -58,7 +58,10 @@ uses
 procedure TFrameManutencaoContasReceber.buttonContaReceberClick(Sender: TObject);
 begin
   if queryContasReceber.Active then
-    FormModalContasReceber.FinanceiroId := queryContasReceber.FieldByName('financeiro_id').AsInteger;
+  begin
+    if queryContasReceber.FieldByName('venda_id').AsInteger = 0 then
+      FormModalContasReceber.FinanceiroId := queryContasReceber.FieldByName('financeiro_id').AsInteger;
+  end;
 
   FormModalContasReceber.ShowModal(
     procedure(ASender: TComponent; AResult: Integer)
@@ -78,6 +81,7 @@ begin
     procedure(ASender: TComponent; AResult: Integer)
     begin
       if AResult = mrOk then
+        UniMainModule.AlterarStatusFinanceiro;
         queryContasReceber.Refresh;
     end
   );
@@ -109,6 +113,7 @@ begin
   queryContasReceber.SQL.Add('    financeiro.data_lancamento,');
   queryContasReceber.SQL.Add('    financeiro.valor_documento,');
   queryContasReceber.SQL.Add('    financeiro.veiculo_id,');
+  queryContasReceber.SQL.Add('    financeiro.venda_id,');
   queryContasReceber.SQL.Add('    veiculo.placa || '' - '' || veiculo.modelo as veiculo,');
   queryContasReceber.SQL.Add('    financeiro.pessoa_id || '' - '' || pessoa.nome as cliente');
   queryContasReceber.SQL.Add('from');
@@ -159,6 +164,8 @@ begin
   queryContasReceber.SQL.Add('    financeiro.data_vencimento');
 
   queryContasReceber.Open;
+
+  queryContasReceber.FieldByName('venda_id').Visible := False;
 end;
 
 procedure TFrameManutencaoContasReceber.comboPessoaChange(Sender: TObject);
@@ -226,6 +233,9 @@ end;
 
 procedure TFrameManutencaoContasReceber.radioIgualClick(Sender: TObject);
 begin
+  if Sender = radioIgual then
+    editDataInicial.DateTime := Now;
+
   editDataInicial.Enabled := radioIgual.Checked or radioEntre.Checked;
   editDataFinal.Enabled := radioEntre.Checked;
   ExecutaPesquisa;

@@ -11,8 +11,8 @@ inherited FormModalEntrada: TFormModalEntrada
   object scrollEntrada: TUniScrollBox [1]
     Left = 0
     Top = 0
-    Width = 792
-    Height = 483
+    Width = 799
+    Height = 513
     Hint = ''
     Align = alClient
     TabOrder = 1
@@ -111,6 +111,7 @@ inherited FormModalEntrada: TFormModalEntrada
         ListSource = UniMainModule.dsCadastroPessoa
         KeyField = 'pessoa_id'
         ListFieldIndex = 0
+        ClearButton = True
         DataField = 'pessoa_id'
         DataSource = dsManutencao
         TabOrder = 2
@@ -128,6 +129,7 @@ inherited FormModalEntrada: TFormModalEntrada
         ListSource = UniMainModule.dsCadastroVeiculo
         KeyField = 'veiculo_id'
         ListFieldIndex = 0
+        ClearButton = True
         DataField = 'veiculo_id'
         DataSource = dsManutencao
         TabOrder = 3
@@ -150,7 +152,6 @@ inherited FormModalEntrada: TFormModalEntrada
     end
   end
   inherited queryManutencao: TFDQuery
-    BeforePost = queryManutencaoBeforePost
     OnNewRecord = queryManutencaoNewRecord
   end
 end

@@ -27,7 +27,8 @@ type
     groupEnderecos: TUniGroupBox;
     procedure UniFrameCreate(Sender: TObject);
     procedure gridConsultaDblClick(Sender: TObject);
-    procedure queryManutencaoBeforePost(DataSet: TDataSet);
+    procedure queryManutencaoNewRecord(DataSet: TDataSet);
+    procedure buttonGravarClick(Sender: TObject);
   protected
     procedure MostraManutencao; override;
   end;
@@ -38,6 +39,31 @@ implementation
 
 uses
   MainModule;
+
+procedure TFrameEmpresa.buttonGravarClick(Sender: TObject);
+begin
+  if Trim(queryManutencao.FieldByName('nome_fantasia').AsString) = EmptyStr then
+  begin
+    MessageDlg('É necessário definir o nome fantasia!', mtWarning, [mbOK]);
+
+    if editNomeEmpresa.CanFocus then
+      editNomeEmpresa.SetFocus;
+
+    Exit;
+  end;
+
+  if Trim(queryManutencao.FieldByName('nome_social').AsString) = EmptyStr then
+  begin
+    MessageDlg('É necessário definir o nome social!', mtWarning, [mbOK]);
+
+    if editRazaoSocial.CanFocus then
+      editRazaoSocial.SetFocus;
+
+    Exit;
+  end;
+
+  inherited;
+end;
 
 procedure TFrameEmpresa.gridConsultaDblClick(Sender: TObject);
 begin
@@ -61,7 +87,7 @@ begin
   queryManutencao.Open;
 end;
 
-procedure TFrameEmpresa.queryManutencaoBeforePost(DataSet: TDataSet);
+procedure TFrameEmpresa.queryManutencaoNewRecord(DataSet: TDataSet);
 begin
   inherited;
   queryManutencao.FieldByName('empresa_id').AsInteger := UniMainModule.GerarSequence('seq_empresa_id');

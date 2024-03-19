@@ -36,22 +36,28 @@ type
     cdParcelasquantidade_parcelas: TIntegerField;
     cdParcelasnumero_parcela: TIntegerField;
     cdParcelasvalor_documento: TFloatField;
+    comboEmpresa: TUniDBLookupComboBox;
+    comboVendedor: TUniDBLookupComboBox;
     procedure UniFormShow(Sender: TObject);
-    procedure queryManutencaoBeforePost(DataSet: TDataSet);
     procedure queryManutencaoNewRecord(DataSet: TDataSet);
     procedure buttonFecharClick(Sender: TObject);
     procedure buttonGravarClick(Sender: TObject);
     procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
-    procedure editValorVeiculoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure editPrimeiraParcelaChange(Sender: TObject);
     procedure buttonNovoClick(Sender: TObject);
     procedure buttonExcluirClick(Sender: TObject);
     procedure editValorEntradaChangeValue(Sender: TObject);
+    procedure editQuantidadeParcelasChange(Sender: TObject);
+    procedure editValorVeiculoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure editPrimeiraParcelaChange(Sender: TObject);
   private
     FVendaId: Integer;
     procedure AbreQuery;
+    procedure CalcularValorParcela;
     procedure GerarFinanceiro;
     procedure ExcluirFinanceiro;
+    function TemFinanceiroPago: Integer;
+  protected
+    procedure VerificarDados; override;
   public
     property VendaId: Integer read FVendaId write FVendaId;
   end;
@@ -83,11 +89,42 @@ begin
   inherited;
 end;
 
+procedure TFormModalVenda.CalcularValorParcela;
+var
+  CalculadoraFinanciamento: TCalculadoraFinanciamento;
+begin
+  inherited;
+
+  if editValorVeiculo.Value = 0 then
+    Exit;
+
+  editValorFinanciado.Value := editValorVeiculo.Value - editValorEntrada.Value;
+
+  if editTaxa.Value = 0 then
+    Exit;
+
+  if editQuantidadeParcelas.Value = 0 then
+    Exit;
+
+  CalculadoraFinanciamento := TCalculadoraFinanciamento.Create(
+    editValorVeiculo.Value - editValorEntrada.Value,
+    editTaxa.Value,
+    editQuantidadeParcelas.Value
+  );
+  try
+    editValorParcela.Value := CalculadoraFinanciamento.CalcularValorParcela;
+  finally
+    CalculadoraFinanciamento.Free;
+  end;
+end;
+
 procedure TFormModalVenda.GerarFinanceiro;
 var
   i: Integer;
 begin
   inherited;
+
+  cdParcelas.EmptyDataSet;
 
   if editValorVeiculo.Value = 0 then
     Exit;
@@ -103,8 +140,6 @@ begin
 
   if editPrimeiraParcela.DateTime = 0 then
     Exit;
-
-  cdParcelas.EmptyDataSet;
 
   for i := 1 to Round(editQuantidadeParcelas.Value) do
   begin
@@ -178,6 +213,13 @@ end;
 procedure TFormModalVenda.editPrimeiraParcelaChange(Sender: TObject);
 begin
   inherited;
+  CalcularValorParcela;
+  GerarFinanceiro;
+end;
+
+procedure TFormModalVenda.editQuantidadeParcelasChange(Sender: TObject);
+begin
+  inherited;
   GerarFinanceiro;
 end;
 
@@ -189,42 +231,17 @@ begin
 end;
 
 procedure TFormModalVenda.editValorVeiculoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-var
-  CalculadoraFinanciamento: TCalculadoraFinanciamento;
 begin
   inherited;
-
-  if editValorVeiculo.Value = 0 then
-    Exit;
-
-  editValorFinanciado.Value := editValorVeiculo.Value - editValorEntrada.Value;
-
-  if editTaxa.Value = 0 then
-    Exit;
-
-  if editQuantidadeParcelas.Value = 0 then
-    Exit;
-
-  CalculadoraFinanciamento := TCalculadoraFinanciamento.Create(
-    editValorVeiculo.Value - editValorEntrada.Value,
-    editTaxa.Value,
-    editQuantidadeParcelas.Value
-  );
-  editValorParcela.Value := CalculadoraFinanciamento.CalcularValorParcela;
-  CalculadoraFinanciamento.Free;
-
+  CalcularValorParcela;
   GerarFinanceiro;
-end;
-
-procedure TFormModalVenda.queryManutencaoBeforePost(DataSet: TDataSet);
-begin
-  inherited;
-  queryManutencao.FieldByName('venda_id').AsInteger := UniMainModule.GerarSequence('seq_venda_id');
 end;
 
 procedure TFormModalVenda.queryManutencaoNewRecord(DataSet: TDataSet);
 begin
   inherited;
+
+  queryManutencao.FieldByName('venda_id').AsInteger := UniMainModule.GerarSequence('seq_venda_id');
   queryManutencao.FieldByName('data_venda').AsDateTime := Now;
   queryManutencao.FieldByName('primeira_parcela').AsDateTime := Now;
 end;
@@ -242,6 +259,9 @@ begin
   if UniMainModule.queryCadastroVeiculo.Active then
     UniMainModule.queryCadastroVeiculo.Close;
 
+  if UniMainModule.queryCadastroEmpresa.Active then
+    UniMainModule.queryCadastroEmpresa.Close;
+
   if queryContasReceber.Active then
     queryContasReceber.Close;
 
@@ -252,6 +272,115 @@ procedure TFormModalVenda.UniFormShow(Sender: TObject);
 begin
   inherited;
   AbreQuery;
+end;
+
+function TFormModalVenda.TemFinanceiroPago: Integer;
+var
+  LQueryVencido: TFDQuery;
+begin
+  LQueryVencido := TFDQuery.Create(nil);
+  LQueryVencido.Connection := UniMainModule.Conexao;
+  LQueryVencido.Close;
+  LQueryVencido.SQL.Clear;
+  LQueryVencido.SQL.Add('select count(*) from financeiro where venda_id = :pvenda_id and status_financeiro = ''PAGO''');
+  LQueryVencido.ParamByName('pvenda_id').AsInteger := queryManutencao.FieldByName('venda_id').AsInteger;
+
+  LQueryVencido.Open;
+
+  Result := LQueryVencido.RecordCount;
+
+  LQueryVencido.Free;
+end;
+
+procedure TFormModalVenda.VerificarDados;
+begin
+  inherited;
+
+  if TemFinanceiroPago > 0 then
+  begin
+    MessageDlg('Existe financeiro PAGO gerado para esta venda!', mtWarning, [mbOK]);
+    Abort;
+  end;
+
+  if queryManutencao.FieldByName('pessoa_id').AsInteger = 0 then
+  begin
+    MessageDlg('É necessário selecionar o cliente!', mtWarning, [mbOK]);
+
+    if comboPessoa.CanFocus then
+      comboPessoa.SetFocus;
+
+    Abort;
+  end;
+
+  if queryManutencao.FieldByName('vendedor_id').AsInteger = 0 then
+  begin
+    MessageDlg('É necessário selecionar o vendedor!', mtWarning, [mbOK]);
+
+    if comboVendedor.CanFocus then
+      comboVendedor.SetFocus;
+
+    Abort;
+  end;
+
+  if queryManutencao.FieldByName('veiculo_id').AsInteger = 0 then
+  begin
+    MessageDlg('É necessário selecionar o veículo!', mtWarning, [mbOK]);
+
+    if comboVeiculo.CanFocus then
+      comboVeiculo.SetFocus;
+
+    Abort;
+  end;
+
+  if queryManutencao.FieldByName('empresa_id').AsInteger = 0 then
+  begin
+    MessageDlg('É necessário selecionar a empresa!', mtWarning, [mbOK]);
+
+    if comboEmpresa.CanFocus then
+      comboEmpresa.SetFocus;
+
+    Abort;
+  end;
+
+  if editDataVenda.DateTime = 0 then
+  begin
+    MessageDlg('É necessário selecionar a data da venda!', mtWarning, [mbOK]);
+
+    if editDataVenda.CanFocus then
+      editDataVenda.SetFocus;
+
+    Abort;
+  end;
+
+  if queryManutencao.FieldByName('valor_veiculo').AsInteger = 0 then
+  begin
+    MessageDlg('É necessário informar o valor do veículo!', mtWarning, [mbOK]);
+
+    if editValorVeiculo.CanFocus then
+      editValorVeiculo.SetFocus;
+
+    Abort;
+  end;
+
+  if queryManutencao.FieldByName('quantidade_parcelas_veiculo').AsInteger = 0 then
+  begin
+    MessageDlg('É necessário informar a quantidade de parcelas!', mtWarning, [mbOK]);
+
+    if editQuantidadeParcelas.CanFocus then
+      editQuantidadeParcelas.SetFocus;
+
+    Abort;
+  end;
+
+  if queryManutencao.FieldByName('taxa_veiculo').AsInteger = 0 then
+  begin
+    MessageDlg('É necessário informar a taxa!', mtWarning, [mbOK]);
+
+    if editTaxa.CanFocus then
+      editTaxa.SetFocus;
+
+    Abort;
+  end;
 end;
 
 procedure TFormModalVenda.AbreQuery;
@@ -265,6 +394,8 @@ begin
 
   UniMainModule.queryCadastroPessoa.Open('select * from pessoa');
   UniMainModule.queryCadastroVeiculo.Open('select * from veiculo');
+  UniMainModule.queryCadastroEmpresa.Open('select * from empresa');
+
   queryContasReceber.Open('select * from financeiro where financeiro_id is null');
 
   GerarFinanceiro;

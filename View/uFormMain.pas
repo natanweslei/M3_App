@@ -12,32 +12,33 @@ type
   TFormMain = class(TUniForm)
     PageControlMain: TUniPageControl;
     TabSheetMain: TUniTabSheet;
-    UniMenuItems1: TUniMenuItems;
-    UniTreeMenu1: TUniTreeMenu;
-    MenuManutencaoVeiculos: TUniMenuItem;
+    UniMenuItems: TUniMenuItems;
+    UniTreeMenu: TUniTreeMenu;
+    MenuManutencao: TUniMenuItem;
     menuSair: TUniMenuItem;
     menuSimulador: TUniMenuItem;
-    subVeiculo: TUniMenuItem;
-    subEntrada: TUniMenuItem;
-    subVenda: TUniMenuItem;
-    subGastos: TUniMenuItem;
+    submenuVeiculo: TUniMenuItem;
+    submenuEntrada: TUniMenuItem;
+    submenuVenda: TUniMenuItem;
+    submenuGastos: TUniMenuItem;
     menuCadastro: TUniMenuItem;
     submenuEmpresa: TUniMenuItem;
     submenuPessoa: TUniMenuItem;
     submenuTipoGasto: TUniMenuItem;
     menuFinanceiro: TUniMenuItem;
-    subContasReceber: TUniMenuItem;
+    submenuContasReceber: TUniMenuItem;
     procedure menuSairClick(Sender: TObject);
     procedure menuSimuladorClick(Sender: TObject);
     procedure submenuEmpresaClick(Sender: TObject);
     procedure submenuPessoaClick(Sender: TObject);
     procedure submenuTipoGastoClick(Sender: TObject);
-    procedure subVeiculoClick(Sender: TObject);
-    procedure subEntradaClick(Sender: TObject);
-    procedure subVendaClick(Sender: TObject);
-    procedure subGastosClick(Sender: TObject);
-    procedure subContasReceberClick(Sender: TObject);
+    procedure submenuVeiculoClick(Sender: TObject);
+    procedure submenuEntradaClick(Sender: TObject);
+    procedure submenuVendaClick(Sender: TObject);
+    procedure submenuGastosClick(Sender: TObject);
+    procedure submenuContasReceberClick(Sender: TObject);
     procedure UniFormAfterShow(Sender: TObject);
+    procedure UniFormCreate(Sender: TObject);
   private
   public
     Procedure OpenFrame(AClassName: string; ACaption: string);
@@ -128,35 +129,78 @@ begin
   OpenFrame('TFrameTipoGasto', 'Tipo de Gasto');
 end;
 
-procedure TFormMain.subVeiculoClick(Sender: TObject);
+procedure TFormMain.submenuVeiculoClick(Sender: TObject);
 begin
   OpenFrame('TFrameManutencaoVeiculo', 'Manutenção de Veículos');
 end;
 
-procedure TFormMain.subEntradaClick(Sender: TObject);
+procedure TFormMain.submenuEntradaClick(Sender: TObject);
 begin
   OpenFrame('TFrameManutencaoEntrada', 'Manutenção de Entradas');
 end;
 
-procedure TFormMain.subVendaClick(Sender: TObject);
+procedure TFormMain.submenuVendaClick(Sender: TObject);
 begin
   OpenFrame('TFrameManutencaoVenda', 'Manutenção de Vendas');
 end;
 
-procedure TFormMain.subGastosClick(Sender: TObject);
+procedure TFormMain.submenuGastosClick(Sender: TObject);
 begin
   OpenFrame('TFrameManutencaoGasto', 'Manutenção de Gastos');
 end;
 
-procedure TFormMain.subContasReceberClick(Sender: TObject);
+procedure TFormMain.submenuContasReceberClick(Sender: TObject);
 begin
   OpenFrame('TFrameManutencaoContasReceber', 'Manutenção de Contas a Receber');
 end;
 
+//procedure TFormMain.UniFormShow(Sender: TObject);
+//var
+//  LUniMenu: TUniTreeNode;
+//  LTabSheet : TUniTabSheet;
+//begin
+//  LUniMenu := UniTreeMenu.Selected;
+//  LTabSheet := LUniMenu.Data;
+//
+//  if Assigned(LTabSheet) then
+//    LTabSheet.Free;
+//
+//  LUniMenu.Free;
+//end;
+
 procedure TFormMain.UniFormAfterShow(Sender: TObject);
 begin
-  if UniMainModule.TemFinanceiroVencido > 0 then
-    FormAlertaFinanceiro.ShowModal;
+  if UniMainModule.GlobalAcessoOperador.AlertaFinanceiroVencido then
+  begin
+    if UniMainModule.TemFinanceiroVencido > 0 then
+      FormAlertaFinanceiro.ShowModal;
+  end;
+end;
+
+procedure TFormMain.UniFormCreate(Sender: TObject);
+begin
+
+  UniMenuItems.Items.Find('Cadastro', True).Visible := UniMainModule.GlobalAcessoOperador.CadastroEmpresa or
+                                                       UniMainModule.GlobalAcessoOperador.CadastroPessoa or
+                                                       UniMainModule.GlobalAcessoOperador.CadastroTipoGasto;
+
+  UniMenuItems.Items.Find('Empresa', True).Visible       := UniMainModule.GlobalAcessoOperador.CadastroEmpresa;
+  UniMenuItems.Items.Find('Pessoa', True).Visible        := UniMainModule.GlobalAcessoOperador.CadastroPessoa;
+  UniMenuItems.Items.Find('Tipo de Gasto', True).Visible := UniMainModule.GlobalAcessoOperador.CadastroTipoGasto;
+
+  UniMenuItems.Items.Find('Manutenção', True).Visible := UniMainModule.GlobalAcessoOperador.ManutencaoVeiculo or
+                                                         UniMainModule.GlobalAcessoOperador.ManutencaoVenda or
+                                                         UniMainModule.GlobalAcessoOperador.ManutencaoGasto;
+
+  UniMenuItems.Items.Find('Veículo', True).Visible    := UniMainModule.GlobalAcessoOperador.ManutencaoVeiculo;
+  UniMenuItems.Items.Find('Venda', True).Visible      := UniMainModule.GlobalAcessoOperador.ManutencaoVenda;
+  UniMenuItems.Items.Find('Gasto', True).Visible      := UniMainModule.GlobalAcessoOperador.ManutencaoGasto;
+
+
+  UniMenuItems.Items.Find('Financeiro', True).Visible       := UniMainModule.GlobalAcessoOperador.ManutencaoContasReceber;
+  UniMenuItems.Items.Find('Contas a Receber', True).Visible := UniMainModule.GlobalAcessoOperador.ManutencaoContasReceber;
+
+  UniMenuItems.Items.Find('Simulador', True).Visible := UniMainModule.GlobalAcessoOperador.Simulador;
 end;
 
 procedure TFormMain.menuSimuladorClick(Sender: TObject);

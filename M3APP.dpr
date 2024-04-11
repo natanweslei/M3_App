@@ -1,4 +1,12 @@
+// {$define UNIGUI_VCL} // Comment out this line to turn this project into an ISAPI module
+
+{$ifndef UNIGUI_VCL}
+{$E dll}
+library
+{$else}
+{$E exe}
 program
+{$endif}
   M3APP;
 
 uses
@@ -35,11 +43,18 @@ uses
 
 {$R *.res}
 
+{$ifndef UNIGUI_VCL}
+exports
+  GetExtensionVersion,
+  HttpExtensionProc,
+  TerminateExtension;
+{$endif}
+
 begin
-{$IFDEF DEBUG}
+{$ifdef UNIGUI_VCL}
   ReportMemoryLeaksOnShutdown := True;
-{$ENDIF}
   Application.Initialize;
   TUniServerModule.Create(Application);
   Application.Run;
+{$endif}
 end.

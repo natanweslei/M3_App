@@ -9,9 +9,8 @@ object UniMainModule: TUniMainModule
       'Database=garagem'
       'User_Name=postgres'
       'Password=0207'
-      'Server=127.0.0.1'
+      'Server=192.168.1.129'
       'DriverID=PG')
-    Connected = True
     Left = 104
     Top = 96
   end
